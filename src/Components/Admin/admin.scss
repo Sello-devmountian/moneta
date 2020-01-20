@@ -1,0 +1,50 @@
+/* ----------ADMIN COMPONENT---------- */
+
+
+@mixin displayFlex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-page {
+    border: palevioletred solid;
+    width: 30%;
+    display: inline-block;
+    margin-top: 60px;
+
+    a {
+        text-decoration: none;
+        color: #232323;
+    }
+}
+
+.add-product, 
+.edit-products, 
+.delete-product, 
+.add-employee,
+.delete-employee {
+    @include displayFlex();
+    height: 75px;
+    margin: 20px;
+}
+
+.add-product {
+    border: palegoldenrod solid;
+} 
+
+.edit-products {
+    border: palegreen solid;
+}
+
+.delete-product {
+    border: paleturquoise solid;
+}
+
+.add-employee {
+    border: slateblue solid;
+}
+
+.delete-employee {
+    border: tomato solid;
+}
