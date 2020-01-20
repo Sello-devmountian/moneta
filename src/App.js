@@ -21,7 +21,9 @@ function App(props) {
           {routes}
         </>
       ) : (
+        <>
         {routes}
+        </>
       )}
     </div>
   );
