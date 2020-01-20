@@ -1,25 +1,40 @@
 require("dotenv").config();
 const express = require("express"),
   massive = require("massive"),
+  session = require('express-session'),
   gradient = require("gradient-string"),
+  authCtrl = require('./controllers/authController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
 app.use(express.json());
 
+
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESSION_SECRET,
+    cookie: {maxAge: 1000 * 60 * 60 * 24}
+}));
+
+
+
 massive(CONNECTION_STRING).then(db => {
-  app.set("db", db);
-  console.log(gradient.atlas("DB Cooper"));
+    app.set('db', db);
+    console.log('db connected')
 });
+
 
 
 // ----------ENDPOINTS----------
 
 // AUTH
 
-app.post("/auth/login");
-app.post("auth/register");
-app.post("/auth/logout");
+app.post('/api/auth/login', authCtrl.login);
+app.post('/api/auth/logout', authCtrl.logout);
+app.post('/api/auth/register', authCtrl.register);
+app.get('/api/auth/checkSession', authCtrl.checkSession);
+
 
 // PRODUCTS
 
@@ -55,5 +70,6 @@ app.put("/api/co/:co_id");
 app.get("/api/receipt");
 
 
-const port = SERVER_PORT;
-app.listen(port, () => console.log(gradient.pastel(`Point of Sale is online at ${port}`)))
+
+const port = SERVER_PORT || 6789
+app.listen(port, () => console.log(`Server running on ${port}`));
