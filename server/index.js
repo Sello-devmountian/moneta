@@ -4,6 +4,7 @@ const express = require("express"),
   session = require('express-session'),
   authCtrl = require('./controllers/authController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
+  customerController = require('./controllers/customerController'),
   app = express();
 
 app.use(express.json());
@@ -43,7 +44,7 @@ app.delete("api/product/:p_id");
 // CUSTOMERS
 
 app.post("/api/customer");
-app.get("/api/customer");
+app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id");
 app.put("/api/customer/:c_id");
 app.delete("/api/customer/:c_id");
