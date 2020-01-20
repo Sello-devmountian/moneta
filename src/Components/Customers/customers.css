@@ -1,0 +1,8 @@
+.customers-page{
+    margin-top: 50px; 
+}
+
+.customers-table{
+    display: flex; 
+    align-items: column; 
+}
