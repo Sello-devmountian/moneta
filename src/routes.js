@@ -22,12 +22,12 @@ export default (
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 
-        <Route path='/admin' component={Admin} />
+        <Route exact path='/admin' component={Admin} />
 
-        <Route path='/addproduct' component={AddProduct} />
-        <Route path='/editproducts' component={EditProducts} />
-        <Route path='/deleteproduct' component={DeleteProduct} />
-        <Route path='/addemployee' component={AddEmployee} />
-        <Route path='/deleteemployee' component={DeleteEmployee} />
+        <Route path='/admin/addproduct' component={AddProduct} />
+        <Route path='/admin/editproducts' component={EditProducts} />
+        <Route path='/admin/deleteproduct' component={DeleteProduct} />
+        <Route path='/admin/addemployee' component={AddEmployee} />
+        <Route path='/admin/deleteemployee' component={DeleteEmployee} />
     </Switch>
 );

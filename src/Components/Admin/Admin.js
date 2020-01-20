@@ -1,36 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './admin.css';
+import './admin.scss';
 
 const Admin = () => {
   return (
     <div className="admin-page">
       <div className="add-product">
-        <Link to="/addproduct">
+        <Link to="/admin/addproduct">
           <span>add product</span>
         </Link>
       </div>
 
       <div className="edit-products">
-        <Link to="/editproducts">
+        <Link to="/admin/editproducts">
           <span>edit products</span>
         </Link>
       </div>
 
       <div className="delete-product">
-        <Link to="/deleteproduct">
+        <Link to="/admin/deleteproduct">
           <span>delete product</span>
         </Link>
       </div>
 
       <div className="add-employee">
-        <Link to="/addemployee">
+        <Link to="/admin/addemployee">
           <span>add employee</span>
         </Link>
       </div>
 
       <div className="delete-employee">
-        <Link to="/deleteemployee">
+        <Link to="/admin/deleteemployee">
           <span>delete employee</span>
         </Link>
       </div>

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,+CAA+C;AAS/C,AAAA,iBAAiB,CAAC;EACd,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,mBAAmB,CAAC;EAChB,WAAW,EAAE,IAAI;EACjB,SAAS,EAAE,IAAI;CAClB;;AAED,AAAA,iBAAiB,CAAC;EACd,MAAM,EAAE,oBAAoB;EAC5B,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,YAAY;CAExB",
+    "sources": [
+        "addemployee.scss"
+    ],
+    "names": [],
+    "file": "addemployee.css"
+}

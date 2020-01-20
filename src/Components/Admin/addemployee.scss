@@ -1,0 +1,25 @@
+/* ----------ADDEMPLOYEE COMPONENT---------- */
+
+
+// @mixin displayFlex() {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+.add-employee-box {
+    margin-top: 50px;
+}
+
+.new-employee-title {
+    padding-top: 50px;
+    font-size: 50px;
+}
+
+.add-employee-btn {
+    border: cornflowerblue solid;
+    height: 50px;
+    width: 150px;
+    display: inline-block;
+    // @include displayFlex();
+}
