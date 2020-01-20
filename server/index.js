@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express"),
   massive = require("massive"),
   session = require('express-session'),
-  gradient = require("gradient-string"),
   authCtrl = require('./controllers/authController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();

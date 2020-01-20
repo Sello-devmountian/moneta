@@ -1,0 +1,44 @@
+@mixin flexDisplay(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth {
+    @include flexDisplay();
+
+    min-height: 100vh;
+    min-width: 100vw;
+
+    .auth-container {
+        @include flexDisplay();
+
+        height: 700px;
+        width: 1100px;
+        background-color: #232323;
+
+        .welcome {
+            width: 500px;
+            color: white;
+        }
+
+        .login {
+            @include flexDisplay();
+            flex-direction: column;
+
+            background-color: #ffffff;
+            height: 600px;
+            width: 500px;
+
+            input {
+                // outline: none;
+                border: none;
+                border-bottom: 3px #408dff solid;
+                height: 40px;
+                width: 350px;
+                font-size: 20px;
+                padding: 10px 5px;
+            }
+        }
+    }
+}
