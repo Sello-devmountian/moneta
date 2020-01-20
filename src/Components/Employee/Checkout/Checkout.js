@@ -7,7 +7,8 @@ import {getProducts} from '../../../redux/reducers/productReducer'
 // props.getProducts is the product reducer.
 
 const Checkout = (props) => {
-    const [products, setProducts] = useState([])
+    const {products} = props.product
+    // const [products, setProducts] = useState([])
     useEffect(
     () => {
         getAllProducts()
@@ -15,7 +16,8 @@ const Checkout = (props) => {
     )
     let getAllProducts = () => {
         axios.get('/api/product')
-        .then(res => setProducts(res.data))
+        .then(res => props.getProducts(res.data))
+        
     }
     console.log(props)
     return(
