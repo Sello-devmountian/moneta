@@ -1,0 +1,16 @@
+/* ----------ADMIN COMPONENT---------- */
+
+.admin-page {
+    border: palevioletred solid;
+    width: 30%;
+    display: inline-block;
+}
+
+.add-product, 
+.edit-products, 
+.delete-product, 
+.add-employee,
+.delete-employee, a{
+    text-decoration: none;
+    color: #232323;
+}
