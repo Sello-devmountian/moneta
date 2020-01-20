@@ -1,0 +1,19 @@
+.nav-bar {
+    height: 50px; 
+    background-color: #232323; 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    color: white; 
+  }
+
+.nav-buttons {
+    position: absolute; 
+    top: 15px; 
+    right: 70px; 
+}
+
+.nav-button {
+    margin-left: 10px; 
+    color: white;  
+}
