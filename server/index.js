@@ -18,12 +18,10 @@ app.use(session({
 }));
 
 
-
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('db connected')
 });
-
 
 
 // ----------ENDPOINTS----------
