@@ -1,3 +1,4 @@
+  
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Authentication from './Components/Authentication/Authentication';
@@ -11,7 +12,6 @@ import EditProducts from './Components/Admin/EditProducts';
 import DeleteProduct from './Components/Admin/DeleteProduct';
 import AddEmployee from './Components/Admin/AddEmployee';
 import DeleteEmployee from './Components/Admin/DeleteEmployee';
-
 
 export default (
     <Switch>

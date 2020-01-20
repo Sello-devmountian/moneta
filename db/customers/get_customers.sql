@@ -1,1 +1,1 @@
-select * from moneta_customers
+select * from moneta_customers;
