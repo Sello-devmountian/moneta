@@ -3,7 +3,9 @@ const express = require("express"),
   massive = require("massive"),
   session = require('express-session'),
   authCtrl = require('./controllers/authController'),
+  productCtrl = require('./controllers/productController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
+  customerController = require('./controllers/customerController'),
   app = express();
 
 app.use(express.json());
@@ -35,15 +37,15 @@ app.get('/api/auth/checkSession', authCtrl.checkSession);
 
 // PRODUCTS
 
-app.post("api/product");
-app.put("api/product/:p_id");
-app.get("api/product");
-app.delete("api/product/:p_id");
+app.post("/api/product");
+app.put("/api/product/:p_id");
+app.get("/api/product",productCtrl.getProducts);
+app.delete("/api/product/:p_id");
 
 // CUSTOMERS
 
 app.post("/api/customer");
-app.get("/api/customer");
+app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id");
 app.put("/api/customer/:c_id");
 app.delete("/api/customer/:c_id");

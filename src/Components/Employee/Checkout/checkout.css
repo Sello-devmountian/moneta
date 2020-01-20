@@ -1,0 +1,26 @@
+.checkout-container {
+    width: 100vw;
+    display: flex;
+    background-color: lightcoral;
+    box-sizing: border-box;
+}
+
+
+.sidebar-container {
+    color: white;
+    width: 15%;
+    background-color: lightsalmon;
+   
+}
+
+.all-products-container {
+    background-color: aquamarine;
+    width: 100%;
+
+}
+
+
+.cart-container {
+    background-color: lightblue;
+    width: 25%;
+}
