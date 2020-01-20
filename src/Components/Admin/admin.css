@@ -1,16 +1,51 @@
 /* ----------ADMIN COMPONENT---------- */
-
 .admin-page {
-    border: palevioletred solid;
-    width: 30%;
-    display: inline-block;
+  border: palevioletred solid;
+  width: 30%;
+  display: inline-block;
+  margin-top: 60px;
 }
 
-.add-product, 
-.edit-products, 
-.delete-product, 
-.add-employee,
-.delete-employee, a{
-    text-decoration: none;
-    color: #232323;
+.admin-page a {
+  text-decoration: none;
+  color: #232323;
 }
+
+.add-product,
+.edit-products,
+.delete-product,
+.add-employee,
+.delete-employee {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 75px;
+  margin: 20px;
+}
+
+.add-product {
+  border: palegoldenrod solid;
+}
+
+.edit-products {
+  border: palegreen solid;
+}
+
+.delete-product {
+  border: paleturquoise solid;
+}
+
+.add-employee {
+  border: slateblue solid;
+}
+
+.delete-employee {
+  border: tomato solid;
+}
+/*# sourceMappingURL=admin.css.map */

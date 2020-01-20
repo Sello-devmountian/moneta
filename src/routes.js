@@ -5,12 +5,6 @@ import Customers from './Components/Customers/Customers';
 import Checkout from './Components/Employee/Checkout/Checkout'; 
 import Transactions from './Components/Admin/Transactions';
 
-import AddProduct from './Components/Admin/AddProduct';
-import EditProducts from './Components/Admin/EditProducts';
-import DeleteProduct from './Components/Admin/DeleteProduct';
-import AddEmployee from './Components/Admin/AddEmployee';
-import DeleteEmployee from './Components/Admin/DeleteProduct';
-
 import Admin from './Components/Admin/Admin';
 // import AddProduct from './Components/Admin/AddProduct';
 // import EditProducts from './Components/Admin/EditProducts';
