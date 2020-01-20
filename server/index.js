@@ -2,8 +2,9 @@ require("dotenv").config();
 const express = require("express"),
   massive = require("massive"),
   session = require('express-session'),
-  gradient = require("gradient-string"),
+  // gradient = require("gradient-string"),
   authCtrl = require('./controllers/authController'),
+  productCtrl = require('./controllers/productController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
@@ -36,10 +37,10 @@ app.get('/api/auth/checkSession', authCtrl.checkSession);
 
 // PRODUCTS
 
-app.post("api/product");
-app.put("api/product/:p_id");
-app.get("api/product");
-app.delete("api/product/:p_id");
+app.post("/api/product");
+app.put("/api/product/:p_id");
+app.get("/api/product",productCtrl.getProducts);
+app.delete("/api/product/:p_id");
 
 // CUSTOMERS
 
