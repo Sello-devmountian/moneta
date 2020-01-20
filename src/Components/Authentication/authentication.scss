@@ -1,0 +1,90 @@
+@mixin flexDisplay(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth {
+    @include flexDisplay();
+    flex-direction: column;
+
+    min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    
+    img {
+        position: fixed;
+        top: 0px;
+        left: 155.3px;
+    }
+
+    .auth-container {
+        @include flexDisplay();
+
+        height: 650px;
+        width: 1100px;
+        background-color: #232323;
+        margin-top: 125px;
+
+        .welcome {
+            width: 500px;
+            color: white;
+
+            div {
+                text-align: right;
+                font-size: 50px;
+                font-weight: bold;
+                padding: 45px;
+            }
+
+            h2 {
+                color: #408dff;
+
+                i {
+                    border: solid #408dff;
+                    border-width: 0 6px 6px 0;
+                    display: inline-block;
+                    padding: 3px;
+                    transform: rotate(-45deg);
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .login {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            background-color: #ffffff;
+            height: 550px;
+            width: 500px;
+
+            h1 {
+                font-size: 70px;
+                color: #232323;
+            }
+
+            input {
+                outline: none;
+                border: none;
+                border-bottom: 5px #408dff solid;
+                height: 40px;
+                width: 350px;
+                font-size: 20px;
+                padding: 10px 5px;
+            }
+
+            button {
+                height: 45px;
+                width: 140px;
+                color: #aaaaaa;
+                background-color: #232323;
+                font-size: 20px;
+                margin-top: 30px;
+                margin-left: 175px;
+            }
+        }
+    }
+}
