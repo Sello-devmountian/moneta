@@ -1,5 +1,5 @@
 import React from 'react';
-import './authentication.css';
+import './authentication.scss';
 import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -19,18 +19,26 @@ const Authentication = (props) => {
     }
 
     return (
-        <div className='auth-container'>
-            <input 
-                {...bindUsername}
-                type='text'
-                placeholder='Enter Username'
-            />
-            <input 
-                {...bindPassword}
-                type='password'
-                placeholder='Enter Password'
-            />
-            <button onClick={login}>Login</button>
+        <div className='auth'>
+            <div className='auth-container'>
+                <div className='welcome'>
+                    <h1>Welcome back to Moneta!</h1>
+                </div>
+                <div className='login'>
+                    <h1>sign in</h1>
+                    <input 
+                        {...bindUsername}
+                        type='text'
+                        placeholder='username'
+                    />
+                    <input 
+                        {...bindPassword}
+                        type='password'
+                        placeholder='password'
+                    />
+                    <button onClick={login}>login</button>
+                </div>
+            </div>
         </div>
     )
 }
