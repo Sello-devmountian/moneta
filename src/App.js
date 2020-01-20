@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getEmployee} from './redux/reducers/employeeReducer';
+import Header from './Components/Header/Header'; 
 
 
 function App(props) {
@@ -22,6 +23,7 @@ function App(props) {
         </>
       ) : (
         <>
+        <Header />
         {routes}
         </>
       )}
