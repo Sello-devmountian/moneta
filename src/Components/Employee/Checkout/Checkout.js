@@ -3,6 +3,7 @@ import axios from 'axios';
 import './checkout.css'
 import {connect} from 'react-redux'
 import {getProducts} from '../../../redux/reducers/productReducer'
+import Sidebar from './Sidebar/Sidebar'
 
 // props.getProducts is the product reducer.
 
@@ -21,6 +22,8 @@ const Checkout = (props) => {
     }
     console.log(props)
     return(
+        <div style={{paddingTop: '100px'}} className='checkout-container'>
+        <Sidebar />
         <div className="all-products-container">
             {products[0] ? (
                 products.map(p => {
@@ -37,6 +40,8 @@ const Checkout = (props) => {
             )
         }
             
+        </div>
+        <div className='cart-container'>Cart</div>
         </div>
     )
 }
