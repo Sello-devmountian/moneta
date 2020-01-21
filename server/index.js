@@ -72,11 +72,11 @@ app.get("/api/receipt");
 
 // ADMIN
 
-app.post('/api/admin/product')
-app.put('/api/admin/products')
-app.delete('/api/admin/products')
+app.post('/api/admin/product', adminCtrl.addProduct)
+app.put('/api/admin/products', adminCtrl.editProduct)
+app.delete('/api/admin/products', adminCtrl.deleteProduct)
 
-app.post('/api/admin/users')
+app.post('/api/admin/users', authCtrl.register)
 app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);
 
 
