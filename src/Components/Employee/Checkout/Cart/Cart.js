@@ -4,15 +4,9 @@ import Axios from "axios";
 
 const Cart = props => {
   useEffect(() => {
-    // getCart()
   }, []);
 
-  // const getCart = () => {
-  //   Axios.get("/api/co/cart").then(res => console.log(props.cart));
-  // };
-  console.log(props);
-  const { cart } = props.employee.employee;
-  console.log(cart);
+
   return (
     <div className="cart-container">
       <section className="cart-items">
@@ -23,7 +17,6 @@ const Cart = props => {
                 <span>{item.name}</span>
                 <span>{item.price}</span>
               </div>
-              // console.log('hit', item)
             );
           })}
       </section>

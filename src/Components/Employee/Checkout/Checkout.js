@@ -5,18 +5,16 @@ import { connect } from "react-redux";
 import { getProducts } from "./../../../redux/reducers/productReducer";
 import Sidebar from "./Sidebar/Sidebar";
 import Cart from "./Cart/Cart";
-import { getEmployee } from "../../../redux/reducers/employeeReducer";
 
-// props.getProducts is the product reducer.
 
 const Checkout = props => {
   const { products } = props.product;
   const [cart, setCart] = useState([]);
+  const [transaction, setTransaction] = useState(true);
   useEffect(() => {
     getAllProducts();
   }, [products.length]);
   useEffect(() => {
-    // props.getEmployee({props.employee.employee.cart: cart})
     console.log("cart updated", cart);
     console.log("props.employee", props.employee);
   }, [cart.length]);
@@ -26,7 +24,14 @@ const Checkout = props => {
   };
 
   const addToCart = product => {
+    let t_id = 0
+    if(transaction){
+      //axios to create new transaction and get id.
+    }
+    //axios to add to cart 
+    //req.body {t_id, c_id,p_id, qty}
     setCart([...cart, product])
+
   };
   return (
     <div style={{ paddingTop: "50px" }} className="checkout-container">
@@ -59,4 +64,4 @@ const Checkout = props => {
 const mapStateToProps = reduxState => {
   return reduxState;
 };
-export default connect(mapStateToProps, { getProducts, getEmployee })(Checkout);
+export default connect(mapStateToProps, { getProducts })(Checkout);

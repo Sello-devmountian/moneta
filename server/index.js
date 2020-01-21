@@ -54,7 +54,7 @@ app.delete("/api/customer/:c_id");
 
 // TRANSACTIONS
 
-app.post("/api/transactions");
+app.post("/api/transactions", orderCtrl.createTransaction);
 app.get("/api/transactions");
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
