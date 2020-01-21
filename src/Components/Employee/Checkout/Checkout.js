@@ -10,7 +10,8 @@ import Cart from "./Cart/Cart";
 const Checkout = props => {
   const { products } = props.product;
   const [cart, setCart] = useState([]);
-  const [transaction, setTransaction] = useState(true);
+  const [addTransaction, toggleTransaction] = useState(true);
+  const [transaction, setTransaction] = useState({})
   useEffect(() => {
     getAllProducts();
   }, [products.length]);
@@ -18,15 +19,22 @@ const Checkout = props => {
     console.log("cart updated", cart);
     console.log("props.employee", props.employee);
   }, [cart.length]);
-
+useEffect(()=>{
+  console.log(transaction)
+},[addTransaction])
   let getAllProducts = () => {
     axios.get("/api/product").then(res => props.getProducts(res.data));
   };
 
-  const addToCart = product => {
-    let t_id = 0
-    if(transaction){
-      //axios to create new transaction and get id.
+  const addToCart = async product => {
+    if(addTransaction){
+      axios.post("/api/transactions",{c_id: 1, total: 45, paid: false})
+      .then( res => {
+        setTransaction(res.data[0])
+        toggleTransaction(false)
+      }
+      )
+      .catch(err => console.log(err))
     }
     //axios to add to cart 
     //req.body {t_id, c_id,p_id, qty}
