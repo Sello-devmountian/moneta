@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import 'react-credit-cards/lib/styles.scss';
 import './payment.scss';
 import Cards from 'react-credit-cards';
+import Cash from './Cash/Cash';
 
 import {
     formatCreditCardNumber,
@@ -66,66 +67,73 @@ class Payment extends Component {
         const {formData} = this.state;
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
-                <form onSubmit={this.handleSubmit}>
-                    <div className='payment-flex'>
-                        <input 
-                            type='tel'
-                            name='number'
-                            placeholder='Card Number'
-                            pattern='[\d| ]{16,22}'
-                            required
-                            onChange={this.handleInputChange}
-                            onFocus={this.handleInputFocus}
-                        />
-                    </div>
-                    <div className='payment-flex'>
-                        <input 
-                            type='text'
-                            name='name'
-                            placeholder='Name'
-                            required
-                            onChange={this.handleInputChange}
-                            onFocus={this.handleInputFocus}
-                        />
-                    </div>
-                    <div className='row'>
-                        <div className='col-6'>
+                <Cash />
+                <div className='card-container'>
+                <h1>Card</h1>
+                    <Cards 
+                        cvc={this.state.cvc}
+                        expiry={this.state.expiry}
+                        focused={this.state.focused}
+                        name={this.state.name}
+                        number={this.state.number}
+                    />
+                    <form onSubmit={this.handleSubmit}>
+                        <div className='payment-flex'>
                             <input 
                                 type='tel'
-                                name='expiry'
-                                placeholder='Valid Thru'
-                                pattern='\d\d/\d\d' 
+                                name='number'
+                                placeholder='Card Number'
+                                pattern='[\d| ]{16,22}'
                                 required
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
                         </div>
-                        <div className='col-6'>
+                        <div className='payment-flex'>
                             <input 
-                                type='tel'
-                                name='cvc'
-                                placeholder='CVC'
-                                pattern='\d{3,4}'
+                                type='text'
+                                name='name'
+                                placeholder='Name'
                                 required
                                 onChange={this.handleInputChange}
                                 onFocus={this.handleInputFocus}
                             />
                         </div>
-                    </div>
-                </form>
-                {formData && (
-            <div className="App-highlight">
-              {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
-            </div>
-          )}
-          <Cards 
-                style={{height: '200px'}}
-                cvc={this.state.cvc}
-                expiry={this.state.expiry}
-                focused={this.state.focused}
-                name={this.state.name}
-                number={this.state.number}
-            />
+                        <div className='row'>
+                            <div className='col-6'>
+                                <input 
+                                    type='tel'
+                                    name='expiry'
+                                    placeholder='Valid Thru'
+                                    pattern='\d\d/\d\d' 
+                                    required
+                                    onChange={this.handleInputChange}
+                                    onFocus={this.handleInputFocus}
+                                />
+                            </div>
+                            <div className='col-6'>
+                                <input 
+                                    type='tel'
+                                    name='cvc'
+                                    placeholder='CVC'
+                                    pattern='\d{3,4}'
+                                    required
+                                    onChange={this.handleInputChange}
+                                    onFocus={this.handleInputFocus}
+                                />
+                            </div>
+                        </div>
+                        <input type='hidden' name='issuer' value={this.state.issuer}/>
+                        <div className="form-actions">
+                            <button className="payment-button">PAY</button>
+                        </div>
+                    </form>
+                    {formData && (
+                        <div className="App-highlight">
+                            {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
+                        </div>
+                    )}
+                </div>
             </div>
         )
     }
