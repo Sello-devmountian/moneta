@@ -4,8 +4,9 @@ const express = require("express"),
   session = require('express-session'),
   authCtrl = require('./controllers/authController'),
   productCtrl = require('./controllers/productController'),
-  { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   customerController = require('./controllers/customerController'),
+  orderCtrl = require('./controllers/orderController'),
+  { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
 app.use(express.json());
@@ -63,7 +64,7 @@ app.post("/api/co");
 app.get("/api/co");
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
-
+app.post('/api/co/cart', orderCtrl.addToCart)
 // RECEIPT
 
 app.get("/api/receipt");

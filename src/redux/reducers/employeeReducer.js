@@ -11,6 +11,8 @@ export function getEmployee(employeeObj){
     }
 }
 
+
+
 export default function employeeReducer(state = initialState, action){
     const {type, payload} = action;
     switch(type){

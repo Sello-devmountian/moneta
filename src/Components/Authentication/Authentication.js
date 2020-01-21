@@ -12,7 +12,7 @@ const Authentication = (props) => {
     let login = () => {
         axios.post('/api/auth/login', {username: username, password: password}).then(res => {
             props.getEmployee(res.data);
-            //props.history.push('/')
+            props.history.push('/checkout')
             resetUsername()
             resetPassword()
         })
