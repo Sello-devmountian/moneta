@@ -1,3 +1,4 @@
+  
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Authentication from './Components/Authentication/Authentication';
@@ -7,11 +8,9 @@ import Transactions from './Components/Admin/Transactions';
 
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
-import EditProducts from './Components/Admin/EditProducts';
-import DeleteProduct from './Components/Admin/DeleteProduct';
+import ManageProducts from './Components/Admin/ManageProducts';
 import AddEmployee from './Components/Admin/AddEmployee';
 import DeleteEmployee from './Components/Admin/DeleteEmployee';
-
 
 export default (
     <Switch>
@@ -22,12 +21,11 @@ export default (
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 
-        <Route path='/admin' component={Admin} />
+        <Route exact path='/admin' component={Admin} />
 
-        <Route path='/addproduct' component={AddProduct} />
-        <Route path='/editproducts' component={EditProducts} />
-        <Route path='/deleteproduct' component={DeleteProduct} />
-        <Route path='/addemployee' component={AddEmployee} />
-        <Route path='/deleteemployee' component={DeleteEmployee} />
+        <Route path='/admin/addproduct' component={AddProduct} />
+        <Route path='/admin/manageproducts' component={ManageProducts} />
+        <Route path='/admin/addemployee' component={AddEmployee} />
+        <Route path='/admin/deleteemployee' component={DeleteEmployee} />
     </Switch>
 );

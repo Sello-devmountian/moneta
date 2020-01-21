@@ -1,5 +1,5 @@
 const initialState = {
-    customer: {}
+    customer: []
 }
 
 const GET_CUSTOMER = 'GET_CUSTOMER';
