@@ -5,39 +5,41 @@ import { connect } from "react-redux";
 import { getProducts } from "./../../../redux/reducers/productReducer";
 import Sidebar from "./Sidebar/Sidebar";
 import Cart from "./Cart/Cart";
-import { getEmployee } from "../../../redux/reducers/employeeReducer";
 
-// props.getProducts is the product reducer.
 
 const Checkout = props => {
   const { products } = props.product;
   const [cart, setCart] = useState([]);
+  const [addTransaction, toggleTransaction] = useState(true);
+  const [transaction, setTransaction] = useState({})
   useEffect(() => {
     getAllProducts();
   }, [products.length]);
   useEffect(() => {
-    // props.getEmployee({props.employee.employee.cart: cart})
     console.log("cart updated", cart);
     console.log("props.employee", props.employee);
   }, [cart.length]);
-
+useEffect(()=>{
+  console.log(transaction)
+},[addTransaction])
   let getAllProducts = () => {
     axios.get("/api/product").then(res => props.getProducts(res.data));
   };
 
-  const addToCart = product => {
-    axios
-      .post("/api/co/cart", { item: product })
-      .then(res => {
-        props.getEmployee(res.data);
-        setCart(res.data.cart);
-      })
-      .catch(err => console.log(err));
-    // props.getCart([...props.cart.cart, product])
-    // console.log('hit')
-    // setCart([...cart, product])
-    // console.log(cart)
-    // console.log(props)
+  const addToCart = async product => {
+    if(addTransaction){
+      axios.post("/api/transactions",{c_id: 1, total: 45, paid: false})
+      .then( res => {
+        setTransaction(res.data[0])
+        toggleTransaction(false)
+      }
+      )
+      .catch(err => console.log(err))
+    }
+    //axios to add to cart 
+    //req.body {t_id, c_id,p_id, qty}
+    setCart([...cart, product])
+
   };
   return (
     <div style={{ paddingTop: "50px" }} className="checkout-container">
@@ -70,4 +72,4 @@ const Checkout = props => {
 const mapStateToProps = reduxState => {
   return reduxState;
 };
-export default connect(mapStateToProps, { getProducts, getEmployee })(Checkout);
+export default connect(mapStateToProps, { getProducts })(Checkout);

@@ -1,45 +1,34 @@
-import React,{useEffect, useState} from 'react'; 
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import Axios from 'axios';
-
+import Axios from "axios";
 
 const Cart = props => {
-  useEffect(
-    
-    () => {},
-  []
-  )
-  
-  const getCart = () => {
-    Axios.get('/api/co/cart').then(
-      res => console.log(props.cart)
-    )
-    
-  }
-console.log(props.cart)
-console.log('emp', props.employee)
+  useEffect(() => {
+  }, []);
+
+
   return (
     <div className="cart-container">
       <section className="cart-items">
-        {props.cart.map((item,i) => {
-          return (
-            <div key={i}>
-              <span>{item.name}</span>
-              <span>{item.price}</span>
-            </div>
-            // console.log('hit', item)
-          )
-        })
-        
-        }
-        
+        { props.cart[0] &&
+          props.cart.map((item, i) => {
+            return (
+              <div key={i}>
+                <span>{item.name}</span>
+                <span>{item.price}</span>
+              </div>
+            );
+          })}
       </section>
-<span>Total: {props.cart[0] && props.cart.reduce((acc, b) => acc + +b.price
-,0).toFixed(2)}</span>
+      <span>
+        Total:{" "}
+        {props.cart[0] &&
+          props.cart.reduce((acc, b) => acc + +b.price, 0).toFixed(2)}
+      </span>
       <section>
         discount code
         <input type="text" />
-        <button onClick={() => getCart()}>Submit</button>
+        <button >Submit</button>
       </section>
       <button>Checkout</button>
     </div>
