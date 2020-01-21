@@ -5,11 +5,15 @@ const initialState = {
 const GET_EMPLOYEE = 'GET_EMPLOYEE';
 
 export function getEmployee(employeeObj){
+    console.log('getemplyee hit')
+
     return {
         type: GET_EMPLOYEE,
         payload: employeeObj
     }
 }
+
+
 
 export default function employeeReducer(state = initialState, action){
     const {type, payload} = action;
