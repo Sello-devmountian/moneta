@@ -3,15 +3,16 @@
 
 @mixin displayFlex() {
     display: flex;
-    align-items: center;
-    justify-content: center;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .admin-page {
     border: palevioletred solid;
-    width: 30%;
-    display: inline-block;
+    width: 100vw;
     margin-top: 60px;
+    @include displayFlex();
 
     a {
         text-decoration: none;
@@ -19,32 +20,31 @@
     }
 }
 
-.add-product, 
-.edit-products, 
-.delete-product, 
-.add-employee,
-.delete-employee {
-    @include displayFlex();
-    height: 75px;
+.product-management-div,
+.employee-management-div {
+    border: yellow solid;
+    display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+    align-items: center;
+    width: 50vw;
     margin: 20px;
 }
 
-.add-product {
-    border: palegoldenrod solid;
-} 
-
-.edit-products {
-    border: palegreen solid;
-}
-
-.delete-product {
-    border: paleturquoise solid;
-}
-
-.add-employee {
-    border: slateblue solid;
-}
-
+.add-product, 
+.manage-products, 
+.add-employee,
 .delete-employee {
-    border: tomato solid;
+    @include displayFlex();
+    width: 30vw;
+    height: 150px;
+    margin: 20px;
 }
+
+.add-product,
+.manage-products, 
+.add-employee, 
+.delete-employee
+ {
+    background-color: #408DFF;
+} 
