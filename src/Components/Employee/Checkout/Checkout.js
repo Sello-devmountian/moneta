@@ -26,18 +26,7 @@ const Checkout = props => {
   };
 
   const addToCart = product => {
-    axios
-      .post("/api/co/cart", { item: product })
-      .then(res => {
-        props.getEmployee(res.data);
-        setCart(res.data.cart);
-      })
-      .catch(err => console.log(err));
-    // props.getCart([...props.cart.cart, product])
-    // console.log('hit')
-    // setCart([...cart, product])
-    // console.log(cart)
-    // console.log(props)
+    setCart([...cart, product])
   };
   return (
     <div style={{ paddingTop: "50px" }} className="checkout-container">
