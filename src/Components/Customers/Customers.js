@@ -1,112 +1,85 @@
-import React, { useEffect, useState } from 'react'; 
-import axios from 'axios'; 
-import {getCustomer} from '../../redux/reducers/customerReducer'; 
-import {connect} from 'react-redux'; 
-import  './customers.css'; 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { getCustomer } from "../../redux/reducers/customerReducer";
+import { connect } from "react-redux";
+import "./customers.css";
 
+const Customers = props => {
+  const [editUser, setEditUser] = useState(false);
+  //onClick={() => setEditUser(!editUser)}
+  // {editUser ? () : ()}
 
+  useEffect(() => {
+    getCustomer();
+  }, []);
 
-const Customers = (props) => {
-    const [editUser, setEditUser] = useState(false);
-    //onClick={() => setEditUser(!editUser)}
-    // {editUser ? () : ()}
+  let getCustomer = () => {
+    axios.get("/api/customer").then(res => {
+      props.getCustomer(res.data);
+    });
+  };
 
-    useEffect(() => {
-        getCustomer()
-    }, [])
+  let email = props.customer.customer.length
+    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.email}</div>)
+    : null;
+  let phone = props.customer.customer.length
+    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.phone}</div>)
+    : null;
+  let first_name = props.customer.customer.length
+    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.first_name}</div>)
+    : null;
+  let last_name = props.customer.customer.length
+    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.last_name}</div>)
+    : null;
+  let extra = props.customer.customer.length
+    ? props.customer.customer.map((el, i) => <button className='customer-info'>Customer ID:{el.c_id}</button>)
+    : null;
 
-    let getCustomer = () => {
-        axios.get('/api/customer').then(res => {
-            props.getCustomer(res.data)
-        })
-    }
-
-   
-    
-    console.log(props); 
-    console.log(useState); 
-    return(
-        <div className='customers-page'>
-            <div className='customers-table'>
-                
-                <div>
-                    <div className='table-info'>
-                        Email
-                    </div>
-                    {props.customer.customer[0] && props.customer.customer.map(customers => {
-                        return(
-                            <div className='customer-info'>
-                                <div>{customers.email}</div>
-                            </div>
-                        )
-                    } )}
-                </div>
-
-               <div>
-                    <div className='table-info'>
-                        Phone Number
-                    </div>
-                    {props.customer.customer[0] && props.customer.customer.map(customers => {
-                        return(
-                            <div className='customer-info'>
-                                <div>{customers.phone}</div>
-                            </div>
-                        )
-                    } )}
-                </div>
-
-                <div>
-                    <div className='table-info'>
-                        First Name
-                    </div>
-                    {props.customer.customer[0] && props.customer.customer.map(customers => {
-                        return(
-                            <div className='customer-info'>
-                                <div>{customers.first_name}</div>
-                            </div>
-                        )
-                    } )}
-                </div>
-
-                <div>
-                    <div className='table-info'>
-                        Last Name
-                    </div>
-                    
-                        {props.customer.customer[0] && props.customer.customer.map(customers => {
-                            return(
-                                <div className='customer-info'>
-                                    <div>{customers.last_name}</div>
-                                    
-                                </div>
-                                
-
-
-                            )
-                        } )}  
-                </div>
-
-                <div>
-                    <div className='table-info'>
-                        Edit
-                    </div>
-                    {props.customer.customer[0] && props.customer.customer.map(customers => {
-                        return(
-                            <div className='customer-info'>
-                    <button className='edit-button' onClick={() => setEditUser(!editUser)}>Customer ID:{customers.c_id}</button>
-                            </div>
-                        )
-                    } )}
-                </div>
-               
+  console.log(props);
+  return (
+    <div className="customers-page">
+      <div className="customers-table">
+        <div>
+          <div className="table-info">Email</div>
+            <div>
+                {email}
             </div>
-           
         </div>
-    ) 
-}
 
-const mapStateToProps = (reduxState) => {
-    return reduxState;
-}
+        <div>
+          <div className="table-info">Phone Number</div>
+             <div>
+                {phone}
+             </div>
+        </div>
 
-export default connect(mapStateToProps, {getCustomer})(Customers);
+        <div>
+          <div className="table-info">First Name</div>
+             <div>
+                 {first_name}
+             </div>
+        </div>
+
+        <div>
+          <div className="table-info">Last Name</div>
+            <div>
+                {last_name}
+            </div>
+        </div>
+
+        <div>
+          <div className="table-info">Edit</div>
+            <div>
+                {extra}
+            </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
+
+export default connect(mapStateToProps, { getCustomer })(Customers);
