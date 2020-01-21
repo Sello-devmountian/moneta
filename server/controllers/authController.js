@@ -31,6 +31,7 @@ module.exports = {
         if(authenticated){
             delete user.password;
             session.user = user;
+            session.user.cart = [];
             res.status(200).send(session.user);
         }
     },
