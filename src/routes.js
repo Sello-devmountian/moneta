@@ -8,8 +8,7 @@ import Transactions from './Components/Admin/Transactions';
 
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
-import EditProducts from './Components/Admin/EditProducts';
-import DeleteProduct from './Components/Admin/DeleteProduct';
+import ManageProducts from './Components/Admin/ManageProducts';
 import AddEmployee from './Components/Admin/AddEmployee';
 import DeleteEmployee from './Components/Admin/DeleteEmployee';
 
@@ -25,8 +24,7 @@ export default (
         <Route exact path='/admin' component={Admin} />
 
         <Route path='/admin/addproduct' component={AddProduct} />
-        <Route path='/admin/editproducts' component={EditProducts} />
-        <Route path='/admin/deleteproduct' component={DeleteProduct} />
+        <Route path='/admin/manageproducts' component={ManageProducts} />
         <Route path='/admin/addemployee' component={AddEmployee} />
         <Route path='/admin/deleteemployee' component={DeleteEmployee} />
     </Switch>

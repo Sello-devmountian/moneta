@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express"),
   massive = require("massive"),
   session = require('express-session'),
+  adminCtrl = require('./controllers/adminController'),
   authCtrl = require('./controllers/authController'),
   productCtrl = require('./controllers/productController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
@@ -67,6 +68,16 @@ app.put("/api/co/:co_id");
 // RECEIPT
 
 app.get("/api/receipt");
+
+
+// ADMIN
+
+app.post('/api/admin/product')
+app.put('/api/admin/products')
+app.delete('/api/admin/products')
+
+app.post('/api/admin/users')
+app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);
 
 
 
