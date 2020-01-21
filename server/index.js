@@ -49,7 +49,7 @@ app.delete("/api/product/:p_id");
 app.post("/api/customer");
 app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id");
-app.put("/api/customer/:c_id");
+app.put("/api/customer/:c_id", customerController.editCustomer);
 app.delete("/api/customer/:c_id");
 
 // TRANSACTIONS
