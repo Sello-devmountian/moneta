@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Axios from "axios";
+import {withRouter} from 'react-router-dom'
 
 const Cart = props => {
   useEffect(() => {
   }, []);
 
+  console.log(props)
 
   return (
     <div className="cart-container">
@@ -30,11 +32,11 @@ const Cart = props => {
         <input type="text" />
         <button >Submit</button>
       </section>
-      <button>Checkout</button>
+      <button onClick={() => props.history.push('/payment')}>Checkout</button>
     </div>
   );
 };
 const mapStateToProps = reduxState => {
   return reduxState;
 };
-export default connect(mapStateToProps)(Cart);
+export default withRouter(connect(mapStateToProps)(Cart));
