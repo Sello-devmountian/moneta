@@ -63,9 +63,12 @@ app.delete("/api/transactions/:t_id");
 
 app.post("/api/co");
 app.get("/api/co");
+app.get("/api/co/cart/:t_id", orderCtrl.getCart);
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
 app.post('/api/co/cart', orderCtrl.addToCart)
+
+
 // RECEIPT
 
 app.get("/api/receipt");
