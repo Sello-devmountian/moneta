@@ -63,15 +63,16 @@ class Payment extends Component {
     
       handleSubmit = e => {
         e.preventDefault();
-        const formData = [...e.target.elements]
-          .filter(d => d.name)
-          .reduce((acc, d) => {
-            acc[d.name] = d.value;
-            return acc;
-          }, {});
+        // const formData = [...e.target.elements]
+        //   .filter(d => d.name)
+        //   .reduce((acc, d) => {
+        //     acc[d.name] = d.value;
+        //     return acc;
+        //   }, {});
     
-        this.setState({ formData });
-        this.form.reset();
+        // this.setState({ formData });
+        // this.form.reset();
+        
       };
 
       toggleCash = () => {
@@ -85,6 +86,8 @@ class Payment extends Component {
         const {formData, cash} = this.state;
         // console.log(this.props.employee.employee)
         // console.log(req.session.user)
+
+
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
@@ -154,11 +157,11 @@ class Payment extends Component {
                             <button onClick={this.toggleCash} className='payment-button'>CASH</button>
                         </div>
                     </form>
-                    {formData && (
+                    {/* {formData && (
                         <div className="App-highlight">
                             {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
                         </div>
-                    )}
+                    )} */}
                 </div>
                 )}
                 <div className='cart-payment'>
@@ -174,6 +177,11 @@ class Payment extends Component {
                                 </div>
                             )
                         })}
+                        <span style={{color: '#232323', fontSize: '20px', fontWeight: 'bold'}}>
+                            Total: ${" "}
+                            {this.state.order[0] &&
+                            this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)}
+                        </span>
                    </div>
                    <button onClick={() => this.props.history.goBack()}>GO BACK</button>
                 </div>

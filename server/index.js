@@ -7,6 +7,7 @@ const express = require("express"),
   productCtrl = require('./controllers/productController'),
   customerController = require('./controllers/customerController'),
   orderCtrl = require('./controllers/orderController'),
+  tCtrl = require('./controllers/transactionController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
@@ -48,13 +49,13 @@ app.delete("/api/product/:p_id");
 
 app.post("/api/customer");
 app.get("/api/customer", customerController.getCustomers);
-app.get("/api/customer/:c_id");
+app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
 app.delete("/api/customer/:c_id");
 
 // TRANSACTIONS
 
-app.post("/api/transactions");
+app.post("/api/transactions", tCtrl.createTransaction);
 app.get("/api/transactions");
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");

@@ -5,6 +5,17 @@ module.exports = {
         db.customers.get_customers().then(customers => {res.status(200).send(customers)})
         .catch(err => res.status(500).send(err))
     },
+    getCustomer: (req, res) => {
+        const {c_id} = req.params
+        const db = req.app.get('db');
+        db.customers.get_customer(c_id).then(customer => {
+            req.session.user.customer = customer[0]
+            res.status(200).send(customer)
+            console.log(req.session.user.customer)
+        })
+        .catch(err => res.status(500).send(err))
+    },
+    
 
     editCustomer: (req, res) => {
         const {c_id} = req.params; 
