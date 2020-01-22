@@ -51,15 +51,30 @@
                 
             }
 
-            .payment-button {
-                width: 100px;
-                height: 40px;
-                font-size: 20px;
-                color: #ffffff;
-                background-color: #408dff;
-                border: none;
-                border-radius: 5px;
+            .form-actions {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 250px;
+
+                .payment-button {
+                    width: 100px;
+                    height: 40px;
+                    font-size: 20px;
+                    color: #ffffff;
+                    background-color: #408dff;
+                    border: none;
+                    border-radius: 5px;
+                }
             }
         }
+    }
+
+    .cart-payment {
+        padding-top: 20px;
+        min-height: 400px;
+        height: auto;
+        width: 400px;
+        border: 2px solid #aaaaaa;
     }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import './cash.scss';
 import useInput from '../../../../hooks/useInput';
 
-const Cash = () => {
+const Cash = (props) => {
     const [amount, bindAmount, resetAmount] = useInput('');
 
 
@@ -26,6 +26,8 @@ const Cash = () => {
                 </div>
                <div className="form-actions">
                     <button className="payment-button">PAY</button>
+                    <small>or</small>
+                    <button onClick={props.toggleCashFn} className='payment-button'>CARD</button>
                 </div>
             </form>
         </div>

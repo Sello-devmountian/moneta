@@ -1,4 +1,9 @@
 #cash-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     padding: 20px 0;
     height: 400px;
     width: 400px;
@@ -28,13 +33,20 @@
         }
     }
 
-    .payment-button {
-        width: 100px;
-        height: 40px;
-        font-size: 20px;
-        color: #ffffff;
-        background-color: #408dff;
-        border: none;
-        border-radius: 5px;
+    .form-actions {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 250px;
+
+        .payment-button {
+            width: 100px;
+            height: 40px;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #408dff;
+            border: none;
+            border-radius: 5px;
+        }
     }
 }
