@@ -71,10 +71,44 @@
     }
 
     .cart-payment {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
         padding-top: 20px;
         min-height: 400px;
         height: auto;
         width: 400px;
         border: 2px solid #aaaaaa;
+
+        #order-container {
+            height: auto;
+            width: 250px;
+            border-bottom: 5px #408dff solid;
+            border-top: 5px #408dff solid;
+
+            .orders {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 250px;
+                height: auto;
+                margin: 5px 0;
+    
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #408dff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
     }
 }

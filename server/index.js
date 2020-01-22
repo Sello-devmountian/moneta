@@ -65,7 +65,7 @@ app.post("/api/co");
 app.get("/api/co");
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
-app.get("/api/co/cart/", orderCtrl.getCart);
+app.get("/api/co/cart", orderCtrl.getCart);
 app.post('/api/co/cart', orderCtrl.addToCart)
 
 

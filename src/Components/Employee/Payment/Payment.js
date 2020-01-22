@@ -24,13 +24,18 @@ class Payment extends Component {
             number: '',
             issuer: '',
             formData: null,
-            cash: false
+            cash: false,
+            order: []
         }
     }
 
-    // componentDidMount(){
-        
-    // }
+    componentDidMount(){
+        axios.get('/api/co/cart').then(res => {
+            this.setState({
+                order: res.data
+            })
+        })
+    }
 
     handleCallback = ({ issuer }, isValid) => {
         if (isValid) {
@@ -160,7 +165,17 @@ class Payment extends Component {
                     <h1 style={{color: '#232323', fontSize: '40px', fontWeight: 'bold'}}>
                         Order
                     </h1>
-
+                   <div id='order-container'>
+                        {this.state.order[0] && this.state.order.map((item, i) => {
+                            return (
+                                <div key={i} className='orders'>
+                                    <span>{item.name}</span>
+                                    <span>{item.price}</span>
+                                </div>
+                            )
+                        })}
+                   </div>
+                   <button onClick={() => this.props.history.goBack()}>GO BACK</button>
                 </div>
             </div>
         )
