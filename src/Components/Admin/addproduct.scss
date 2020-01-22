@@ -1,25 +1,60 @@
-/* ----------ADDPRODUCT COMPONENT---------- */
+/* ----------ADD PRODUCT COMPONENT---------- */
 
 
-// @mixin displayFlex() {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
+@mixin displayFlex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+
+}
 
 .add-product-box {
     margin-top: 50px;
+    @include displayFlex();
+}
+
+.add-product-box input {
+    margin: 10px;
+    padding: 10px;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid #408DFF;
 }
 
 .new-product-title {
-    padding-top: 50px;
+    color: #fff;
+    background-color: #232323;
+    height: 500px;
+    padding: 50px;
     font-size: 50px;
+    @include displayFlex();
 }
 
+
+.product-type-dropdown {
+    // background-color: #408DFF;
+    border: transparent;
+    width: 120px;
+    height: 35px;
+    outline: #fff;
+    border-bottom: solid 1.5px #408DFF;
+    margin-left: 10px;
+}
+
+select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+  }
+
 .add-product-btn {
-    border: cornflowerblue solid;
+    background-color: #408DFF;
     height: 50px;
     width: 150px;
     display: inline-block;
-    // @include displayFlex();
+    @include displayFlex();
+}
+
+.add-product-btn:hover {
+    cursor: pointer;
 }
