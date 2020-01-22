@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom'; 
 import { getCustomer } from "../../redux/reducers/customerReducer";
 import { connect } from "react-redux";
 import "./customers.css";
@@ -20,22 +21,23 @@ const Customers = props => {
   };
 
   let email = props.customer.customer.length
-    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.email}</div>)
-    : null;
+    ? props.customer.customer.map((el, index) => <div className='customer-info' >{el.email}</div>)
+    : null; 
   let phone = props.customer.customer.length
-    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.phone}</div>)
+    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.phone}</div>)
     : null;
   let first_name = props.customer.customer.length
-    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.first_name}</div>)
+    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.first_name}</div>)
     : null;
   let last_name = props.customer.customer.length
-    ? props.customer.customer.map((el, i) => <div className='customer-info'>{el.last_name}</div>)
+    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.last_name}</div>)
     : null;
   let extra = props.customer.customer.length
-    ? props.customer.customer.map((el, i) => <button className='customer-info'>Customer ID:{el.c_id}</button>)
+    ? props.customer.customer.map((el, index) => <Link to={`/customers/${el.c_id}`}><button className='customer-info'>Customer ID:{el.c_id}</button></Link>)
     : null;
 
   console.log(props);
+  console.log(editUser); 
   return (
     <div className="customers-page">
       <div className="customers-table">

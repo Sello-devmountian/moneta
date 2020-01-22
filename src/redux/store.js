@@ -1,4 +1,6 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import promiseMiddleware from 'redux-promise-middleware'
 import employeeReducer from './reducers/employeeReducer';
 import productReducer from './reducers/productReducer';
 import customerReducer from './reducers/customerReducer';
@@ -11,4 +13,4 @@ const rootReducer = combineReducers({
     search: searchReducer
 });
 
-export default createStore(rootReducer);
+export default createStore(rootReducer, composeWithDevTools(applyMiddleware(promiseMiddleware)));
