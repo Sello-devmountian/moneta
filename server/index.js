@@ -54,7 +54,7 @@ app.delete("/api/customer/:c_id");
 
 // TRANSACTIONS
 
-app.post("/api/transactions", orderCtrl.createTransaction);
+app.post("/api/transactions");
 app.get("/api/transactions");
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
@@ -63,9 +63,9 @@ app.delete("/api/transactions/:t_id");
 
 app.post("/api/co");
 app.get("/api/co");
-app.get("/api/co/cart/:t_id", orderCtrl.getCart);
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
+app.get("/api/co/cart/", orderCtrl.getCart);
 app.post('/api/co/cart', orderCtrl.addToCart)
 
 
