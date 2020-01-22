@@ -3,6 +3,8 @@ import 'react-credit-cards/lib/styles.scss';
 import './payment.scss';
 import Cards from 'react-credit-cards';
 import Cash from './Cash/Cash';
+import {connect} from 'react-redux';
+import axios from 'axios';
 
 import {
     formatCreditCardNumber,
@@ -21,9 +23,14 @@ class Payment extends Component {
             name: '',
             number: '',
             issuer: '',
-            formData: null
+            formData: null,
+            cash: false
         }
     }
+
+    // componentDidMount(){
+        
+    // }
 
     handleCallback = ({ issuer }, isValid) => {
         if (isValid) {
@@ -61,14 +68,26 @@ class Payment extends Component {
         this.setState({ formData });
         this.form.reset();
       };
+
+      toggleCash = () => {
+        this.setState({
+            cash: !this.state.cash
+        })
+      }
     
 
     render(){
-        const {formData} = this.state;
+        const {formData, cash} = this.state;
+        // console.log(this.props.employee.employee)
+        // console.log(req.session.user)
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
-                <Cash />
-                <div className='card-container'>
+                {cash ? (
+                    <>
+                    <Cash cash={cash} toggleCashFn={this.toggleCash}/>
+                    </>
+                ) : (
+                    <div className='card-container'>
                 <h1>Card</h1>
                     <Cards 
                         cvc={this.state.cvc}
@@ -126,6 +145,8 @@ class Payment extends Component {
                         <input type='hidden' name='issuer' value={this.state.issuer}/>
                         <div className="form-actions">
                             <button className="payment-button">PAY</button>
+                            <small>or</small>
+                            <button onClick={this.toggleCash} className='payment-button'>CASH</button>
                         </div>
                     </form>
                     {formData && (
@@ -134,9 +155,22 @@ class Payment extends Component {
                         </div>
                     )}
                 </div>
+                )}
+                <div className='cart-payment'>
+                    <h1 style={{color: '#232323', fontSize: '40px', fontWeight: 'bold'}}>
+                        Order
+                    </h1>
+
+                </div>
             </div>
         )
     }
 }
 
-export default Payment;
+const mapStateToProps = (reduxState) => {
+    return {
+        employee: reduxState.employee
+    }
+}
+
+export default connect(mapStateToProps)(Payment);
