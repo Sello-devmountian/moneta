@@ -52,6 +52,7 @@ app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
 app.delete("/api/customer/:c_id");
+app.get('/api/customerSess', customerController.getSessCustomer); 
 
 // TRANSACTIONS
 
