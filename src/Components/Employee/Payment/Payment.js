@@ -5,12 +5,16 @@ import Cards from 'react-credit-cards';
 import Cash from './Cash/Cash';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 
 import {
     formatCreditCardNumber,
     formatCVC,
     formatExpirationDate
 } from './utils/utils';
+
+const MySwal = withReactContent(Swal);
 
 class Payment extends Component {
     constructor(){
@@ -26,6 +30,8 @@ class Payment extends Component {
             order: []
         }
     }
+
+    
 
     componentDidMount(){
         axios.get('/api/co/cart').then(res => {
@@ -72,12 +78,17 @@ class Payment extends Component {
     
       handleSubmit = e => {
         e.preventDefault();
-        console.log('hit event')
+        // console.log('hit event')
         const total = this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)
         axios.post('/api/transactions', {total}).then(res => {
             console.log(res);
             this.clearInput()
-            this.props.history.push('/receipt')
+            // this.props.history.push('/receipt')
+            MySwal.fire({
+                icon: 'success',
+                title: 'Congrats...',
+                text: 'Order completed'
+            })
         })
       };
 
@@ -92,14 +103,14 @@ class Payment extends Component {
         const {cash} = this.state;
         // console.log(this.props.employee.employee)
         // console.log(req.session.user)
-        console.log(this.props);
+        // console.log(this.props);
 
 
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
                     <>
-                    <Cash cash={cash} toggleCashFn={this.toggleCash}/>
+                    <Cash cash={cash} toggleCashFn={this.toggleCash} order={this.state.order}/>
                     </>
                 ) : (
                     <div className='card-container'>
@@ -182,7 +193,7 @@ class Payment extends Component {
                         <span style={{color: '#232323', fontSize: '20px', fontWeight: 'bold'}}>
                             Total: ${" "}
                             {this.state.order[0] &&
-                            this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)}
+                            this.state.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)}
                         </span>
                    </div>
                    <button onClick={() => this.props.history.goBack()}>GO BACK</button>

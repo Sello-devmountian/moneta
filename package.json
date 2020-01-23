@@ -24,7 +24,9 @@
     "react-scripts": "3.3.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-promise-middleware": "^6.1.2"
+    "redux-promise-middleware": "^6.1.2",
+    "sweetalert2": "^9.7.0",
+    "sweetalert2-react-content": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
