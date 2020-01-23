@@ -3,9 +3,11 @@ let transactionId;
 module.exports = {
     createTransaction: async (req,res, next) => {
         const {total} = req.body 
+        const {c_id} = req.session.user.customer;
+        // console.log(total)
         // const {}
         const db = req.app.get('db')
-        let transaction = await db.orders.create_transaction({c_id: 4, total})
+        let transaction = await db.orders.create_transaction({c_id, total})
         transaction = transaction[0]
         transactionId = transaction.t_id
         if(!transaction){
@@ -13,7 +15,7 @@ module.exports = {
         }
         // console.log(typeof transaction.t_id)
         let cart = req.session.user.cart.map(async (item) => {
-            await db.orders.create_order({t_id: transactionId, c_id: 4, p_id: item.p_id ,qty: 1})
+            await db.orders.create_order({t_id: transactionId, c_id, p_id: item.p_id ,qty: 1})
             // .then(order => res.status(200).send(order))
         })
         return res.sendStatus(200);

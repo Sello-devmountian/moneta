@@ -9,8 +9,7 @@ import axios from 'axios';
 import {
     formatCreditCardNumber,
     formatCVC,
-    formatExpirationDate,
-    formatFormData
+    formatExpirationDate
 } from './utils/utils';
 
 class Payment extends Component {
@@ -23,7 +22,6 @@ class Payment extends Component {
             name: '',
             number: '',
             issuer: '',
-            formData: null,
             cash: false,
             order: []
         }
@@ -60,19 +58,27 @@ class Payment extends Component {
     
         this.setState({ [target.name]: target.value });
       };
+
+      clearInput = () => {
+          this.setState({
+            cvc: '',
+            expiry: '',
+            focused: '',
+            name: '',
+            number: '',
+            issuer: ''
+          })
+      }
     
       handleSubmit = e => {
         e.preventDefault();
-        // const formData = [...e.target.elements]
-        //   .filter(d => d.name)
-        //   .reduce((acc, d) => {
-        //     acc[d.name] = d.value;
-        //     return acc;
-        //   }, {});
-    
-        // this.setState({ formData });
-        // this.form.reset();
-        
+        console.log('hit event')
+        const total = this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)
+        axios.post('/api/transactions', {total}).then(res => {
+            console.log(res);
+            this.clearInput()
+            this.props.history.push('/receipt')
+        })
       };
 
       toggleCash = () => {
@@ -83,9 +89,10 @@ class Payment extends Component {
     
 
     render(){
-        const {formData, cash} = this.state;
+        const {cash} = this.state;
         // console.log(this.props.employee.employee)
         // console.log(req.session.user)
+        console.log(this.props);
 
 
         return (
@@ -152,16 +159,11 @@ class Payment extends Component {
                         </div>
                         <input type='hidden' name='issuer' value={this.state.issuer}/>
                         <div className="form-actions">
-                            <button className="payment-button">PAY</button>
+                            <button className="payment-button" onClick={(e) => this.handleSubmit(e)}>PAY</button>
                             <small>or</small>
                             <button onClick={this.toggleCash} className='payment-button'>CASH</button>
                         </div>
                     </form>
-                    {/* {formData && (
-                        <div className="App-highlight">
-                            {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
-                        </div>
-                    )} */}
                 </div>
                 )}
                 <div className='cart-payment'>
