@@ -6,7 +6,6 @@ import { getProducts } from "./../../../redux/reducers/productReducer";
 import Sidebar from "./Sidebar/Sidebar";
 import Cart from "./Cart/Cart";
 
-/// put buttons on sidebar e
 
 
 
@@ -14,25 +13,16 @@ import Cart from "./Cart/Cart";
 const Checkout = props => {
   const { products } = props.product;
   const [cart, setCart] = useState([]);
-  const [scoop, toggleScoop] = useState(false);
-  const [topping, toggleTopping] = useState(false);
-  const [cones, toggleCones] = useState(false);
-  const [softServe, toggleSoftServe] = useState(false);
   const [type, setType] = useState('scoops');
 
   useEffect(() => {
     getAllProducts();
-    console.log(type)
-    // console.log(props);
   }, [products.length]);
+
   useEffect(() => {
     getCart();
   }, []);
-  useEffect(() => {
-    // addToCart(selectedProduct)
-    // getCart()
-    console.log("cart updated", cart);
-  }, [cart.length]);
+
 
   let getAllProducts = () => {
     axios.get("/api/product").then(res => props.getProducts(res.data));
@@ -54,7 +44,6 @@ const Checkout = props => {
   };
 
   const renderType = (p_type) => {
-    console.log('rendertype fired with:', p_type)
     setType(p_type)
   }
 
@@ -73,7 +62,6 @@ const Checkout = props => {
               <div
                 key={i}
                 onClick={() => {
-                  // setSelProd(p);
                   addToCart(p);
                 }}
                 className="product-container"
@@ -88,14 +76,7 @@ const Checkout = props => {
           })
         ) : (
           <span>loading...</span>
-        )
-        
-        
-        
-        
-        
-        
-        }
+        )}
       </div>
       <Cart cart={cart} />
     </div>

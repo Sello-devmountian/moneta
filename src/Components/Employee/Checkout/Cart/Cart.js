@@ -2,20 +2,30 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Axios from "axios";
 import {withRouter} from 'react-router-dom'
+import { getCustomer } from "../../../../redux/reducers/customerReducer";
 
 const Cart = props => {
   useEffect(() => {
   }, []);
 
   console.log(props)
-
+  const getCustomer = () => {
+    
+  }
   return (
     <div className="cart-container">
+    <div>Customer:{' '}
+      <span> 
+         {props.employee.employee.customer && props.employee.employee.customer.first_name } {
+          props.employee.employee.customer && props.employee.employee.customer.last_name 
+        }
+        </span></div>
       <section className="cart-items">
         { props.cart[0] &&
           props.cart.map((item, i) => {
             return (
-              <div key={i}>
+
+              <div index={i} key={i}>
                 <span>{item.name}</span>
                 <span>{item.price}</span>
               </div>
