@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import "./customers.css";
 
 const Customers = props => {
-  const [editUser, setEditUser] = useState(false);
   const [sessCust, setSessCust] = useState({}) ;
   //onClick={() => setEditUser(!editUser)}
   // {editUser ? () : ()}
