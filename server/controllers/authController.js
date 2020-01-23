@@ -31,7 +31,7 @@ module.exports = {
         if(authenticated){
             delete user.password;
             session.user = user;
-            session.user.customer = {}
+            session.user.customer = {c_id = 5}
             session.user.cart = [];
             res.status(200).send(session.user);
         }
