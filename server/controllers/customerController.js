@@ -28,5 +28,9 @@ module.exports = {
         .catch(err => res.status(500).send(err))
 
 
+    },
+
+    getSessCustomer: (req, res) => {
+        res.status(200).send(req.session.user.customer)
     }
 }
