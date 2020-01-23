@@ -7,6 +7,7 @@ import EditCustomer from './Components/Customers/EditCustomer';
 import Checkout from './Components/Employee/Checkout/Checkout'; 
 import Transactions from './Components/Admin/Transactions';
 import Payment from './Components/Employee/Payment/Payment';
+import Receipt from './Components/Employee/Payment/Receipt/Receipt';
 
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -22,6 +23,7 @@ export default (
         <Route path='/checkout' component={Checkout} />
         <Route path='/transactions' component={Transactions} />
         <Route path='/payment' component={Payment}/>
+        <Route path='/receipt' component={Receipt}/>
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 
