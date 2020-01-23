@@ -19,6 +19,10 @@ module.exports = {
         res.status(200).send(req.session.user.cart)
     
     },
+    updateCart: (req,res) => {
+        req.session.user.cart = req.body
+        res.status(200).send(req.session.user.cart)
+    },
     // createTransaction: (req,res) => {
     //     console.log('create transaction hit')
     //     const {c_id, total, paid} = req.body 
