@@ -63,7 +63,7 @@ const Checkout = props => {
                   <img className="product-image" src={p.p_image} alt="" />
                   <section className="product-text">
                     <span className="product-name">{p.name}</span>
-                    <span>{p.price}</span>
+                    <span className='product-price'>${p.price}</span>
                   </section>
                 </div>
               );
