@@ -4,10 +4,11 @@ module.exports = {
     createTransaction: async (req,res, next) => {
         const {total} = req.body 
         const {c_id} = req.session.user.customer;
+        const newDate = new Date()
         // console.log(total)
         // const {}
         const db = req.app.get('db')
-        let transaction = await db.orders.create_transaction({c_id, total})
+        let transaction = await db.orders.create_transaction({c_id, total,t_date: newDate})
         transaction = transaction[0]
         transactionId = transaction.t_id
         if(!transaction){
@@ -19,8 +20,18 @@ module.exports = {
             // .then(order => res.status(200).send(order))
         })
         return res.sendStatus(200);
+    },
+    getTransactions: (req, res) => {
+        const db = req.app.get('db')
+        db.transactions.get_transactions()
+        .then(transactions => res.status(200).send(transactions))
+    },
+    getOneTransaction: (req, res) => {
+        const {t_id} = req.params
+        const db = req.app.get('db')
+        db.transactions.get_one_transaction({t_id})
+        .then(transaction => res.status(200).send(transaction))
     }
-
     // getOrder: (req, res) => {
     //     const db = req.app.get('db');
     //     console.log(transactionId);
