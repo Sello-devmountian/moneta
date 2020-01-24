@@ -1,5 +1,5 @@
 .checkout-container {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   width: 100%;
   display: flex;
   box-sizing: border-box;
@@ -70,20 +70,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* align-items: center; */
   text-align: left;
-  /* justify-content: space-between; */
-  /* width: 100%; */
 }
-.product-name {
-
-}
-
-.product-price {
-
-
-}
-
 .cart-container {
   font-family: "Roboto Mono", monospace;
   background-color: #e0e5ec;
@@ -104,52 +92,49 @@
   overflow: auto;
 }
 #item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.493);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.493);
 }
 #item-name {
-    text-align: left;
+  text-align: left;
 }
 
 #remove-item {
-    border: none;
-    background-color: rgba(175, 2, 2, 0.527);
-    color: white;
-    border-radius: 2px;
-    height: 20px;
+  border: none;
+  background-color: rgba(175, 2, 2, 0.527);
+  color: white;
+  border-radius: 2px;
+  height: 20px;
 }
 #price-button {
-    /* background-color: greenyellow; */
-    display: flex;
+  display: flex;
 }
 .checkout-total {
-    border-top: 1px solid black;
-    text-align: right;
-
+  border-top: 1px solid black;
+  text-align: right;
 }
 .selected-customer-container {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .checkout-button {
-    width: 45%;
-    height: 40px;
-    font-size: 20px;
-    color: #ffffff;
-    background-color: #408dff;
-    border: none;
-    border-radius: 5px;
+  width: 45%;
+  height: 40px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #408dff;
+  border: none;
+  border-radius: 5px;
 }
 .clear-button {
-    width: 45%;
-    height: 40px;
-    font-size: 20px;
-    color: #ffffff;
-    background-color: #ff4040c9;
-    border: none;
-    border-radius: 5px;
+  width: 45%;
+  height: 40px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #ff4040c9;
+  border: none;
+  border-radius: 5px;
 }

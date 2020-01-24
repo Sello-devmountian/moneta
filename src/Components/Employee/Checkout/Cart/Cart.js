@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 const Cart = props => {
   const [remove, setRemove] = useState(false);
   const [selProd, setSelProd] = useState(null);
-  const removeFromCart = async (i,num) => {
+  const removeFromCart = async (i, num) => {
     await props.cart.splice(i, num);
     Axios.put("/api/co/cart", props.cart).then(res => props.setCart(res.data));
   };
@@ -17,7 +17,6 @@ const Cart = props => {
     setSelProd(i);
     setRemove(!remove);
   };
- 
 
   return (
     <div className="cart-container">
@@ -34,7 +33,7 @@ const Cart = props => {
                     selProd === i ? (
                       <button
                         id="remove-item"
-                        onClick={() => removeFromCart(i,1)}
+                        onClick={() => removeFromCart(i, 1)}
                       >
                         X
                       </button>
@@ -61,7 +60,7 @@ const Cart = props => {
       </div>
       {/* <section>
         discount code
-        <input type="text" />
+        <input type="text" />f
         <button>Submit</button>
       </section> */}
       <section
@@ -73,8 +72,8 @@ const Cart = props => {
       >
         <button
           className="clear-button"
-          onClick={() => removeFromCart(0,props.cart.length)}
-          >
+          onClick={() => removeFromCart(0, props.cart.length)}
+        >
           Clear
         </button>
         <button
