@@ -41,6 +41,14 @@ class Payment extends Component {
         })
     }
 
+    clearCart = () => {
+        axios.delete('/api/co/cart').then(res => {
+            this.setState({
+                order: res.data
+            })
+        })
+    }
+
     handleCallback = ({ issuer }, isValid) => {
         if (isValid) {
           this.setState({ issuer });
@@ -81,7 +89,7 @@ class Payment extends Component {
         // console.log('hit event')
         const total = this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)
         axios.post('/api/transactions', {total}).then(res => {
-            console.log(res);
+            console.log(res)
             this.clearInput()
             // this.props.history.push('/receipt')
             MySwal.fire({
@@ -89,6 +97,7 @@ class Payment extends Component {
                 title: 'Congrats...',
                 text: 'Order completed'
             })
+            this.clearCart()
         })
       };
 
@@ -101,8 +110,8 @@ class Payment extends Component {
 
     render(){
         const {cash} = this.state;
-        // console.log(this.props.employee.employee)
-        // console.log(req.session.user)
+        console.log(this.props.employee.employee)
+        // console.log(req.session.user.cart)
         // console.log(this.props);
 
 
