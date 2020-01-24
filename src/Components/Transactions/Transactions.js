@@ -17,7 +17,7 @@ const Transactions = props => {
   };
   console.log(transactions)
   return (
-    <Table style={{ marginTop: "50px" }} striped bordered hover  >
+    <Table style={{ marginTop: "50px"}} striped bordered hover  >
       {/* <div > */}
       <thead>
         <tr>
@@ -31,12 +31,12 @@ const Transactions = props => {
       </thead>
       <tbody>
         {transactions[0] &&
-          transactions.map((t, i) => {
+          transactions.sort((a,b) => b.t_id - a.t_id ).map((t, i) => {
             console.log(typeof t.t_date)
             return (
               <tr key={i}>
                 <td>{t.t_id}</td>
-            <td>{t.total}</td>
+            <td>${t.total}</td>
             <td>{t.paid ? 'True' : 'False'}</td>
                 <td>{dateFormat(t.t_date, 'm/d/yy h:MM TT')}</td>
                 <td>{t.first_name}</td>

@@ -87,7 +87,7 @@ class Payment extends Component {
       handleSubmit = e => {
         e.preventDefault();
         // console.log('hit event')
-        const total = this.state.order.reduce((acc, b) => acc + +b.price, 0).toFixed(2)
+        const total = this.state.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
         axios.post('/api/transactions', {total}).then(res => {
             console.log(res)
             this.clearInput()
