@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import './cash.scss';
 import useInput from '../../../../hooks/useInput';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content';
+import axios from 'axios';
 
 const Cash = (props) => {
     const [amount, bindAmount, resetAmount] = useInput('');
-    const [change, setChange] = useState({});
-
-    const MySwal = withReactContent(Swal);
 
     let total = props.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2);
+
+    let transaction = () => {
+        axios.post('/api/transactions', {total}).then(res => {
+            console.log(res)
+            props.clearCartFn()
+        })
+    }
 
     let customerChange = (amount, total) => {
         let money = +amount - +total;
@@ -34,8 +37,12 @@ const Cash = (props) => {
             o[k] = obj[k];
             return o
         },{})
+        transaction()
+        props.togglePaidFn()
+        resetAmount()
+        props.clearCartFn()
         return (
-            setChange(myChange)
+            props.setChangeFn(myChange) 
         )
     }
 

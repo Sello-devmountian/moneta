@@ -1,3 +1,8 @@
+@mixin flexCenter(){
+    display: flex;
+    justify-content: center;
+}
+
 #PaymentForm {
     display: flex;
     flex-direction: row;
@@ -113,4 +118,64 @@
             margin: 20px 0;
         }
     }
+
+    #change-display {
+        @include flexCenter();
+
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(255, 255, 255, 0.753);
+        position: fixed;
+
+        span {
+            @include flexCenter();
+            align-items: center;
+            flex-direction: column;
+
+            height: 500px;
+            width: 400px;
+            background-color: white;
+            border: 2px solid #aaaaaa;
+
+            .change-flex {
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+                align-items: flex-start;
+                height: 425px;
+                width: 150px;
+                // border: 1px solid black;
+
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+
+                    p {
+                        color: #232323;
+                        font-size: 20px;
+                        font-weight: bold; 
+                        margin: 0 5px;
+                    }
+                }
+            }
+
+            button {
+                height: 30px;
+                width: 80px;
+                background: transparent;
+                border: none;
+                outline: none;
+                color: #408dff;
+                font-size: 25px;
+                margin-bottom: 10px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
 }
