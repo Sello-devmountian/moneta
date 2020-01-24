@@ -1,0 +1,51 @@
+/* ----------MANAGE PRODUCTS COMPONENT---------- */
+
+
+@mixin displayFlex() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+.manage-products-box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.product-count {
+    border: mediumvioletred solid;
+    margin-top: 50px;
+}
+
+.wrap-all-products {
+    margin-top: 50px;
+    border: plum solid;
+}
+
+.product-display-box {
+    border: chartreuse solid;
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: left;
+	align-items: center;
+	align-content: stretch;
+}
+
+.product-labels > span{
+    margin: 10px;
+}
+
+.product-display {
+    margin-top: 50px;
+}
+
+.product-img {
+    height: 50px;
+}

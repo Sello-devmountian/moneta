@@ -23,7 +23,7 @@ function App(props) {
         </>
       ) : (
         <>
-        <Header />
+        {/* <Header /> */}
         {routes}
         </>
       )}

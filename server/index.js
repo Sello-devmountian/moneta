@@ -36,14 +36,6 @@ app.post('/api/auth/logout', authCtrl.logout);
 app.post('/api/auth/register', authCtrl.register);
 app.get('/api/auth/checkSession', authCtrl.checkSession);
 
-
-// PRODUCTS
-
-app.post("/api/product");
-app.put("/api/product/:p_id");
-app.get("/api/product",productCtrl.getProducts);
-app.delete("/api/product/:p_id");
-
 // CUSTOMERS
 
 app.post("/api/customer");
@@ -67,16 +59,17 @@ app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
 app.post('/api/co/cart', orderCtrl.addToCart)
 app.get('/api/co/cart',orderCtrl.getCart)
+
 // RECEIPT
 
 app.get("/api/receipt");
 
-
 // ADMIN
 
-app.post('/api/admin/product', adminCtrl.addProduct)
-app.put('/api/admin/products', adminCtrl.editProduct)
-app.delete('/api/admin/products', adminCtrl.deleteProduct)
+app.get("/api/product",productCtrl.getProducts);
+app.post('/api/products', adminCtrl.addProduct)
+app.put('/api/products/:p_id', adminCtrl.editProduct)
+app.delete('/api/products/:p_id', adminCtrl.deleteProduct)
 
 app.post('/api/admin/users', authCtrl.register)
 app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);

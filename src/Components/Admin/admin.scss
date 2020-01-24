@@ -9,7 +9,6 @@
 }
 
 .admin-page {
-    border: palevioletred solid;
     width: 100vw;
     margin-top: 60px;
     @include displayFlex();
@@ -22,7 +21,6 @@
 
 .product-management-div,
 .employee-management-div {
-    border: yellow solid;
     display: flex;
 	flex-direction: column;
 	justify-content: space-around;

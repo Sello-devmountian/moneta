@@ -1,0 +1,24 @@
+/* ----------PRODUCT COMPONENT---------- */
+
+
+.edit-product-btn {
+    color: #408DFF;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: #408DFF 1px solid;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.edit-product-btn:hover {
+cursor: pointer;
+background-color: #408DFF;
+  color: #fff;
+  border-color: #408DFF;
+}

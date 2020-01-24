@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     margin: 30px;
-
 }
 
 .add-product-box {
@@ -31,6 +30,12 @@
     @include displayFlex();
 }
 
+.new-product-availability {
+    color: #232323;
+    margin: 10px 20px 0px;
+    font-size: 20px;
+    border-bottom: #408DFF solid 2px;
+}
 
 .product-type-dropdown {
     // background-color: #408DFF;
@@ -40,6 +45,7 @@
     outline: #fff;
     border-bottom: solid 1.5px #408DFF;
     margin-left: 10px;
+    background-color: #fff;
 }
 
 select {
