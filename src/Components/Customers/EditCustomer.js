@@ -7,20 +7,30 @@ import "./customers.css";
 
 
 const EditCustomer = props => {
-    console.log('your still a mook')
     let [currentCustomer] = props.customer.customer.filter( ele => +ele.c_id === +props.match.params.c_id)
-    console.log(props); 
-    console.log(currentCustomer)
+    const [email, setEmail] = useState(currentCustomer.email)
+    const [phone, setPhone] = useState(currentCustomer.phone)
+    const [first_name, setfirst_name] = useState(currentCustomer.first_name)
+    const [last_name, setlast_name] = useState(currentCustomer.last_name)
+    console.log(email); 
+    
+
+    let editCustomer = () => {
+        axios.put(`/api/customer/${props.match.params.c_id}`, {email, phone, first_name, last_name}).then(res => {
+            props.history.push('/customers')
+        })
+    }
+    console.log(props)
     return(
         <div className='customers-page'>
             <div>
-                EMAIL: <input className='customer-input' value={currentCustomer.email}></input><br/>
-                PHONE: <input className='customer-input' value={currentCustomer.phone}></input><br/>
-                F-NAME: <input className='customer-input' value={currentCustomer.first_name}></input><br/>
-                L-NAME: <input className='customer-input' value={currentCustomer.last_name}></input>
+                EMAIL: <input className='customer-input' value={email} onChange={(e) => setEmail(e.target.value)}></input><br/>
+                PHONE: <input className='customer-input' value={phone} onChange={(e) => setPhone(e.target.value)} ></input><br/>
+                F-NAME: <input className='customer-input' value={first_name} onChange={(e) => setfirst_name(e.target.value)}></input><br/>
+                L-NAME: <input className='customer-input' value={last_name} onChange={(e) => setlast_name(e.target.value)}></input>
             </div>   
 
-           <button>SAVE DA CHANGES</button>
+           <button onClick={() => editCustomer()}>SAVE DA CHANGES</button>
         </div>
 
     )
