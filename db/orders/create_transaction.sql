@@ -1,7 +1,7 @@
 insert into moneta_transactions
 (
- c_id, total, paid
+ c_id, total, t_date, paid
 ) values (
- ${c_id}, ${total}, TRUE
+ ${c_id}, ${total}, ${t_date}, TRUE
 )
 returning *;
