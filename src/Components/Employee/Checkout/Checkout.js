@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./checkout.css";
+import "./checkout.scss";
 import { connect } from "react-redux";
 import { getProducts } from "./../../../redux/reducers/productReducer";
 import Sidebar from "./Sidebar/Sidebar";
@@ -58,12 +58,13 @@ const Checkout = props => {
                   onClick={() => {
                     addToCart(p);
                   }}
+                  onDragEnd={() => addToCart(p)}
                   className="product-container"
                 >
                   <img className="product-image" src={p.p_image} alt="" />
                   <section className="product-text">
                     <span className="product-name">{p.name}</span>
-                    <span className='product-price'>${p.price}</span>
+                    <span className="product-price">${p.price}</span>
                   </section>
                 </div>
               );
