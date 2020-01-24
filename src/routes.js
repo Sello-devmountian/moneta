@@ -5,7 +5,7 @@ import Authentication from './Components/Authentication/Authentication';
 import Customers from './Components/Customers/Customers'; 
 import EditCustomer from './Components/Customers/EditCustomer'; 
 import Checkout from './Components/Employee/Checkout/Checkout'; 
-import Transactions from './Components/Admin/Transactions';
+import Transactions from './Components/Transactions/Transactions';
 import Payment from './Components/Employee/Payment/Payment';
 import Receipt from './Components/Employee/Payment/Receipt/Receipt';
 
