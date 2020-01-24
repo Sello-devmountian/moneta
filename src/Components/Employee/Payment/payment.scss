@@ -1,45 +1,116 @@
 #PaymentForm {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    height: 600px;
-    min-width: 100vw;
+    justify-content: space-around;
 
-    form {
-        height: 600px;
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        background-color: #408dff;
+    .card-container {
+        border: 2px solid #aaaaaa;
+        padding-top: 20px;
 
-        .row {
+        h1 {
+            color: #232323;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        form {
+            height: 400px;
             width: 400px;
-            height: 50px;
             display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
+            flex-direction: column;
+            justify-content: space-around;
             align-items: center;
-
+    
+            .row {
+                width: 400px;
+                height: 50px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+    
+                input {
+                    outline: none;
+                    border: none;
+                    border-bottom: 5px #408dff solid;
+                    height: 30px;
+                    width: 125px;
+                    font-size: 20px;
+                    padding: 10px 5px;
+                }
+            }
+    
             input {
                 outline: none;
                 border: none;
-                height: 40px;
-                width: 125px;
+                border-bottom: 5px #408dff solid;
+                height: 30px;
+                width: 250px;
                 font-size: 20px;
                 padding: 10px 5px;
+                
+            }
+
+            .form-actions {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 250px;
+
+                .payment-button {
+                    width: 100px;
+                    height: 40px;
+                    font-size: 20px;
+                    color: #ffffff;
+                    background-color: #408dff;
+                    border: none;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .cart-payment {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 20px;
+        min-height: 400px;
+        height: auto;
+        width: 400px;
+        border: 2px solid #aaaaaa;
+
+        #order-container {
+            height: auto;
+            width: 250px;
+            border-bottom: 5px #408dff solid;
+            border-top: 5px #408dff solid;
+            padding-bottom: 10px;
+
+            .orders {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                width: 250px;
+                height: auto;
+                margin: 5px 0;
+    
+                span {
+                    font-size: 20px;
+                    margin: 5px 0;
+                }
             }
         }
 
-        input {
-            outline: none;
-            border: none;
+        button {
+            width: 100px;
             height: 40px;
-            width: 250px;
             font-size: 20px;
-            padding: 10px 5px;
-            
+            color: #ffffff;
+            background-color: #408dff;
+            border: none;
+            border-radius: 5px;
+            margin: 20px 0;
         }
     }
 }

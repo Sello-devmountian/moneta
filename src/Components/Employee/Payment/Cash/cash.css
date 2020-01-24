@@ -1,0 +1,47 @@
+#cash-container {
+  padding: 20px 0;
+  height: 400px;
+  width: 400px;
+  border: 2px solid #aaaaaa;
+}
+
+#cash-container h1 {
+  color: #232323;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#cash-container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px 0;
+  height: 300px;
+}
+
+#cash-container form input {
+  outline: none;
+  border: none;
+  border-bottom: 5px #408dff solid;
+  height: 25px;
+  width: 125px;
+  font-size: 20px;
+  padding: 10px 5px;
+}
+
+#cash-container .payment-button {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #408dff;
+  border: none;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=cash.css.map */

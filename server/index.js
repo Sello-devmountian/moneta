@@ -7,6 +7,7 @@ const express = require("express"),
   productCtrl = require('./controllers/productController'),
   customerController = require('./controllers/customerController'),
   orderCtrl = require('./controllers/orderController'),
+  tCtrl = require('./controllers/transactionController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
@@ -40,14 +41,16 @@ app.get('/api/auth/checkSession', authCtrl.checkSession);
 
 app.post("/api/customer");
 app.get("/api/customer", customerController.getCustomers);
-app.get("/api/customer/:c_id");
+app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
 app.delete("/api/customer/:c_id");
+app.get('/api/customerSess', customerController.getSessCustomer); 
 
 // TRANSACTIONS
 
-app.post("/api/transactions");
-app.get("/api/transactions");
+app.post("/api/transactions", tCtrl.createTransaction);
+app.get("/api/transactions", tCtrl.getTransactions);
+app.get("/api/transactions/:t_id", tCtrl.getOneTransaction);
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
 
@@ -57,8 +60,15 @@ app.post("/api/co");
 app.get("/api/co");
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
+app.get("/api/co/cart", orderCtrl.getCart);
 app.post('/api/co/cart', orderCtrl.addToCart)
+<<<<<<< HEAD
 app.get('/api/co/cart',orderCtrl.getCart)
+=======
+app.put('/api/co/cart', orderCtrl.updateCart)
+
+
+>>>>>>> master
 
 // RECEIPT
 

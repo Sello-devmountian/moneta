@@ -3,9 +3,11 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Authentication from './Components/Authentication/Authentication';
 import Customers from './Components/Customers/Customers'; 
+import EditCustomer from './Components/Customers/EditCustomer'; 
 import Checkout from './Components/Employee/Checkout/Checkout'; 
-import Transactions from './Components/Admin/Transactions';
+import Transactions from './Components/Transactions/Transactions';
 import Payment from './Components/Employee/Payment/Payment';
+import Receipt from './Components/Employee/Payment/Receipt/Receipt';
 
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -16,10 +18,12 @@ import DeleteEmployee from './Components/Admin/DeleteEmployee';
 export default (
     <Switch>
         <Route exact path='/' component={Authentication} />
+        <Route path='/customers/:c_id' component={EditCustomer}/>
         <Route path='/customers' component={Customers} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/transactions' component={Transactions} />
         <Route path='/payment' component={Payment}/>
+        <Route path='/receipt' component={Receipt}/>
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 

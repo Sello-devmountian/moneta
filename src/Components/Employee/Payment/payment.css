@@ -1,0 +1,88 @@
+#PaymentForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#PaymentForm .card-container {
+  border: 2px solid #aaaaaa;
+  padding-top: 20px;
+}
+
+#PaymentForm .card-container h1 {
+  color: #232323;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#PaymentForm .card-container form {
+  height: 400px;
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#PaymentForm .card-container form .row {
+  width: 400px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#PaymentForm .card-container form .row input {
+  outline: none;
+  border: none;
+  border-bottom: 5px #408dff solid;
+  height: 30px;
+  width: 125px;
+  font-size: 20px;
+  padding: 10px 5px;
+}
+
+#PaymentForm .card-container form input {
+  outline: none;
+  border: none;
+  border-bottom: 5px #408dff solid;
+  height: 30px;
+  width: 250px;
+  font-size: 20px;
+  padding: 10px 5px;
+}
+
+#PaymentForm .card-container form .payment-button {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #408dff;
+  border: none;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=payment.css.map */

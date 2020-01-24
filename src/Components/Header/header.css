@@ -3,9 +3,11 @@
     background-color: #232323; 
     position: fixed; 
     top: 0; 
-    width: 100%; 
+    min-width: 100vw;
+    /* width: 100%;  */
     color: white; 
-  }
+    z-index: 1;
+}
 
 .nav-buttons {
     position: absolute; 
