@@ -2,23 +2,24 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   addProduct: (req, res) => {
-    const { name, p_image, price, p_type } = req.body;
+    const { name, p_image, price, p_type, available} = req.body;
     const db = req.app.get("db");
     db.admin.add_product
       .add_product({
         name,
         p_image,
         price,
-        p_type
+        p_type,
+        available
       })
-      .then(response => res.sendStatus(200))
+      .then(() => res.sendStatus(200))
       .catch(err => console.log(err));
   },
 
   editProduct: (req, res) => {
-    const { id } = req.query;
-    let { name, p_image, price, p_type } = req.body;
-
+    const { p_id } = req.params;
+    let { name, p_image, price, p_type, available} = req.body;
+console.log(req.body, req.query)
     const db = req.app.get("db");
 
     db.admin.edit_products
@@ -26,7 +27,9 @@ module.exports = {
         name,
         p_image,
         price,
-        p_type
+        p_type,
+        p_id,
+        available
       })
       .then(product => {
         res.status(200).send(product);

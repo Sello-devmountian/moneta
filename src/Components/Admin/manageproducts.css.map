@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,mDAAmD;AAUnD,AAAA,gBAAgB,CAAC;EACb,UAAU,EAAE,IAAI;CACnB;;AAED,AAAA,YAAY,CAAC;EACT,MAAM,EAAE,IAAI;CACf",
+    "sources": [
+        "manageproducts.scss"
+    ],
+    "names": [],
+    "file": "manageproducts.css"
+}

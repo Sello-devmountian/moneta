@@ -1,2 +1,2 @@
 DELETE FROM moneta_products
-WHERE id = ${id};
+WHERE p_id = ${p_id};
