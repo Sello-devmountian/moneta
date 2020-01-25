@@ -6,6 +6,19 @@ import { withRouter } from "react-router-dom";
 const Cart = props => {
   const [remove, setRemove] = useState(false);
   const [selProd, setSelProd] = useState(null);
+  const [subtotal, setSubtotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [tax, setTax] = useState(0);
+
+
+  useEffect(() => {
+    let sub = props.cart[0] && props.cart.reduce((acc, b) => acc + +b.price, 0).toFixed(2)
+    setSubtotal(sub)
+    setTax((sub*.088).toFixed(2))
+    setTotal((sub*1.088).toFixed(2))
+
+  },[props.cart.length])
+
   const removeFromCart = async (i, num) => {
     await props.cart.splice(i, num);
     Axios.put("/api/co/cart", props.cart).then(res => props.setCart(res.data));
@@ -44,11 +57,16 @@ const Cart = props => {
             );
           })}
       </section>
-      <span className="checkout-total">
-        Total: $
-        {props.cart[0] &&
-          props.cart.reduce((acc, b) => acc + +b.price, 0).toFixed(2)}
-      </span>
+
+      <strong className="checkout-total">
+        Subtotal: {props.cart[0] ? `$${subtotal}` : '$0'} 
+      </strong>
+      <strong className="checkout-total">
+        Tax: {props.cart[0] ? `$${tax}` : '$0'} 
+      </strong>
+      <strong className="checkout-total">
+        Total: {props.cart[0] ? `$${total}` : '$0'} 
+      </strong>
       <div className="selected-customer-container">
         <span>Customer: </span>
         <span>
@@ -74,13 +92,13 @@ const Cart = props => {
           className="clear-button"
           onClick={() => removeFromCart(0, props.cart.length)}
         >
-          Clear
+          CLEAR
         </button>
         <button
           className="checkout-button"
           onClick={() => props.history.push("/payment")}
         >
-          Checkout
+          CHECKOUT
         </button>
       </section>
     </div>
