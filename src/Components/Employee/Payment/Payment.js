@@ -27,6 +27,8 @@ class Payment extends Component {
             number: '',
             issuer: '',
             cash: false,
+            cashPaid: false,
+            orderChange: {},
             order: []
         }
     }
@@ -83,6 +85,12 @@ class Payment extends Component {
             issuer: ''
           })
       }
+
+      setChange = (obj) => {
+          this.setState({
+              orderChange: obj
+          })
+      }
     
       handleSubmit = e => {
         e.preventDefault();
@@ -91,7 +99,7 @@ class Payment extends Component {
         axios.post('/api/transactions', {total}).then(res => {
             console.log(res)
             this.clearInput()
-            // this.props.history.push('/receipt')
+            this.props.history.push('/receipt')
             MySwal.fire({
                 icon: 'success',
                 title: 'Congrats...',
@@ -106,20 +114,41 @@ class Payment extends Component {
             cash: !this.state.cash
         })
       }
+
+      togglePaid = () => {
+        this.setState({
+            cashPaid: !this.state.cashPaid,
+            cash: false
+        })
+      }
+
+      changeCounted = () => {
+        this.props.history.push('/receipt')
+        this.setState({
+            cashPaid: false
+        })
+      }
     
 
     render(){
-        const {cash} = this.state;
+        const {cash, orderChange, cashPaid} = this.state;
         console.log(this.props.employee.employee)
         // console.log(req.session.user.cart)
         // console.log(this.props);
+        console.log(cashPaid)
 
 
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
                     <>
-                    <Cash cash={cash} toggleCashFn={this.toggleCash} order={this.state.order}/>
+                    <Cash cash={cash} 
+                        toggleCashFn={this.toggleCash} 
+                        togglePaidFn={this.togglePaid} 
+                        setChangeFn={this.setChange} 
+                        order={this.state.order}
+                        clearCartFn={this.clearCart}
+                    />
                     </>
                 ) : (
                     <div className='card-container'>
@@ -207,6 +236,47 @@ class Payment extends Component {
                    </div>
                    <button onClick={() => this.props.history.goBack()}>GO BACK</button>
                 </div>
+                {cashPaid ? (
+                    <div id="change-display">
+                        <span>
+                          <div className='change-flex'>
+                              <div>
+                                  <p>Twenty:{' '}</p>
+                                  <p>{orderChange.Twenty}</p>
+                              </div>
+                              <div>
+                                  <p>Ten:{' '}</p>
+                                  <p>{orderChange.Ten}</p>
+                              </div>
+                              <div>
+                                  <p>Five:{' '}</p>
+                                  <p>{orderChange.Five}</p>
+                              </div>
+                              <div>
+                                  <p>One:{' '}</p>
+                                  <p>{orderChange.One}</p>
+                              </div>
+                              <div>
+                                  <p>Quarter:{' '}</p>
+                                  <p>{orderChange.Quarter}</p>
+                              </div>
+                              <div>
+                                  <p>Dime:{' '}</p>
+                                  <p>{orderChange.Dime}</p>
+                              </div>
+                              <div>
+                                  <p>Nickel:{' '}</p>
+                                  <p>{orderChange.Nickel}</p>
+                              </div>
+                              <div>
+                                  <p>Penny:{' '}</p>
+                                  <p>{orderChange.Penny}</p>
+                              </div>
+                          </div>
+                          <button onClick={() => this.changeCounted()}>Okay</button>
+                        </span>
+                    </div>
+                ) : null }
             </div>
         )
     }
