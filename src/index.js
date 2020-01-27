@@ -8,10 +8,10 @@ import store from './redux/store';
 import {HashRouter} from 'react-router-dom';
 import {StripeProvider} from 'react-stripe-elements';
 import 'bootstrap/dist/css/bootstrap.min.css';
-const {REACT_APP_STRIPE_KEY} = process.env;
+
 
 ReactDOM.render(
-<StripeProvider apiKey={`${REACT_APP_STRIPE_KEY}`}>
+<StripeProvider apiKey={process.env.REACT_APP_STRIPE_KEY}>
     <HashRouter>
         <Provider store={store}>
             <App />

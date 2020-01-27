@@ -40,8 +40,8 @@ const Payment = (props) => {
     let submit = async (e) => {
         let token = await props.stripe.createToken({name: 'Name'});
         console.log(token)
-        let response = await axios.post('/charge', {token})
         let total = order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
+        let response = await axios.post('/charge', {token})
         axios.post('/api/transactions', {total}).then(res => {
             props.history.push('/reciept')
             MySwal.fire({

@@ -1,6 +1,5 @@
 let transactionId;
-const {STRIPE_SECRET_KEY} = process.env;
-const stripe = require('stripe')(STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 module.exports = {
     createTransaction: async (req,res, next) => {
@@ -43,7 +42,8 @@ module.exports = {
                 amount: cartTotal,
                 currency: 'usd',
                 description: 'Test Charge',
-                source: req.body.token.id
+                source: req.body.token.id,
+                customer: req.session.user.c_id
             });
             // console.log(req.body.token)
             if(stripeChargeResponse.status === 'succeeded'){
