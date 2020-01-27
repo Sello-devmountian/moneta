@@ -6,14 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 import {HashRouter} from 'react-router-dom';
+import {StripeProvider} from 'react-stripe-elements';
 import 'bootstrap/dist/css/bootstrap.min.css';
+const {REACT_APP_STRIPE_KEY} = process.env;
 
 ReactDOM.render(
-<HashRouter>
-    <Provider store={store}>
-        <App />
-    </Provider>
-</HashRouter>, document.getElementById('root'));
+<StripeProvider apiKey={`${REACT_APP_STRIPE_KEY}`}>
+    <HashRouter>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </HashRouter>
+</StripeProvider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

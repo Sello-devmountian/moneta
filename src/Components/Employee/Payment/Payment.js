@@ -1,218 +1,106 @@
-import React, {Component} from 'react';
-import 'react-credit-cards/lib/styles.scss';
+import React, {useState, useEffect} from 'react';
+import useInput from '../../../hooks/useInput';
 import './payment.scss';
-import Cards from 'react-credit-cards';
 import Cash from './Cash/Cash';
-import {connect} from 'react-redux';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
-
-import {
-    formatCreditCardNumber,
-    formatCVC,
-    formatExpirationDate
-} from './utils/utils';
+import {injectStripe, CardElement} from 'react-stripe-elements';
 
 const MySwal = withReactContent(Swal);
 
-class Payment extends Component {
-    constructor(){
-        super();
-        this.state = {
-            cvc: '',
-            expiry: '',
-            focused: '',
-            name: '',
-            number: '',
-            issuer: '',
-            cash: false,
-            cashPaid: false,
-            orderChange: {},
-            order: []
-        }
-    }
+const Payment = (props) => {
+    const [order, setOrder] = useState([]);
+    const [orderChange, setOrderChange] = useState({});
+    const [cash, setCash] = useState(false);
+    const [cashPaid, setCashPaid] = useState(false);
 
-    
+    // constructor(){
+    //     super();
+    //     this.state = {
+    //         cvc: '',
+    //         expiry: '',
+    //         focused: '',
+    //         name: '',
+    //         number: '',
+    //         issuer: '',
+    //         cash: false,
+    //         cashPaid: false,
+    //         orderChange: {},
+    //         order: []
+    //     }
+    // }
 
-    componentDidMount(){
+    useEffect(() => {
         axios.get('/api/co/cart').then(res => {
-            this.setState({
-                order: res.data
-            })
+            setOrder(res.data)
         })
-    }
+    }, [order.length])
 
-    clearCart = () => {
-        axios.delete('/api/co/cart').then(res => {
-            this.setState({
-                order: res.data
-            })
-        })
-    }
-
-    handleCallback = ({ issuer }, isValid) => {
-        if (isValid) {
-          this.setState({ issuer });
-        }
-      };
-    
-      handleInputFocus = ({ target }) => {
-        this.setState({
-          focused: target.name,
-        });
-      };
-    
-      handleInputChange = ({ target }) => {
-        if (target.name === 'number') {
-          target.value = formatCreditCardNumber(target.value);
-        } else if (target.name === 'expiry') {
-          target.value = formatExpirationDate(target.value);
-        } else if (target.name === 'cvc') {
-          target.value = formatCVC(target.value);
-        }
-    
-        this.setState({ [target.name]: target.value });
-      };
-
-      clearInput = () => {
-          this.setState({
-            cvc: '',
-            expiry: '',
-            focused: '',
-            name: '',
-            number: '',
-            issuer: ''
-          })
-      }
-
-      setChange = (obj) => {
-          this.setState({
-              orderChange: obj
-          })
-      }
-    
-      handleSubmit = e => {
-        e.preventDefault();
-        // console.log('hit event')
-        const total = this.state.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
+    let submit = async (e) => {
+        let token = await props.stripe.createToken({name: 'Name'});
+        console.log(token)
+        let response = await axios.post('/charge', {token})
+        let total = order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
         axios.post('/api/transactions', {total}).then(res => {
-            console.log(res)
-            this.clearInput()
-            this.props.history.push('/receipt')
+            props.history.push('/reciept')
             MySwal.fire({
                 icon: 'success',
                 title: 'Congrats...',
                 text: 'Order completed'
             })
-            this.clearCart()
+            clearCart()
         })
-      };
+    }
 
-      toggleCash = () => {
-        this.setState({
-            cash: !this.state.cash
+     let clearCart = () => {
+        axios.delete('/api/co/cart').then(res => {
+            setOrder(res.data)
         })
-      }
+    }
 
-      togglePaid = () => {
-        this.setState({
-            cashPaid: !this.state.cashPaid,
-            cash: false
-        })
-      }
-
-      changeCounted = () => {
-        this.props.history.push('/receipt')
-        this.setState({
-            cashPaid: false
-        })
+      let setChange = (obj) => {
+          setOrderChange(obj)
       }
     
+      
+    let toggleCash = () => {
+        setCash(!cash)
+      }
 
-    render(){
-        const {cash, orderChange, cashPaid} = this.state;
-        console.log(this.props.employee.employee)
-        // console.log(req.session.user.cart)
-        // console.log(this.props);
-        console.log(cashPaid)
+    let togglePaid = () => {
+          setCashPaid(!cashPaid)
+          setCash(false)
+      }
+
+    let changeCounted = () => {
+        props.history.push('/receipt')
+        setCashPaid(false)
+      }
 
 
+      console.log(props.stripe)
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
                     <>
                     <Cash cash={cash} 
-                        toggleCashFn={this.toggleCash} 
-                        togglePaidFn={this.togglePaid} 
-                        setChangeFn={this.setChange} 
-                        order={this.state.order}
-                        clearCartFn={this.clearCart}
+                        toggleCashFn={toggleCash} 
+                        togglePaidFn={togglePaid} 
+                        setChangeFn={setChange} 
+                        order={order}
+                        clearCartFn={clearCart}
                     />
                     </>
                 ) : (
                     <div className='card-container'>
-                <h1>Card</h1>
-                    <Cards 
-                        cvc={this.state.cvc}
-                        expiry={this.state.expiry}
-                        focused={this.state.focused}
-                        name={this.state.name}
-                        number={this.state.number}
-                    />
-                    <form onSubmit={this.handleSubmit}>
-                        <div className='payment-flex'>
-                            <input 
-                                type='tel'
-                                name='number'
-                                placeholder='Card Number'
-                                pattern='[\d| ]{16,22}'
-                                required
-                                onChange={this.handleInputChange}
-                                onFocus={this.handleInputFocus}
-                            />
-                        </div>
-                        <div className='payment-flex'>
-                            <input 
-                                type='text'
-                                name='name'
-                                placeholder='Name'
-                                required
-                                onChange={this.handleInputChange}
-                                onFocus={this.handleInputFocus}
-                            />
-                        </div>
-                        <div className='row'>
-                            <div className='col-6'>
-                                <input 
-                                    type='tel'
-                                    name='expiry'
-                                    placeholder='Valid Thru'
-                                    pattern='\d\d/\d\d' 
-                                    required
-                                    onChange={this.handleInputChange}
-                                    onFocus={this.handleInputFocus}
-                                />
-                            </div>
-                            <div className='col-6'>
-                                <input 
-                                    type='tel'
-                                    name='cvc'
-                                    placeholder='CVC'
-                                    pattern='\d{3,4}'
-                                    required
-                                    onChange={this.handleInputChange}
-                                    onFocus={this.handleInputFocus}
-                                />
-                            </div>
-                        </div>
-                        <input type='hidden' name='issuer' value={this.state.issuer}/>
-                        <div className="form-actions">
-                            <button className="payment-button" onClick={(e) => this.handleSubmit(e)}>PAY</button>
+                        <h1>Card</h1>
+                        <CardElement/>
+                        <div className="actions">
+                            <button onClick={submit} className='payment-button'>PAY</button>
                             <small>or</small>
-                            <button onClick={this.toggleCash} className='payment-button'>CASH</button>
+                            <button onClick={toggleCash} className='payment-button'>CASH</button>
                         </div>
-                    </form>
                 </div>
                 )}
                 <div className='cart-payment'>
@@ -220,7 +108,7 @@ class Payment extends Component {
                         Order
                     </h1>
                    <div id='order-container'>
-                        {this.state.order[0] && this.state.order.map((item, i) => {
+                        {order[0] && order.map((item, i) => {
                             return (
                                 <div key={i} className='orders'>
                                     <span>{item.name}</span>
@@ -230,11 +118,11 @@ class Payment extends Component {
                         })}
                         <span style={{color: '#232323', fontSize: '20px', fontWeight: 'bold'}}>
                             Total: ${" "}
-                            {this.state.order[0] &&
-                            this.state.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)}
+                            {order[0] &&
+                            order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)}
                         </span>
                    </div>
-                   <button onClick={() => this.props.history.goBack()}>GO BACK</button>
+                   <button onClick={() => props.history.goBack()}>GO BACK</button>
                 </div>
                 {cashPaid ? (
                     <div id="change-display">
@@ -279,13 +167,7 @@ class Payment extends Component {
                 ) : null }
             </div>
         )
-    }
+    
 }
 
-const mapStateToProps = (reduxState) => {
-    return {
-        employee: reduxState.employee
-    }
-}
-
-export default connect(mapStateToProps)(Payment);
+export default injectStripe(Payment);
