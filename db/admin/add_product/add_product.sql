@@ -9,5 +9,5 @@ INSERT INTO moneta_products (
     ${p_image},
     ${price},
     ${p_type},
-    TRUE
+    ${available}
     );

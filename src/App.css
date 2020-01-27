@@ -1,6 +1,9 @@
 .App {
   text-align: center;
   min-width: 100vw;
+  
+  font-family: 'Raleway', sans-serif;
+
 }
 
 .App-logo {
