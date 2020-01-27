@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { getCustomer } from "../../redux/reducers/customerReducer";
 import { connect } from "react-redux";
 import "./customers.css";
+import {Table} from 'react-bootstrap'; 
 
 const Customers = props => {
   const [sessCust, setSessCust] = useState({}) ;
@@ -35,78 +36,44 @@ const Customers = props => {
       });
   }
 
-  let email = props.customer.customer.length
-    ? props.customer.customer.map((el, index) => <div className='customer-info' >{el.email}</div>)
-    : null; 
-  let phone = props.customer.customer.length
-    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.phone}</div>)
-    : null;
-  let first_name = props.customer.customer.length
-    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.first_name}</div>)
-    : null;
-  let last_name = props.customer.customer.length
-    ? props.customer.customer.map((el, index) => <div className='customer-info'>{el.last_name}</div>)
-    : null;
-  let editButton = props.customer.customer.length
-    ? props.customer.customer.map((el, index) => <Link to={`/customers/${el.c_id}`}><button className='customer-info'>Customer ID:{el.c_id}</button></Link>)
-    : null;
-    let anotherButton = props.customer.customer.length ? props.customer.customer.map((el, index) => <button className='customer-info' onClick={() => passId(el.c_id)}>CLICK ME! {el.c_id}</button>): null; 
+
 
 //   console.log(props);
 //   console.log(editUser); 
   console.clear(); 
   console.log(sessCust); 
   return (
-    <div className="customers-page">
-      <div className="customers-table">
-        <div>
-          <div className="table-info">Email</div>
-            <div>
-                {email}
-            </div>
-        </div>
-
-        <div>
-          <div className="table-info">Phone Number</div>
-             <div>
-                {phone}
-             </div>
-        </div>
-
-        <div>
-          <div className="table-info">First Name</div>
-             <div>
-                 {first_name}
-             </div>
-        </div>
-
-        <div>
-          <div className="table-info">Last Name</div>
-            <div>
-                {last_name}
-            </div>
-        </div>
-
-        <div>
-          <div className="table-info">Edit</div>
-            <div>
-                {editButton}
-            </div>
-        </div>
-
-        <div>
-          <div className="table-info">Last Name</div>
-            <div>
-                {anotherButton}
-            </div>
-        </div>
-
-      </div>
-
-      
-
-
-    </div>
+    <Table style={{ marginTop: "50px"}} striped bordered hover  >
+      {/* <div > */}
+      <thead>
+        <tr>
+          <th>Edit</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>We don't talk about this button</th>
+        </tr>
+      </thead>
+      <tbody>
+        {props.customer.customer[0] &&
+          props.customer.customer.sort((a,b) => b.t_id - a.t_id ).map((t, i) => {
+            console.log(typeof t.t_date)
+            return (
+              <tr key={i}>
+                
+                <td><Link to={`/customers/${t.c_id}`}>Customer ID:{t.c_id}</Link></td>
+                <td>{t.email}</td>
+                <td>{t.phone}</td>
+                <td>{t.first_name}</td>
+                <td>{t.last_name}</td>
+                <td><button onClick={() => passId(t.c_id)}>CLICK ME! {t.c_id}</button></td>
+              </tr>
+            );
+          })}
+      </tbody>
+      {/* </div> */}
+    </Table>
   );
 };
 
