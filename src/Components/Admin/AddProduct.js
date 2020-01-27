@@ -8,8 +8,8 @@ function AddProduct() {
   const [p_image, bindP_image, resetP_image] = useInput("");
   const [price, bindPrice, resetPrice] = useInput("");
   const [p_type, setType] = useState("");
-  const [available, bindAvailable] = useState(true);
-
+  const [available, bindAvailable] = useState(false);
+  
   let setNewProduct = () => {
     axios
       .post("/api/products", {
@@ -48,7 +48,7 @@ function AddProduct() {
 
       <label className='new-product-availability' htmlFor='available'>product available</label>
       <input 
-        onChange={() => bindAvailable(!available)} 
+        onChange={() => bindAvailable(true)} 
         type='checkbox'
         value='available'
       />

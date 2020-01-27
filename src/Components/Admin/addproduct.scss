@@ -1,5 +1,8 @@
 /* ----------ADD PRODUCT COMPONENT---------- */
 
+body {
+    font-family: 'Raleway', sans-serif;
+}
 
 @mixin displayFlex() {
     display: flex;
@@ -32,8 +35,10 @@
 
 .new-product-availability {
     color: #232323;
-    margin: 10px 20px 0px;
-    font-size: 20px;
+    margin: 0 20px;
+    width: 190px;
+    line-height: 50px;
+    font-size: 15px;
     border-bottom: #408DFF solid 2px;
 }
 
@@ -55,6 +60,7 @@ select {
   }
 
 .add-product-btn {
+    color: #fff;
     background-color: #408DFF;
     height: 50px;
     width: 150px;
