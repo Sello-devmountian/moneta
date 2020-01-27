@@ -6,6 +6,9 @@ import Customers from './Components/Customers/Customers';
 import EditCustomer from './Components/Customers/EditCustomer'; 
 import Checkout from './Components/Employee/Checkout/Checkout'; 
 import Transactions from './Components/Transactions/Transactions';
+import OneTransaction from './Components/Transactions/OneTransaction/OneTransaction';
+// import Example from './Components/Transactions/OneTransaction/Example';
+
 import Payment from './Components/Employee/Payment/Payment';
 import Receipt from './Components/Employee/Payment/Receipt/Receipt';
 
@@ -21,7 +24,9 @@ export default (
         <Route path='/customers/:c_id' component={EditCustomer}/>
         <Route path='/customers' component={Customers} />
         <Route path='/checkout' component={Checkout} />
-        <Route path='/transactions' component={Transactions} />
+        <Route exact path='/transactions' component={Transactions} />
+        <Route path='/transactions/:t_id' component={OneTransaction} />
+        {/* <Route path='/transactions/:t_id' component={Example} /> */}
         <Route path='/payment' component={Payment}/>
         <Route path='/receipt' component={Receipt}/>
 
