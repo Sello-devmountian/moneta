@@ -7,6 +7,12 @@
     /* width: 100%;  */
     color: white; 
     z-index: 1;
+    text-transform: uppercase;
+}
+
+.nav-bar a:hover {
+    text-decoration: none;
+    color: #408DFF;
 }
 
 .nav-buttons {

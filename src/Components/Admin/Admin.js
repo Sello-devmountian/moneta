@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import "./admin.scss";
 
-const Admin = () => {
+const Admin = (props) => {
+ 
+  // console.log(props)
+  if (!props.employee.employee.is_admin) {
+    return <Redirect from='/admin' to='/' />
+}
+
   return (
     <div className="admin-page">
       <div className="product-management-div">
@@ -28,4 +35,8 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+const mapStateToProps = reduxState => {
+  return reduxState;
+};
+
+export default connect(mapStateToProps)(Admin);
