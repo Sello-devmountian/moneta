@@ -40,7 +40,9 @@ const ManageProducts = props => {
 
   return (
     <div className='manage-products-box'>
+      <div className='stats'>
       <div className='product-count'>current number of products: {products.length}</div>
+      </div>
       <div className='wrap-all-products'>
       {products.map((p, i) => {
         return (

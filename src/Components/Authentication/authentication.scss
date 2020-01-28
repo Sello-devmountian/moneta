@@ -44,7 +44,7 @@
                     border: solid #408dff;
                     border-width: 0 6px 6px 0;
                     display: inline-block;
-                    padding: 3px;
+                    padding: 8px;
                     transform: rotate(-45deg);
                     margin-left: 5px;
                 }
@@ -63,6 +63,7 @@
 
             h1 {
                 font-size: 70px;
+                font-weight: 900;
                 color: #232323;
             }
 
@@ -74,17 +75,30 @@
                 width: 350px;
                 font-size: 20px;
                 padding: 10px 5px;
+                margin-top: 50px;
             }
 
             button {
                 height: 45px;
                 width: 140px;
-                color: #aaaaaa;
+                color: #fff;
                 background-color: #232323;
                 font-size: 20px;
                 margin-top: 30px;
                 margin-left: 175px;
+
+                font-weight: 700;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
             }
+            button:hover {
+                cursor: pointer;
+                color: #232323;
+                background-color: #fff;
+                border: #232323 1px solid;
+            }
+           
         }
     }
 }

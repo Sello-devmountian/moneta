@@ -28,7 +28,7 @@ function AddEmployee() {
       <h1 className="new-employee-title">add new employee</h1>
       <input placeholder="username" {...bindUserName} />
       <input placeholder="password" type="password" {...bindPassword} />
-      <label htmlFor="is_admin">admin access</label>
+      <label className='admin-access' htmlFor="is_admin">admin access</label>
       <input
         onChange={() => bindIsAdmin(!is_admin)}
         type="checkbox"

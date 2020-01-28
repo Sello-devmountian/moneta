@@ -1,9 +1,5 @@
 /* ----------MANAGE PRODUCTS COMPONENT---------- */
 
-body {
-    font-family: 'Raleway', sans-serif;
-}
-
 @mixin displayFlex() {
     display: flex;
     align-items: center;
@@ -15,6 +11,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+}
+
+.stats {
+    border: darksalmon solid;
 }
 
 .product-count {
