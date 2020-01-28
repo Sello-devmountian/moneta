@@ -29,7 +29,7 @@ export default (
         <Route path='/transactions/:t_id' component={OneTransaction} />
         {/* <Route path='/transactions/:t_id' component={Printer} /> */}
         <Route path='/payment' component={Payment}/>
-        <Route path='/receipt' component={Receipt}/>
+        <Route path='/receipt/:t_id' component={Receipt}/>
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 
