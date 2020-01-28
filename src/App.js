@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import routes from './routes';
 import {withRouter} from 'react-router-dom';
@@ -6,6 +6,8 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {getEmployee} from './redux/reducers/employeeReducer';
 import Header from './Components/Header/Header'; 
+import {Elements} from 'react-stripe-elements';
+import {StripeProvider} from 'react-stripe-elements';
 
 
 function App(props) {
@@ -15,18 +17,21 @@ function App(props) {
     })
   })
 
+
   return (
     <div className="App">
-      {props.location.pathname === '/' ? (
-        <>
+        <Elements>
+        {props.location.pathname === '/' ? (
+          <>
+            {routes}
+          </>
+        ) : (
+          <>
+          <Header />
           {routes}
-        </>
-      ) : (
-        <>
-        <Header />
-        {routes}
-        </>
-      )}
+          </>
+        )}
+        </Elements>
     </div>
   );
 }

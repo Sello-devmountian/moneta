@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../../redux/reducers/productReducer";
-import './product.scss';
+import "./product.scss";
 
 const Product = props => {
   const [edit, isEditing] = useState(false);
@@ -11,6 +11,8 @@ const Product = props => {
   const [price, setPrice] = useState("");
   const [p_type, setType] = useState("");
   const [editItem, setEditItem] = useState({});
+  const [available, bindAvailable] = useState(false);
+
 
   const { products } = props.product;
 
@@ -32,6 +34,7 @@ const Product = props => {
     cancel();
   };
 
+
   let cancel = () => {
     setName("");
     setP_image("");
@@ -43,28 +46,59 @@ const Product = props => {
 
   return (
     <div>
-      
       {!edit ? (
-              <div className='edit-product-btn' onClick={() => select(props.p)}>Edit Product</div>
-
-            //  <div
-            //     onClick={() =>
-            //       props.deleteProduct(
-            //         props.p,
-            //         window.confirm(
-            //           "Are you sure you would like to delete this product?"
-            //         )
-            //       ) && props.deleteProduct(props.p)
-            //     }
-            //   > 
-            //     Delete Product
-            //   </div> 
-
-      ) : (
         <div>
-          <input onChange={e => setName(e.target.value)} value={name} />
-          <input onChange={e => setP_image(e.target.value)} value={p_image} />
-          <input onChange={e => setPrice(e.target.value)} value={price} />
+            <div className="product-labels-box">
+<label className='product-labels'>product name</label>
+              <span>{props.p.name}</span>
+<label className='product-labels'>product price</label>
+       
+              <span>${props.p.price} </span>
+<label className='product-labels'>product type</label>
+       
+              <span>{props.p.p_type}</span>
+<label className='product-labels'>product available</label>
+       
+              <span>{props.p.available ? 'true' : 'false'}</span>
+              </div>
+
+<div className='edit-btn-box'>
+
+        <div className="edit-product-btn" onClick={() => select(props.p)}>
+          edit product
+        </div>
+</div>
+        </div>
+      ) : (
+        //  <div
+        //     onClick={() =>
+        //       props.deleteProduct(
+        //         props.p,
+        //         window.confirm(
+        //           "Are you sure you would like to delete this product?"
+        //         )
+        //       ) && props.deleteProduct(props.p)
+        //     }
+        //   >
+        //     Delete Product
+        //   </div>
+
+        <div>
+          <input
+            className="edit-product-name"
+            onChange={e => setName(e.target.value)}
+            value={name}
+          />
+          <input
+            className="edit-product-img"
+            onChange={e => setP_image(e.target.value)}
+            value={p_image}
+          />
+          <input
+            className="edit-product-price"
+            onChange={e => setPrice(e.target.value)}
+            value={price}
+          />
 
           <select
             onChange={e => setType(e.target.value)}
@@ -77,16 +111,27 @@ const Product = props => {
             <option value="cones">cones</option>
           </select>
 
-          <div
-            className="save-edits-btn"
-            onClick={() => {
-              handleSave();
-            }}
-          >
-            save edits
-          </div>
+          <label className='new-product-availability' htmlFor='available'>product available</label>
+          <input 
+        onChange={() => bindAvailable(true)} 
+        type='checkbox'
+        value='available'
+      />
 
-          <div onClick={() => cancel()}>cancel</div>
+          <div className="save-cancel-btns">
+            <div
+              className="save-edits-btn"
+              onClick={() => {
+                handleSave();
+              }}
+            >
+              save edits
+            </div>
+
+            <div className="cancel-edits-btn" onClick={() => cancel()}>
+              cancel
+            </div>
+          </div>
         </div>
       )}
     </div>
