@@ -20,7 +20,8 @@ module.exports = {
             await db.orders.create_order({t_id: transactionId, c_id, p_id: item.p_id ,qty: 1})
             // .then(order => res.status(200).send(order))
         })
-        return res.sendStatus(200);
+        res.status(200).send(transaction);
+        next()
     },
     getTransactions: (req, res) => {
         const db = req.app.get('db')
@@ -34,24 +35,26 @@ module.exports = {
         .then(transaction => res.status(200).send(transaction))
     },
 
-    charge: async (req, res) => {
-        try {
+    charge: (req, res) => {
+        const {id} = req.body.token.token;
             const cart = req.session.user.cart;
-            const cartTotal = cart.reduce((acc, cartItem) => acc + cartItem.price, 0)*100;
-            let stripeChargeResponse = await stripe.charges.create({
+            const cartTotal = cart.reduce((acc, cartItem) => acc + (+cartItem.price), 0)*100;
+            // console.log(cartTotal)
+            stripe.charges.create({
                 amount: cartTotal,
                 currency: 'usd',
-                description: 'Test Charge',
-                source: req.body.token.id,
-                customer: req.session.user.c_id
+                source: id,
+                description: 'Test Charge'
             });
             // console.log(req.body.token)
-            if(stripeChargeResponse.status === 'succeeded'){
-                res.json({status: stripeChargeResponse.status})
+            (err, charge) => {
+            if(err){
+                // console.log(err)
+                return res.status(500).send(err)
+            } else {
+                // console.log('successful payment', charge)
+                return res.status(200).send(charge)
             }
-        } catch (err) {
-            console.log('charge error', err);
-            res.status(500).end();
         }
     }
 

@@ -16,6 +16,8 @@ const Transactions = props => {
   const [sorter, setSorter]  = useState({sorter: () => {}})
   const [defaultSort, toggleDefaultSort]  = useState(true)
   const [aToZ, toggleAToZ]  = useState(false)
+  const [asc, toggleAsc]  = useState(false)
+  const [isPaid, toggleIsPaid] = useState(false)
   useEffect(() => {
     getTransactions();
   }, []);
@@ -42,18 +44,48 @@ console.log('sorter', sorter)
           {/* <div > */}
           <thead>
             <tr>
-              <th onClick={() => toggleDefaultSort(true)}>ID</th>
               <th onClick={() => {
+                toggleDefaultSort(!defaultSort)
+                setSorter({sorter: (a,b) => a.t_id - b.t_id})
+                }}>ID</th>
+
+              {/* onClick={() => {
+                  // toggleDefaultSort(!defaultSort)
+                 setSorter({sorter: (a,b) => a.t_id - b.t_id})
+                }} */}
+              <th onClick={() => {
+
+                if(asc){
                   toggleDefaultSort(false)
-                 setSorter({sorter: (a,b) => b.total - a.total})
+                 setSorter({sorter: (a,b) => b.total - a.total}) 
+                 toggleAsc(false)
+                }  
+                else {
+                  toggleDefaultSort(false)
+                 setSorter({sorter: (a,b) => a.total - b.total})
+                 toggleAsc(true)
+                }
+                    
+                  
                 }}>Total</th>
               <th onClick={() => {
+                if(isPaid){
                   toggleDefaultSort(false)
                  setSorter({sorter: (a,b) => b.paid - a.paid})
+                }
                 }}>Paid</th>
               <th onClick={() => {
+                if(isPaid){
                   toggleDefaultSort(!defaultSort)
                  setSorter({sorter: (a,b) => a.t_id - b.t_id})
+                 toggleIsPaid(false)
+                } else {
+                  toggleDefaultSort(!defaultSort)
+                 setSorter({sorter: (a,b) => b.t_id - a.t_id})
+                 toggleIsPaid(true)
+
+                }
+                  
                 }}>Time</th>
               <th onClick={() => {
                   toggleDefaultSort(false)
