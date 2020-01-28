@@ -31,14 +31,31 @@
     @include displayFlex();
 }
 
+.admin-access {
+    color: #6A6A6A;
+    text-align: left;
+    padding-left: 10px;
+    border-bottom: #408DFF solid 2px;
+    line-height: 40px;
+    margin-top: 12px;
+    width: 180px;
+}
+
 .add-employee-btn {
+    color: #fff;
     background-color: #408DFF;
     height: 55px;
-    width: 150px;
+    width: 160px;
     display: inline-block;
     @include displayFlex();
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .add-employee-btn:hover {
     cursor: pointer;
+    color: #408dff;
+    background-color: #fff;
+    border: #408dff 1px solid;
 }
