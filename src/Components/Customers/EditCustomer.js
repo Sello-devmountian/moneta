@@ -20,6 +20,7 @@ const EditCustomer = props => {
             props.history.push('/customers')
         })
     }
+
     console.log(props)
     return(
         <div className='customers-page'>

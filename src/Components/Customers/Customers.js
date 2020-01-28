@@ -47,7 +47,6 @@ const Customers = props => {
       {/* <div > */}
       <thead>
         <tr>
-          <th>Edit</th>
           <th>Email</th>
           <th>Phone</th>
           <th>First Name</th>
@@ -60,14 +59,14 @@ const Customers = props => {
           props.customer.customer.sort((a,b) => b.t_id - a.t_id ).map((t, i) => {
             console.log(typeof t.t_date)
             return (
-              <tr key={i}>
+              <tr key={i} onDoubleClick={() => props.history.push(`/customers/${t.c_id}`)}>
                 
-                <td><Link to={`/customers/${t.c_id}`}>Customer ID:{t.c_id}</Link></td>
+                {/* <td onDoubleClick={() => props.history.push(`/customers/${t.c_id}`)}>}Customer ID:{t.c_id}</td> */}
                 <td>{t.email}</td>
                 <td>{t.phone}</td>
                 <td>{t.first_name}</td>
                 <td>{t.last_name}</td>
-                <td><button onClick={() => passId(t.c_id)}>CLICK ME! {t.c_id}</button></td>
+                <td><button onClick={() => passId(t.c_id)}>CLICK ME!</button></td>
               </tr>
             );
           })}
