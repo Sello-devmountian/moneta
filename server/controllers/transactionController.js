@@ -20,7 +20,8 @@ module.exports = {
             await db.orders.create_order({t_id: transactionId, c_id, p_id: item.p_id ,qty: 1})
             // .then(order => res.status(200).send(order))
         })
-        return res.status(200).send(transaction);
+        res.status(200).send(transaction);
+        next()
     },
     getTransactions: (req, res) => {
         const db = req.app.get('db')

@@ -45,7 +45,7 @@ class Receipt extends Component {
             <div className="all-receipt-items">
               {transaction.map((o, i) => {
                 return (
-                  <div className="receipt-item-and-price">
+                  <div className="receipt-item-and-price" key={i}>
                     <span>{o.name}</span>
                     <span>{o.price}</span>
                   </div>

@@ -48,10 +48,9 @@ app.get('/api/customerSess', customerController.getSessCustomer);
 
 // TRANSACTIONS
 
-app.post("/api/transactions", tCtrl.createTransaction);
+app.post("/api/transactions", tCtrl.createTransaction, tCtrl.charge);
 app.get("/api/transactions", tCtrl.getTransactions);
 app.get("/api/transactions/:t_id", tCtrl.getOneTransaction);
-app.post('/charge', tCtrl.charge);
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
 
