@@ -1,6 +1,5 @@
 /* ----------MANAGE PRODUCTS COMPONENT---------- */
 
-
 @mixin displayFlex() {
     display: flex;
     align-items: center;
@@ -14,9 +13,13 @@
     align-items: flex-start;
 }
 
+.stats {
+    border: darksalmon solid;
+}
+
 .product-count {
     border: mediumvioletred solid;
-    margin-top: 50px;
+    margin: 50vh 2vw 0px;
 }
 
 .wrap-all-products {
@@ -38,14 +41,10 @@
 	align-content: stretch;
 }
 
-.product-labels > span{
-    margin: 10px;
-}
-
 .product-display {
     margin-top: 50px;
 }
 
 .product-img {
-    height: 50px;
+    height: 100px;
 }

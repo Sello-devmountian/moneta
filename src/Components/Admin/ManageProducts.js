@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Product from "./Product";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProducts } from "../../redux/reducers/productReducer";
+import Product from "./Product";
 // import useInput from "../../hooks/useInput";
 import "./manageproducts.scss";
 
@@ -39,17 +40,15 @@ const ManageProducts = props => {
 
   return (
     <div className='manage-products-box'>
+      <div className='stats'>
       <div className='product-count'>current number of products: {products.length}</div>
+      </div>
       <div className='wrap-all-products'>
       {products.map((p, i) => {
         return (
           <div className="product-display-box" key={i}>
-            <div className="product-labels">
               <img className="product-img" src={p.p_image} />
-              <span>{p.name}</span>
-              <span>${p.price} </span>
-              <span>{p.p_type}</span>
-            </div>
+              
             <Product
               key={i}
               p={p}
@@ -60,6 +59,13 @@ const ManageProducts = props => {
         );
       })}
       </div>
+      <section>
+      <Link to="/admin/">
+          <div className="admin">back to admin</div>
+        </Link>
+      </section>
+
+
     </div>
   );
 };

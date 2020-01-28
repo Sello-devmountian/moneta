@@ -2,47 +2,60 @@
 
 
 @mixin displayFlex() {
-    display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .admin-page {
-    width: 100vw;
-    margin-top: 60px;
-    @include displayFlex();
+  width: 100vw;
+  margin-top: 60px;
+  @include displayFlex();
 
-    a {
-        text-decoration: none;
-        color: #232323;
-    }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .product-management-div,
 .employee-management-div {
-    display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-    align-items: center;
-    width: 50vw;
-    margin: 20px;
-}
-
-.add-product, 
-.manage-products, 
-.add-employee,
-.delete-employee {
-    @include displayFlex();
-    width: 30vw;
-    height: 150px;
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  margin: 20px;
 }
 
 .add-product,
-.manage-products, 
-.add-employee, 
-.delete-employee
- {
-    background-color: #408DFF;
-} 
+.manage-products,
+.add-employee,
+.delete-employee {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 30vw;
+  height: 150px;
+  margin: 20px;
+  padding: 20px;
+  font-size: 5vh;
+  color: #fff;
+  background-color: #408dff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-product:hover,
+.manage-products:hover,
+.add-employee:hover,
+.delete-employee:hover {
+  cursor: pointer;
+  color: #408dff;
+  background-color: #fff;
+  border: #408dff 1px solid;
+}

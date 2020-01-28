@@ -1,4 +1,5 @@
 let transactionId;
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 module.exports = {
     createTransaction: async (req,res, next) => {
@@ -31,7 +32,30 @@ module.exports = {
         const db = req.app.get('db')
         db.transactions.get_one_transaction({t_id})
         .then(transaction => res.status(200).send(transaction))
+    },
+
+    charge: async (req, res) => {
+        try {
+            const cart = req.session.user.cart;
+            const cartTotal = cart.reduce((acc, cartItem) => acc + cartItem.price, 0)*100;
+            let stripeChargeResponse = await stripe.charges.create({
+                amount: cartTotal,
+                currency: 'usd',
+                description: 'Test Charge',
+                source: req.body.token.id,
+                customer: req.session.user.c_id
+            });
+            // console.log(req.body.token)
+            if(stripeChargeResponse.status === 'succeeded'){
+                res.json({status: stripeChargeResponse.status})
+            }
+        } catch (err) {
+            console.log('charge error', err);
+            res.status(500).end();
+        }
     }
+
+
     // getOrder: (req, res) => {
     //     const db = req.app.get('db');
     //     console.log(transactionId);

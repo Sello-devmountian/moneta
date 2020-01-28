@@ -51,6 +51,7 @@ app.get('/api/customerSess', customerController.getSessCustomer);
 app.post("/api/transactions", tCtrl.createTransaction);
 app.get("/api/transactions", tCtrl.getTransactions);
 app.get("/api/transactions/:t_id", tCtrl.getOneTransaction);
+app.post('/charge', tCtrl.charge);
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
 
@@ -60,11 +61,9 @@ app.post("/api/co");
 app.get("/api/co");
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
-app.get("/api/co/cart", orderCtrl.getCart);
 app.post('/api/co/cart', orderCtrl.addToCart)
 app.put('/api/co/cart', orderCtrl.updateCart)
 app.delete('/api/co/cart', orderCtrl.clearCart);
-
 
 
 // RECEIPT

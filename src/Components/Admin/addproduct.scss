@@ -1,5 +1,8 @@
 /* ----------ADD PRODUCT COMPONENT---------- */
 
+body {
+    font-family: 'Raleway', sans-serif;
+}
 
 @mixin displayFlex() {
     display: flex;
@@ -31,19 +34,26 @@
 }
 
 .new-product-availability {
-    color: #232323;
-    margin: 10px 20px 0px;
-    font-size: 20px;
+    color: #6A6A6A;
+    margin: 10px 20px 6px;
+    padding-left: 10px;
+    text-align: left;
+    width: 190px;
+    line-height: 40px;
+    font-size: 16px;
     border-bottom: #408DFF solid 2px;
 }
 
 .product-type-dropdown {
     // background-color: #408DFF;
     border: transparent;
+    color: #6A6A6A;
     width: 120px;
     height: 35px;
     outline: #fff;
+    padding-left: 10px;
     border-bottom: solid 1.5px #408DFF;
+    margin-top: 10px;
     margin-left: 10px;
     background-color: #fff;
 }
@@ -55,13 +65,20 @@ select {
   }
 
 .add-product-btn {
+    color: #fff;
     background-color: #408DFF;
     height: 50px;
-    width: 150px;
+    width: 250px;
     display: inline-block;
     @include displayFlex();
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .add-product-btn:hover {
     cursor: pointer;
+    color: #408dff;
+    background-color: #fff;
+    border: #408dff 1px solid;
 }
