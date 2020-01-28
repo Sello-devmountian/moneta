@@ -39,7 +39,7 @@ app.get('/api/auth/checkSession', authCtrl.checkSession);
 
 // CUSTOMERS
 
-app.post("/api/customer");
+app.post("/api/customer", customerController.addCustomer);
 app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
