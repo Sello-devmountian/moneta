@@ -36,11 +36,18 @@
 .all-products-container {
   background-color: #e0e5ec;
   padding-right: 20px;
-  height: calc(100vh - 50px);
+  min-height: 100vh;
+  height: auto;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-auto-rows: 20vw;
   width: 100%;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .product-container {
 
