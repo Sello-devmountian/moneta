@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Component } from "react";
+import React, {Component } from "react";
 
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
@@ -31,7 +31,12 @@ class OneTransaction extends Component {
           <div className="receipt-container" style={{ marginTop: "50px" }}>
             <div>Receipt #: {transaction[0].t_id}</div>
             <span>
-              Customer: {transaction[0].first_name} {transaction[0].last_name}
+              Customer: {transaction[0].first_name.length > 0 ? (<div>
+              {transaction[0].first_name  + ' ' + transaction[0].last_name}
+              </div> 
+              ) :
+              'None'
+              }
             </span>
             <span>{dateFormat(transaction.t_date, "m/d/yy h:MM TT")}</span>
             <div className="all-receipt-items">
@@ -62,7 +67,7 @@ class OneTransaction extends Component {
                   }, 0)
                 ).toFixed(2)}
               </span>
-              <span>Total: ${transaction[0].total}</span>
+              <span><strong>Total: ${transaction[0].total}</strong></span>
             </div>
           </div>
         ) : (
