@@ -11,6 +11,7 @@ import OneTransaction from './Components/Transactions/OneTransaction/OneTransact
 
 import Payment from './Components/Employee/Payment/Payment';
 import Receipt from './Components/Employee/Payment/Receipt/Receipt';
+import PdfTest from './Components/Employee/Payment/Receipt/PdfTest';
 
 import Admin from './Components/Admin/Admin';
 import AddProduct from './Components/Admin/AddProduct';
@@ -30,6 +31,14 @@ export default (
         {/* <Route path='/transactions/:t_id' component={Printer} /> */}
         <Route path='/payment' component={Payment}/>
         <Route path='/receipt/:t_id' component={Receipt}/>
+
+
+
+
+        <Route path='/pdf' component={PdfTest}/>
+
+
+
 
         {/* ----------ADMIN PAGE ROUTES---------- */}
 
