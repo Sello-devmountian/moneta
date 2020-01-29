@@ -1,3 +1,24 @@
+@media print {
+    .receipt-container {
+        // display: none;
+        background-color: greenyellow;
+    }
+    div {
+        // display: none;
+        font-size: 40pt;
+    }
+    @page {
+        margin: 3cm;
+        width: 50%;
+}
+}
+
+
+
+
+
+
+
 .one-transaction-container {
     box-sizing: border-box;
     width: 100vw;
@@ -5,17 +26,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 50px;
+    // padding-top: 80px;
+  font-family: "Roboto Mono", monospace;
 }
 
 .receipt-container {
     border: 1px solid;
-    // width: 400px;
+    // width: 100;
     // min-height: 500px;
     display: flex;
     flex-direction: column;
+    // align-items: flex-start;
+    margin-top: 30px;
     padding: 10px 20px;
-    // font-size: 36pt;
+    font-size: 16pt;
 
 }
 
@@ -40,3 +64,20 @@
     // justify-content: flex-end;
     align-items: flex-end;
 }
+.print-button {
+    width: 400px;
+    height: 40px;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #408cff;
+    opacity: .8;
+    border: none;
+    border-radius: 5px;
+    transition: 500ms;
+    margin-top: 30px;
+  
+    &:hover {
+        opacity: 100%;
+        cursor: pointer;
+    }
+  }
