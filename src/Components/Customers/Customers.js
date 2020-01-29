@@ -92,7 +92,7 @@ const Customers = props => {
       </thead>
       <tbody>
         {props.customer.customer[0] &&
-          props.customer.customer.sort((a,b) => b.t_id - a.t_id ).map((t, i) => {
+          props.customer.customer.sort((a,b) => a.t_id - b.t_id ).map((t, i) => {
             console.log(typeof t.t_date)
             return (
               <tr key={i} onDoubleClick={() => props.history.push(`/customers/${t.c_id}`)}>

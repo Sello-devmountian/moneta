@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { Table } from "react-bootstrap";
 import dateFormat from "dateformat";
 import Printer from "./OneTransaction/Printer";
+import './Transactions.scss'
 
 const Transactions = props => {
   
@@ -36,15 +37,18 @@ console.log('sorter', sorter)
   };
   console.log(props);
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div className='whole-table'
+     style={{ marginTop: "50px" }}>
       {showOneTransaction ? (
         <Printer transaction={selectedTransaction} />
       ) : (
         <Table striped bordered hover>
           {/* <div > */}
           <thead>
-            <tr>
-              <th onClick={() => {
+            <tr className='header-row'>
+              <th
+              
+               onClick={() => {
                 toggleDefaultSort(!defaultSort)
                 setSorter({sorter: (a,b) => a.t_id - b.t_id})
                 }}>ID</th>
