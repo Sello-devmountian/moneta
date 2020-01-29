@@ -15,22 +15,6 @@ const Payment = (props) => {
     const [cash, setCash] = useState(false);
     const [cashPaid, setCashPaid] = useState(false);
 
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         cvc: '',
-    //         expiry: '',
-    //         focused: '',
-    //         name: '',
-    //         number: '',
-    //         issuer: '',
-    //         cash: false,
-    //         cashPaid: false,
-    //         orderChange: {},
-    //         order: []
-    //     }
-    // }
-
     useEffect(() => {
         axios.get('/api/co/cart').then(res => {
             setOrder(res.data)
@@ -39,17 +23,19 @@ const Payment = (props) => {
 
     let submit = async (e) => {
         let token = await props.stripe.createToken({name: 'Name'});
-        console.log(token)
         let total = order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
-        let response = await axios.post('/charge', {token})
-        axios.post('/api/transactions', {total}).then(res => {
-            props.history.push('/reciept')
-            MySwal.fire({
-                icon: 'success',
-                title: 'Congrats...',
-                text: 'Order completed'
-            })
-            clearCart()
+        axios.post('/api/transactions', {total, token}).then(res => {
+            // console.log(res.data.status)
+            if(res.data){
+                axios.post('/api/email').then(res => console.log('email sent', res))
+                props.history.push(`/receipt/${res.data.t_id}`)
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    text: 'Order completed'
+                })
+                clearCart()
+            }
         })
     }
 
@@ -161,7 +147,7 @@ const Payment = (props) => {
                                   <p>{orderChange.Penny}</p>
                               </div>
                           </div>
-                          <button onClick={() => this.changeCounted()}>Okay</button>
+                          <button onClick={() => changeCounted()}>Okay</button>
                         </span>
                     </div>
                 ) : null }

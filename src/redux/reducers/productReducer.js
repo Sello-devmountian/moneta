@@ -1,15 +1,19 @@
+import axios from 'axios';
+
 const initialState = {
-    products: []
+    products: [],
+    loading: false
 }
 
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const EDIT_PRODUCT = 'EDIT_PRODUCT';
 const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
-export function getProducts(productsArr){
+export function getProducts(){
+    let data = axios.get("/api/product").then(res => res.data)
     return {
         type: GET_PRODUCTS,
-        payload: productsArr
+        payload: data
     }
 }
 
@@ -30,8 +34,10 @@ export function deleteProduct(product){
 export default function productReducer(state = initialState, action){
     const {type, payload} = action;
     switch(type){
-        case GET_PRODUCTS:
-            return {...state, products: payload}
+        case GET_PRODUCTS + '_PENDING':
+            return {...state, loading: true}
+        case GET_PRODUCTS + '_FULFILLED':
+            return {...state, products: payload, loading: false}
         
         case EDIT_PRODUCT:
             return {...state, products: payload}

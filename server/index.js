@@ -8,6 +8,7 @@ const express = require("express"),
   customerController = require('./controllers/customerController'),
   orderCtrl = require('./controllers/orderController'),
   tCtrl = require('./controllers/transactionController'),
+  nmCtrl = require('./controllers/nodeMailController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
@@ -39,7 +40,7 @@ app.get('/api/auth/checkSession', authCtrl.checkSession);
 
 // CUSTOMERS
 
-app.post("/api/customer");
+app.post("/api/customer", customerController.addCustomer);
 app.get("/api/customer", customerController.getCustomers);
 app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
@@ -48,10 +49,9 @@ app.get('/api/customerSess', customerController.getSessCustomer);
 
 // TRANSACTIONS
 
-app.post("/api/transactions", tCtrl.createTransaction);
+app.post("/api/transactions", tCtrl.createTransaction, tCtrl.charge);
 app.get("/api/transactions", tCtrl.getTransactions);
 app.get("/api/transactions/:t_id", tCtrl.getOneTransaction);
-app.post('/charge', tCtrl.charge);
 app.put("/api/transactions/:t_id");
 app.delete("/api/transactions/:t_id");
 
@@ -61,9 +61,11 @@ app.post("/api/co");
 app.get("/api/co");
 app.delete("/api/co/:co_id");
 app.put("/api/co/:co_id");
+app.get('/api/co/cart', orderCtrl.getCart)
 app.post('/api/co/cart', orderCtrl.addToCart)
 app.put('/api/co/cart', orderCtrl.updateCart)
 app.delete('/api/co/cart', orderCtrl.clearCart);
+app.get('/api/co/cart', orderCtrl.getCart);
 
 
 // RECEIPT
@@ -80,6 +82,10 @@ app.delete('/api/products/:p_id', adminCtrl.deleteProduct)
 app.get('/api/admin/users', adminCtrl.getAllEmployees);
 app.post('/api/admin/users', authCtrl.register)
 app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);
+
+// NODE MAILER
+
+app.post('/api/email', nmCtrl.email);
 
 
 

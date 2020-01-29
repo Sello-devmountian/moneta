@@ -1,1 +1,2 @@
-select * from moneta_customers;
+select * from moneta_customers 
+order by c_id desc

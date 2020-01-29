@@ -5,22 +5,51 @@ import { getCustomer } from "../../redux/reducers/customerReducer";
 import { connect } from "react-redux";
 import "./customers.css";
 import {Table} from 'react-bootstrap'; 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
 
 const Customers = props => {
   const [sessCust, setSessCust] = useState({}) ;
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [first_name, setfirst_name] = useState('')
+  const [last_name, setlast_name] = useState('')
+
+   const MySwal = withReactContent(Swal)
   //onClick={() => setEditUser(!editUser)}
   // {editUser ? () : ()}
+
+
 
   useEffect(() => {
     getCustomer();
     getSessCustomer()
-  }, [sessCust.c_id]);
+  }, [sessCust.c_id, props.customer.customer.length]);
+
+  let clearInput = () => {
+    setEmail('') 
+    setPhone('')
+    setfirst_name('')
+    setlast_name('')
+  }
 
   let getCustomer = () => {
     axios.get("/api/customer").then(res => {
       props.getCustomer(res.data);
     });
   };
+
+  let addCustomer = () => {
+    axios.post('/api/customer', {email, phone, first_name, last_name}).then(res => {
+      getCustomer()
+      clearInput(); 
+      MySwal.fire({ 
+        icon:'success',
+        title: 'Customer Added'
+      })
+
+    })
+  }
 
   let getSessCustomer = () => {
       axios.get('/api/customerSess').then(res => {
@@ -43,11 +72,17 @@ const Customers = props => {
   console.clear(); 
   console.log(sessCust); 
   return (
+
+    <div style={{marginTop: '60px'}}>        EMAIL: <input className='customer-input' value={email} onChange={(e) => setEmail(e.target.value)}></input><br/>
+    PHONE: <input className='customer-input' value={phone} onChange={(e) => setPhone(e.target.value)} ></input><br/>
+    F-NAME: <input className='customer-input' value={first_name} onChange={(e) => setfirst_name(e.target.value)}></input><br/>
+    L-NAME: <input className='customer-input' value={last_name} onChange={(e) => setlast_name(e.target.value)}></input><br/>
+
+    <button onClick={() => addCustomer()}>SAVE DA CUSTOMA</button>
     <Table style={{ marginTop: "50px"}} striped bordered hover  >
       {/* <div > */}
       <thead>
         <tr>
-          <th>Edit</th>
           <th>Email</th>
           <th>Phone</th>
           <th>First Name</th>
@@ -57,23 +92,24 @@ const Customers = props => {
       </thead>
       <tbody>
         {props.customer.customer[0] &&
-          props.customer.customer.sort((a,b) => b.t_id - a.t_id ).map((t, i) => {
+          props.customer.customer.sort((a,b) => a.t_id - b.t_id ).map((t, i) => {
             console.log(typeof t.t_date)
             return (
-              <tr key={i}>
+              <tr key={i} onDoubleClick={() => props.history.push(`/customers/${t.c_id}`)}>
                 
-                <td><Link to={`/customers/${t.c_id}`}>Customer ID:{t.c_id}</Link></td>
+                {/* <td onDoubleClick={() => props.history.push(`/customers/${t.c_id}`)}>}Customer ID:{t.c_id}</td> */}
                 <td>{t.email}</td>
                 <td>{t.phone}</td>
                 <td>{t.first_name}</td>
                 <td>{t.last_name}</td>
-                <td><button onClick={() => passId(t.c_id)}>CLICK ME! {t.c_id}</button></td>
+                <td><button onClick={() => passId(t.c_id)}>CLICK ME!</button></td>
               </tr>
             );
           })}
       </tbody>
       {/* </div> */}
     </Table>
+    </div>
   );
 };
 

@@ -1,0 +1,39 @@
+.one-transaction-container {
+    box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.receipt-container {
+    border: 1px solid;
+    width: 400px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+
+}
+
+.receipt-item-and-price {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.all-receipt-items {
+    border-top: 3px solid #408cff;
+    border-bottom: 3px solid #408cff;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.subtotal-total-container {
+    // border: 1px solid rgb(145, 156, 128);
+    display: flex;
+    flex-direction: column;
+    // justify-content: flex-end;
+    align-items: flex-end;
+}

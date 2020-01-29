@@ -33,6 +33,18 @@ module.exports = {
 
     getSessCustomer: (req, res) => {
         res.status(200).send(req.session.user.customer)
+    }, 
+
+    addCustomer: (req, res) => {
+        const {email, phone, first_name, last_name} = req.body;  
+        const db = req.app.get('db'); 
+
+        db.customers.add_customer(email,phone,first_name,last_name).then(() => res.sendStatus(200)).catch(err => {
+            res.status(500).send({errorMessage: 'Did not work'})
+            console.log(err); 
+        })
+
+
     }
     
 }
