@@ -45,6 +45,16 @@ module.exports = {
         })
 
 
+    },
+
+    getCustomerTransaction: (req, res) => {
+        const {c_id} = req.params
+        const db = req.app.get('db'); 
+
+        db.customers.get_customer_transaction(c_id).then(transaction => {res.status(200).send(transaction)})
+        .catch(err => {
+            res.status(500).send(err)
+        })
     }
     
 }

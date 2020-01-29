@@ -7,6 +7,7 @@ import "./customers.css";
 
 
 const EditCustomer = props => {
+    const [editUser, setEditUser] = useState(false);
     let [currentCustomer] = props.customer.customer.filter( ele => +ele.c_id === +props.match.params.c_id)
     const [email, setEmail] = useState(currentCustomer.email)
     const [phone, setPhone] = useState(currentCustomer.phone)
@@ -24,14 +25,19 @@ const EditCustomer = props => {
     console.log(props)
     return(
         <div className='customers-page'>
-            <div>
+            {editUser ? ( <div>
+
+                <div>
                 EMAIL: <input className='customer-input' value={email} onChange={(e) => setEmail(e.target.value)}></input><br/>
                 PHONE: <input className='customer-input' value={phone} onChange={(e) => setPhone(e.target.value)} ></input><br/>
                 F-NAME: <input className='customer-input' value={first_name} onChange={(e) => setfirst_name(e.target.value)}></input><br/>
                 L-NAME: <input className='customer-input' value={last_name} onChange={(e) => setlast_name(e.target.value)}></input>
-            </div>   
+                </div>
+                <button onClick={() => editCustomer()}>SAVE DA CHANGES</button>
+            </div>   ): (<button onClick={() => setEditUser(!editUser)}>PRESS ME... MAKE MY DAY</button>)}
+           
 
-           <button onClick={() => editCustomer()}>SAVE DA CHANGES</button>
+           
         </div>
 
     )
