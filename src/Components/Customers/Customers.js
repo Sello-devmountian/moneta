@@ -45,8 +45,7 @@ const Customers = props => {
       clearInput(); 
       MySwal.fire({ 
         icon:'success',
-        title: 'Fuck You',
-        text: 'Lick my Balls'
+        title: 'Customer Added'
       })
 
     })
