@@ -7,8 +7,9 @@ function AddProduct() {
   const [name, bindName, resetName] = useInput("");
   const [p_image, bindP_image, resetP_image] = useInput("");
   const [price, bindPrice, resetPrice] = useInput("");
-  const [p_type, setType] = useState("");
+  const [p_type, setType] = useState("scoops");
   const [available, bindAvailable] = useState(false);
+  
   
   let setNewProduct = () => {
     axios
@@ -19,19 +20,22 @@ function AddProduct() {
         p_type,
         available
       })
-      .then(() => {
+      .then((response) => {
+        console.log(response, 'response')
         alert("New product added");
+        
       })
       .catch(err => {
         console.log("Product not added", err);
       });
   };
 
-// console.log(p_type)
 
   return (
     <div className="add-product-box">
       <h1 className="new-product-title">add new product</h1>
+      <section className='new-product-inputs'>
+
       <input placeholder="name" {...bindName} type='text'/>
       <input placeholder="image url" {...bindP_image} type='url'/>
       <input placeholder="price" {...bindPrice} type='number'/>
@@ -39,8 +43,8 @@ function AddProduct() {
         onChange={(e) => setType(e.target.value)}
         className="product-type-dropdown"
         value={p_type}
-      >
-        <option value="scoops">scoops</option>
+        >
+        <option value="scoops" selected>scoops</option>
         <option value="soft-serve">soft-serve</option>
         <option value="toppings">toppings</option>
         <option value="cones">cones</option>
@@ -50,8 +54,8 @@ function AddProduct() {
       <input 
         onChange={() => bindAvailable(true)} 
         type='checkbox'
-        value='available'
-      />
+        value={available}
+        />
 
       <div
         className="add-product-btn"
@@ -60,11 +64,12 @@ function AddProduct() {
           resetName();
           resetP_image();
           resetPrice();
-
+          
         }}
-      >
+        >
         add product
       </div>
+        </section>
     </div>
   );
 }

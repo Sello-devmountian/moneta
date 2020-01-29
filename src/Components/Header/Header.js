@@ -10,8 +10,6 @@ const Header = (props) => {
         axios.post('/api/auth/logout')
     }
 
-    console.log(props)
-
     return(
         <header className='nav-bar'>
             <div className='nav-buttons'>

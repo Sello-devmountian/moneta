@@ -1,8 +1,8 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   addProduct: (req, res) => {
-    const { name, p_image, price, p_type, available} = req.body;
+    const { name, p_image, price, p_type, available } = req.body;
     const db = req.app.get("db");
     db.admin.add_product
       .add_product({
@@ -12,14 +12,14 @@ module.exports = {
         p_type,
         available
       })
-      .then(() => res.sendStatus(200))
+      .then(products => res.status(200).send(products))
       .catch(err => console.log(err));
   },
 
   editProduct: (req, res) => {
     const { p_id } = req.params;
-    let { name, p_image, price, p_type, available} = req.body;
-// console.log(req.body, req.query)
+    let { name, p_image, price, p_type, available } = req.body;
+    // console.log(req.body, req.query)
     const db = req.app.get("db");
 
     db.admin.edit_products
@@ -48,40 +48,22 @@ module.exports = {
       });
   },
 
-  // addEmployee: async(req, res) => {
-  //   const { username, password, isAdmin } = req.body;
-  //   const { session } = req;
-  //   const db = req.app.get("db");
-
-  //   let employee = await db.admin.add_employee.check_employee(employee);
-  //   employee = employee[0];
-  //   if(employee){
-  //     return res.status(400).send('Username already exists')
-  //   }
-
-  //   const salt = bcrypt.genSaltSync(10);
-  //   const hash = bcrypt.hashSync(password, salt);
-  //   let newEmployee = await db.admin.add_employee
-  //     .add_employee({
-  //       username,
-  //       password,
-  //       is_admin: isAdmin
-  //     });
-  //     newEmployee = newEmployee[0];
-  //     session.employee = {
-  //       username: newEmployee.username,
-  //       password: newEmployee.password,
-  //       is_admin: newEmployee.isAdmin
-  //     }
-  //     .then(response => res.sendStatus(200))
-  //     .catch(err => console.log(err));
-  // },
+  getAllEmployees: (req, res) => {
+    const db = req.app.get("db");
+    db.users.get_users()
+    .then(employees => {
+      console.log(employees)
+        res.status(200).send(employees);
+      })
+      .catch(err => res.status(500).send(err));
+  },
 
   deleteEmployee: (req, res) => {
     let { user_id } = req.params;
+    // console.log(user_id)
     const db = req.app.get("db");
-    db.admin.delete_trip
-      .delete_trip({
+    db.admin.delete_employee
+      .delete_employee({
         user_id
       })
       .then(employee => {
