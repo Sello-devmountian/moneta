@@ -45,7 +45,7 @@ const Customers = props => {
       clearInput(); 
       MySwal.fire({ 
         icon:'success',
-        title: 'You added a Customer'
+        title: 'Customer Added'
       })
 
     })
