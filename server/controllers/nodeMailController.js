@@ -7,7 +7,7 @@ module.exports = {
         let text = 'Thank you for using Moneta, here is your receipt!'
         try {
             let transporter = nodemailer.createTransport({
-                service: 'Gmail',
+                service: "Gmail",
                 auth: {
                     user: EMAIL,
                     pass: PASSWORD
