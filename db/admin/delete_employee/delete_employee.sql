@@ -1,2 +1,2 @@
 DELETE FROM moneta_users
-WHERE id = ${id};
+WHERE user_id = ${user_id};

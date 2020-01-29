@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getProducts } from "../../redux/reducers/productReducer";
 import Product from "./Product";
-// import useInput from "../../hooks/useInput";
 import "./manageproducts.scss";
 
 const ManageProducts = props => {
