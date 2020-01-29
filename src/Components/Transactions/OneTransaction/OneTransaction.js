@@ -22,13 +22,27 @@ class OneTransaction extends Component {
       console.log(this.state.transaction);
     });
   };
+  printContent = async (el) => {
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+     await window.print();
+
+   document.body.innerHTML = restorepage;
+   if(document.body.innerHTML === restorepage){
+     this.props.history.push('/checkout')
+   }
+    
+  }
   render() {
     console.log(this.props);
     const { transaction } = this.state;
     return (
-      <div className="one-transaction-container">
+      
+      <div  className="one-transaction-container">
+        <button onClick={() => this.printContent('receipt')}>Print</button>
         {transaction[0] ? (
-          <div className="receipt-container" style={{ marginTop: "50px" }}>
+          <div id='receipt' className="receipt-container" style={{ marginTop: "50px" }}>
             <div>Receipt #: {transaction[0].t_id}</div>
             <span>
               Customer: {transaction[0].first_name.length > 0 ? (<div>
