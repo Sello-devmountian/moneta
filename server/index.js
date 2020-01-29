@@ -8,6 +8,7 @@ const express = require("express"),
   customerController = require('./controllers/customerController'),
   orderCtrl = require('./controllers/orderController'),
   tCtrl = require('./controllers/transactionController'),
+  nmCtrl = require('./controllers/nodeMailController'),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
   app = express();
 
@@ -80,6 +81,10 @@ app.delete('/api/products/:p_id', adminCtrl.deleteProduct)
 
 app.post('/api/admin/users', authCtrl.register)
 app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);
+
+// NODE MAILER
+
+app.post('/api/email', nmCtrl.email);
 
 
 
