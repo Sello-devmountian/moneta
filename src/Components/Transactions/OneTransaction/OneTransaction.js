@@ -26,13 +26,15 @@ class OneTransaction extends Component {
     var restorepage = document.body.innerHTML;
     var printcontent = document.getElementById(el).innerHTML;
     document.body.innerHTML = printcontent;
-     await window.print();
+     window.print();
 
    document.body.innerHTML = restorepage;
-   if(document.body.innerHTML === restorepage){
-     this.props.history.push('/checkout')
-   }
-    
+
+    // this.props.history.push('/transactions')
+    //  this.forceUpdate()
+   
+   window.location.reload();
+  
   }
   render() {
     console.log(this.props);
@@ -40,25 +42,25 @@ class OneTransaction extends Component {
     return (
       
       <div  className="one-transaction-container">
-        <button onClick={() => this.printContent('receipt')}>Print</button>
+        <button className='print-button' onClick={() => this.printContent('receipt')}>Print</button>
         {transaction[0] ? (
-          <div id='receipt' className="receipt-container" style={{ marginTop: "50px" }}>
-            <div>Receipt #: {transaction[0].t_id}</div>
-            <span>
+          <div id='receipt' className="receipt-container" >
+            <div>Receipt #{transaction[0].t_id}</div>
+            <div>
               Customer: {transaction[0].first_name.length > 0 ? (<div>
               {transaction[0].first_name  + ' ' + transaction[0].last_name}
               </div> 
               ) :
               'None'
               }
-            </span>
-            <span>{dateFormat(transaction.t_date, "m/d/yy h:MM TT")}</span>
+            </div>
+            <div>{dateFormat(transaction.t_date, "m/d/yy h:MM TT")}</div>
             <div className="all-receipt-items">
               {transaction.map((o, i) => {
                 return (
                   <div className="receipt-item-and-price">
                     <span>{o.name}</span>
-                    <span>{o.price}</span>
+                    <span>${o.price}</span>
                   </div>
                 );
               })}
