@@ -33,7 +33,7 @@ module.exports = {
             session.user = user;
             session.user.customer = {
                 c_id: 5,
-                first_name: 'Default',
+                first_name: 'None',
                 last_name: '',
             }
             session.user.cart = [];
