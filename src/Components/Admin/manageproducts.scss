@@ -11,24 +11,30 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    background-color: #424242;
+
 }
 
 .stats {
-    border: darksalmon solid;
+    margin-top: 80px;
+    height: 4150px;
+    width: 300px;
 }
 
 .product-count {
-    border: mediumvioletred solid;
+    color: #fff;
+    font-weight: 700;
+    font-size: 30px;
     margin: 50vh 2vw 0px;
 }
 
 .wrap-all-products {
     margin-top: 50px;
-    border: plum solid;
 }
 
 .product-display-box {
-    border: chartreuse solid;
+    background-color: #fff;
+    border-bottom: #424242 groove;
     margin-top: 20px;
     padding: 10px;
     width: 100%;
