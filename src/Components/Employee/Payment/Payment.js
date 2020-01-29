@@ -25,14 +25,17 @@ const Payment = (props) => {
         let token = await props.stripe.createToken({name: 'Name'});
         let total = order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2)
         axios.post('/api/transactions', {total, token}).then(res => {
-            // console.log(res.data)
-            props.history.push(`/receipt/${res.data.t_id}`)
-            MySwal.fire({
-                icon: 'success',
-                title: 'Congrats...',
-                text: 'Order completed'
-            })
-            clearCart()
+            // console.log(res.data.status)
+            if(res.data){
+                axios.post('/api/email').then(res => console.log('email sent', res))
+                props.history.push(`/receipt/${res.data.t_id}`)
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    text: 'Order completed'
+                })
+                clearCart()
+            }
         })
     }
 
