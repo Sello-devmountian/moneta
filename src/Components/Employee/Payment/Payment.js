@@ -14,6 +14,7 @@ const Payment = (props) => {
     const [orderChange, setOrderChange] = useState({});
     const [cash, setCash] = useState(false);
     const [cashPaid, setCashPaid] = useState(false);
+    const [response, setResponse] = useState({});
 
     useEffect(() => {
         axios.get('/api/co/cart').then(res => {
@@ -48,6 +49,10 @@ const Payment = (props) => {
       let setChange = (obj) => {
           setOrderChange(obj)
       }
+
+      let setId = (obj) => {
+        setResponse(obj)
+      }
     
       
     let toggleCash = () => {
@@ -60,8 +65,9 @@ const Payment = (props) => {
       }
 
     let changeCounted = () => {
-        props.history.push('/receipt')
+        props.history.push(`/transactions/${response.t_id}`)
         setCashPaid(false)
+        // setOrderChange({})
       }
 
 
@@ -75,6 +81,7 @@ const Payment = (props) => {
                         toggleCashFn={toggleCash} 
                         togglePaidFn={togglePaid} 
                         setChangeFn={setChange} 
+                        setResFn={setId}
                         order={order}
                         clearCartFn={clearCart}
                     />
@@ -107,6 +114,16 @@ const Payment = (props) => {
                                 </div>
                             )
                         })}
+                        <span style={{color: '#232323', fontSize: '20px'}}>
+                            Subtotal: ${" "}
+                            {order[0] &&
+                            order.reduce((acc, b) => acc + (+b.price), 0).toFixed(2)}
+                        </span>
+                        <span style={{color: '#232323', fontSize: '20px'}}>
+                            Tax: ${" "}
+                            {order[0] &&
+                            order.reduce((acc, b) => acc + (+b.price * 0.088), 0).toFixed(2)}
+                        </span>
                         <span style={{color: '#232323', fontSize: '20px', fontWeight: 'bold'}}>
                             Total: ${" "}
                             {order[0] &&
