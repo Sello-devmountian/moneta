@@ -1,11 +1,11 @@
 import React from "react";
+import axios from 'axios';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./admin.scss";
 
 const Admin = (props) => {
- 
-  // console.log(props)
+  
   if (!props.employee.employee.is_admin) {
     return <Redirect from='/admin' to='/' />
 }

@@ -11,3 +11,5 @@ INSERT INTO moneta_products (
     ${p_type},
     ${available}
     );
+
+    SELECT * FROM moneta_products;
