@@ -27,7 +27,7 @@ const Payment = (props) => {
         axios.post('/api/transactions', {total, token}).then(res => {
             // console.log(res.data.status)
             if(res.data){
-                axios.post('/api/email').then(res => console.log('email sent', res))
+                axios.post('/api/email').then(res => console.log('email sent'))
                 props.history.push(`/receipt/${res.data.t_id}`)
                 MySwal.fire({
                     icon: 'success',
@@ -65,7 +65,8 @@ const Payment = (props) => {
       }
 
 
-      console.log(props.stripe)
+    //   console.log(props.stripe)
+    
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
