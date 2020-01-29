@@ -148,7 +148,7 @@ console.log('sorter', sorter)
                         // props.getTransactions(t.t_id)
                         // selectTransaction(t);
                         // toggleShowOT(true);
-                        props.history.push(`/receipt/${t.t_id}`)
+                        props.history.push(`/transactions/${t.t_id}`)
                       }}
                       key={i}
                     >

@@ -2,17 +2,20 @@
     box-sizing: border-box;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding-top: 50px;
 }
 
 .receipt-container {
     border: 1px solid;
-    width: 400px;
-    min-height: 500px;
+    // width: 400px;
+    // min-height: 500px;
     display: flex;
     flex-direction: column;
     padding: 10px 20px;
+    // font-size: 36pt;
 
 }
 
