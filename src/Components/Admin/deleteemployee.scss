@@ -1,0 +1,64 @@
+/* ----------DELETE EMPLOYEE COMPONENT---------- */
+
+@mixin displayFlex() {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.del-employee-page {
+    @include displayFlex();
+
+}
+
+.del-employee-title {
+    color: #fff;
+    font-size: 50px;
+    background-color: #232322;
+    height: 500px;
+    padding: 50px;
+    margin: 70px 0 0 50px;
+    @include displayFlex();
+
+}
+
+.del-employee-box {
+  @include displayFlex();
+  margin-top: 50px;
+}
+
+.employee-box {
+  border: #424242 solid 1px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.employee-name {
+   font-size: 30px;
+}
+
+.del-employee-btn {
+  color: #fff;
+  font-size: 18px;
+  background-color: #424242;
+  width: 180px;
+  height: 50px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.del-employee-btn:hover {
+  cursor: pointer;
+  color: #424242;
+  background-color: #fff;
+}

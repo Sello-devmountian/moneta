@@ -115,7 +115,7 @@ const Product = props => {
           <input 
         onChange={() => bindAvailable(true)} 
         type='checkbox'
-        value='available'
+        value={available}
       />
 
           <div className="save-cancel-btns">

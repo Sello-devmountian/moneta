@@ -46,6 +46,7 @@ app.get("/api/customer/:c_id" ,customerController.getCustomer);
 app.put("/api/customer/:c_id", customerController.editCustomer);
 app.delete("/api/customer/:c_id");
 app.get('/api/customerSess', customerController.getSessCustomer); 
+app.get('/api/customerTrans/:c_id', customerController.getCustomerTransaction); 
 
 // TRANSACTIONS
 
@@ -74,11 +75,12 @@ app.get("/api/receipt");
 
 // ADMIN
 
-app.get("/api/product",productCtrl.getProducts);
+app.get('/api/product',productCtrl.getProducts);
 app.post('/api/products', adminCtrl.addProduct)
 app.put('/api/products/:p_id', adminCtrl.editProduct)
 app.delete('/api/products/:p_id', adminCtrl.deleteProduct)
 
+app.get('/api/admin/users', adminCtrl.getAllEmployees);
 app.post('/api/admin/users', authCtrl.register)
 app.delete('/api/admin/users/:user_id', adminCtrl.deleteEmployee);
 

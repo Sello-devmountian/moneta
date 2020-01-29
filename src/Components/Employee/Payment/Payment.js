@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import useInput from '../../../hooks/useInput';
 import './payment.scss';
 import Cash from './Cash/Cash';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import {injectStripe, CardElement} from 'react-stripe-elements';
+import Flip from 'react-reveal/Flip';
 
 const MySwal = withReactContent(Swal);
 
@@ -27,8 +27,8 @@ const Payment = (props) => {
         axios.post('/api/transactions', {total, token}).then(res => {
             // console.log(res.data.status)
             if(res.data){
-                axios.post('/api/email').then(res => console.log('email sent', res))
-                props.history.push(`/receipt/${res.data.t_id}`)
+                axios.post('/api/email').then(res => console.log('email sent'))
+                props.history.push(`/transactions/${res.data.t_id}`)
                 MySwal.fire({
                     icon: 'success',
                     title: 'Congrats...',
@@ -65,11 +65,12 @@ const Payment = (props) => {
       }
 
 
-      console.log(props.stripe)
+    //   console.log(props.stripe)
+    
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
-                    <>
+                    <Flip left duration={1000}>
                     <Cash cash={cash} 
                         toggleCashFn={toggleCash} 
                         togglePaidFn={togglePaid} 
@@ -77,8 +78,10 @@ const Payment = (props) => {
                         order={order}
                         clearCartFn={clearCart}
                     />
-                    </>
+                    </Flip>
                 ) : (
+                    <>
+                    <Flip left duration={1000}>
                     <div className='card-container'>
                         <h1>Card</h1>
                         <CardElement/>
@@ -87,7 +90,9 @@ const Payment = (props) => {
                             <small>or</small>
                             <button onClick={toggleCash} className='payment-button'>CASH</button>
                         </div>
-                </div>
+                    </div>
+                    </Flip>
+                    </>
                 )}
                 <div className='cart-payment'>
                     <h1 style={{color: '#232323', fontSize: '40px', fontWeight: 'bold'}}>
