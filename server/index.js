@@ -51,6 +51,7 @@ app.get('/api/customerTrans/:c_id', customerController.getCustomerTransaction);
 // TRANSACTIONS
 
 app.post("/api/transactions", tCtrl.createTransaction, tCtrl.charge);
+app.post('/api/transactions/cash', tCtrl.createTransaction);
 app.get("/api/transactions", tCtrl.getTransactions);
 app.get("/api/transactions/:t_id", tCtrl.getOneTransaction);
 app.put("/api/transactions/:t_id");

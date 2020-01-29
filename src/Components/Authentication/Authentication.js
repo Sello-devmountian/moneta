@@ -4,7 +4,7 @@ import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getEmployee} from '../../redux/reducers/employeeReducer';
-import MonetaLogo from '../../img/MonetaLogo.png';
+import MonetaLogo from '../../img/simplelogo.png';
 
 const Authentication = (props) => {
     const [username, bindUsername, resetUsername] = useInput('');
@@ -21,27 +21,31 @@ const Authentication = (props) => {
 
     return (
         <div className='auth'>
-            <img src={MonetaLogo} alt='logo' height='200px'/>
-            <div className='auth-container'>
-                <div className='welcome'>
-                    <div>Welcome back to Moneta!</div>
-                    <h2>Log in to get started<i className='right'></i></h2>
+            <div className='auth-flex'>
+                <div id='logo-flex'>
+                    <img src={MonetaLogo} alt='logo' height='100px'/>
                 </div>
-                <div className='login'>
-                    <h1>sign in</h1>
-                    <div>
-                        <input 
-                            {...bindUsername}
-                            type='text'
-                            placeholder='username'
-                        />
-                        <input 
-                            {...bindPassword}
-                            type='password'
-                            placeholder='password'
-                        />
+                <div className='auth-container'>
+                    <div className='welcome'>
+                        <div>Welcome back to Moneta!</div>
+                        <h2>Log in to get started<i className='right'></i></h2>
                     </div>
-                    <button onClick={login}>login</button>
+                    <div className='login'>
+                        <h1>sign in</h1>
+                        <div>
+                            <input 
+                                {...bindUsername}
+                                type='text'
+                                placeholder='username'
+                            />
+                            <input 
+                                {...bindPassword}
+                                type='password'
+                                placeholder='password'
+                            />
+                        </div>
+                        <button onClick={login}>login</button>
+                    </div>
                 </div>
             </div>
         </div>

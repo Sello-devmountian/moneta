@@ -2,15 +2,21 @@ import React, {useState} from 'react';
 import './cash.scss';
 import useInput from '../../../../hooks/useInput';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
+import {withRouter} from 'react-router-dom';
 
 const Cash = (props) => {
-    const [amount, bindAmount, resetAmount] = useInput('');
+    const [amount, setAmount] = useState('');
+
+    const MySwal = withReactContent(Swal);
 
     let total = props.order.reduce((acc, b) => acc + (+b.price * 1.088), 0).toFixed(2);
 
     let transaction = () => {
-        axios.post('/api/transactions', {total}).then(res => {
-            console.log(res)
+        axios.post('/api/transactions/cash', {total}).then(res => {
+            // props.history.push(`/transactions/${res.data.t_id}`)
+            props.setResFn(res.data)
             props.clearCartFn()
         })
     }
@@ -39,7 +45,7 @@ const Cash = (props) => {
         },{})
         transaction()
         props.togglePaidFn()
-        resetAmount()
+        setAmount('')
         props.clearCartFn()
         return (
             props.setChangeFn(myChange) 
@@ -54,8 +60,10 @@ const Cash = (props) => {
             <h1>Cash</h1>
             <form>
                 <div className='payment-flex'>
+                    <label>$</label>
                     <input 
-                        {...bindAmount}
+                        value= {amount}
+                        onChange={(e) => setAmount(e.target.value)}
                         type='text'
                         placeholder='Amount'
                     />
@@ -85,4 +93,4 @@ const Cash = (props) => {
     )
 }
 
-export default Cash;
+export default withRouter(Cash);
