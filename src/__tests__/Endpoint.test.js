@@ -1,12 +1,9 @@
-// import React from 'react';
-// import {render, act} from '@testing-library/react';
-// import axios from 'axios';
-import { customerChange, login } from './Endpoint';
+import { customerChange, total, sorter, tax } from './Endpoint';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import {
   initialState,
-  getEmployee,
+  getEmployee
 } from '../redux/reducers/employeeReducer';
 import React from 'react';
 import { render, act } from '@testing-library/react';
@@ -21,28 +18,33 @@ function renderWithRedux(
   };
 }
 
+//Grayson 1
 test('testing', () => {
     const {container} = renderWithRedux(<Authentication />)
     // console.log(container);
     expect(container).toBeTruthy();
 })
 
-
-
-
+// Grayson 2
 test('Returns 1 penny', () => {
-    // Grayson 1
     let amount = 20;
     let total = 19.99;
     expect(customerChange(amount, total)).toBeTruthy();
 });
 
-// test('Username is 1', async done => {
-//     let username;
-//     await act(async () => {
-//         username = await login();
-//     });
-//     console.log(username.username);
-//     expect(username.username).toBe(1)
-//     done();
-// });
+// Grayson 3
+test('Returns correct total', () => {
+    expect(total()).toBe("40.26")
+});
+
+// Grayson 4
+test('sorts from biggest to smallest', () => {
+    let total = [1, 3, 5];
+    expect(sorter(total)).toBeTruthy();
+})
+
+// Grayson 5
+test('Returns correct tax amount', () => {
+    let money = ['13', '49', '18'];
+    expect(tax(money)).toBe("7.04")
+})

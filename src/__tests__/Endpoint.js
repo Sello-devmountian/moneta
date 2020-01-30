@@ -1,14 +1,3 @@
-import axios from 'axios';
-//  const getProducts = () => {
-//         axios.get('/api/product').then(res => {
-//             console.log(res.data);
-//             return res.data[0].name
-//         })
-//         .catch(err => console.log(err));
-// }
-
-// export {getProducts}
-
 const customerChange = (amount, total) => {
     var Money = +amount - +total;
     let newTotal = (Money * 100);
@@ -34,19 +23,26 @@ const customerChange = (amount, total) => {
     return myChange;
 }
 
-const login = async () => {
-    let data;
-    await axios
-        .post('/api/auth/login', {username: 1, password: 1})
-        .then(res => (data = res.data))
-        .catch(err => console.log(err))
-    return data
+const total = () => {
+    let order = ['20', '10', '7'];
+    let newTotal = order.reduce((acc, b) => acc + (+b * 1.088), 0).toFixed(2)
+    return newTotal
 }
 
+const sorter = (total) => {
+    let sort = total.sort((a, b) => b - a)
+    return sort
+}
 
+const tax = (money) => {
+    let myTax = money.reduce((acc, b) => acc + (+b * 0.088), 0).toFixed(2);
+    return myTax; 
+}
 
 export {
     customerChange,
-    login
+    total,
+    sorter,
+    tax
 }
 
