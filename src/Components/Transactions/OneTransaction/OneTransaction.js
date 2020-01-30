@@ -1,4 +1,4 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
@@ -22,37 +22,42 @@ class OneTransaction extends Component {
       console.log(this.state.transaction);
     });
   };
-  printContent = async (el) => {
+  printContent = async el => {
     var restorepage = document.body.innerHTML;
     var printcontent = document.getElementById(el).innerHTML;
     document.body.innerHTML = printcontent;
-     window.print();
+    window.print();
 
-   document.body.innerHTML = restorepage;
+    document.body.innerHTML = restorepage;
 
     // this.props.history.push('/transactions')
     //  this.forceUpdate()
-   
-   window.location.reload();
-  
-  }
+
+    window.location.reload();
+  };
   render() {
     console.log(this.props);
     const { transaction } = this.state;
     return (
-      
-      <div  className="one-transaction-container">
-        <button className='print-button' onClick={() => this.printContent('receipt')}>Print</button>
+      <div className="one-transaction-container">
+        <button
+          className="print-button"
+          onClick={() => this.printContent("receipt")}
+        >
+          Print
+        </button>
         {transaction[0] ? (
-          <div id='receipt' className="receipt-container" >
+          <div id="receipt" className="receipt-container">
             <div>Receipt #{transaction[0].t_id}</div>
             <div>
-              Customer: {transaction[0].first_name.length > 0 ? (<div>
-              {transaction[0].first_name  + ' ' + transaction[0].last_name}
-              </div> 
-              ) :
-              'None'
-              }
+              Customer:{" "}
+              {transaction[0].first_name.length > 0 ? (
+                <div>
+                  {transaction[0].first_name + " " + transaction[0].last_name}
+                </div>
+              ) : (
+                "None"
+              )}
             </div>
             <div>{dateFormat(transaction.t_date, "m/d/yy h:MM TT")}</div>
             <div className="all-receipt-items">
@@ -83,7 +88,9 @@ class OneTransaction extends Component {
                   }, 0)
                 ).toFixed(2)}
               </span>
-              <span><strong>Total: ${transaction[0].total}</strong></span>
+              <span>
+                <strong>Total: ${transaction[0].total}</strong>
+              </span>
             </div>
           </div>
         ) : (
@@ -93,7 +100,5 @@ class OneTransaction extends Component {
     );
   }
 }
-
-
 
 export default withRouter(OneTransaction);

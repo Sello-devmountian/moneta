@@ -70,7 +70,6 @@ const Payment = (props) => {
         // setOrderChange({})
       }
 
-
     //   console.log(props.stripe)
     
         return (
@@ -136,6 +135,11 @@ const Payment = (props) => {
                     <div id="change-display">
                         <span>
                           <div className='change-flex'>
+                          <div>
+                                  <p>Change:{' '}</p>
+                                  <p>${+orderChange.Money.toFixed(2)}</p>
+
+                              </div>
                               <div>
                                   <p>Twenty:{' '}</p>
                                   <p>{orderChange.Twenty}</p>
