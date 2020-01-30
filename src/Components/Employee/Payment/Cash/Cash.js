@@ -21,7 +21,7 @@ const Cash = (props) => {
         })
     }
 
-    let customerChange = (amount, total) => {
+    const customerChange = (amount, total) => {
         var Money = +amount - +total;
         let newTotal = (Money * 100);
         var Twenty = Math.floor(newTotal/2000);
@@ -58,7 +58,7 @@ const Cash = (props) => {
     return (
         <div id='cash-container'>
             <h1>Cash</h1>
-            <form>
+            <form data-testid='cash-form'>
                 <div className='payment-flex'>
                     <label>$</label>
                     <input 
