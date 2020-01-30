@@ -88,7 +88,7 @@ const Payment = (props) => {
                 ) : (
                     <>
                     <Flip left duration={1000}>
-                    <div className='card-container'>
+                    <div className='card-container' data-testid='card-container'>
                         <h1>Card</h1>
                         <CardElement/>
                         <div className="actions">

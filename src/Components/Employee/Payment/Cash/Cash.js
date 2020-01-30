@@ -58,7 +58,7 @@ const Cash = (props) => {
     return (
         <div id='cash-container'>
             <h1>Cash</h1>
-            <form>
+            <form data-testid='cash-form'>
                 <div className='payment-flex'>
                     <label>$</label>
                     <input 
