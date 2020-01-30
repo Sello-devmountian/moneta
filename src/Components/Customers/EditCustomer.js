@@ -54,7 +54,9 @@ const EditCustomer = props => {
 
   console.log(props);
   return (
+      
     <div className="customers-page">
+        <h1>{first_name} {last_name}</h1>
       {editUser ? (
         <div className="edit-form">
           <div className="form-row">
