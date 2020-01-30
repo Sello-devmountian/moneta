@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getCustomer } from "../../redux/reducers/customerReducer";
 import { connect } from "react-redux";
-import "./customers.css";
+import "./customers.scss";
 import { Table } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
