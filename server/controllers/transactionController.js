@@ -56,6 +56,14 @@ module.exports = {
                 return res.status(200).send(charge)
             }
         }
+    },
+    getOneCustomerTransactions : (req,res) => {
+        const db = req.app.get('db')
+        const {c_id} = req.params
+
+        db.transactions.get_one_customer_transactions(c_id)
+        .then(transactions => res.status(200).send(transactions))
+        .catch(err => console.log(err))
     }
 
 

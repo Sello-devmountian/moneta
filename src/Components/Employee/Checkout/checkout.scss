@@ -5,6 +5,7 @@
   box-sizing: border-box;
   padding-right: 20%;
   padding-left: 10%;
+  overflow: hidden;
 }
 
 .sidebar-container {
@@ -42,6 +43,7 @@
   grid-template-columns: auto auto auto;
   grid-auto-rows: 20vw;
   width: 100%;
+  // overflow: hidden;
 
   div {
     display: flex;
@@ -179,4 +181,21 @@
       opacity: 1;
       cursor: pointer;
   }
+}
+
+.add-customer-button {
+  margin-top: 10px;
+  height: 40px;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #408cff;
+  opacity: .8;
+  border: none;
+  border-radius: 5px;
+  transition: 500ms;
+
+  &:hover {
+      opacity: 100%;
+      cursor: pointer
+}
 }
