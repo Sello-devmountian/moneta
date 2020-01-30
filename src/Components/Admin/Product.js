@@ -11,8 +11,7 @@ const Product = props => {
   const [price, setPrice] = useState("");
   const [p_type, setType] = useState("");
   const [editItem, setEditItem] = useState({});
-  const [available, bindAvailable] = useState(false);
-
+  const [available, setAvailable] = useState(true);
 
   const { products } = props.product;
 
@@ -30,10 +29,9 @@ const Product = props => {
 
   let handleSave = () => {
     const { p_id } = editItem;
-    props.editProduct(p_id, { name, p_image, price, p_type, available: true });
+    props.editProduct(p_id, { name, p_image, price, p_type, available });
     cancel();
   };
-
 
   let cancel = () => {
     setName("");
@@ -47,27 +45,26 @@ const Product = props => {
   return (
     <div>
       {!edit ? (
-        <div>
-            <div className="product-labels-box">
-<label className='product-labels'>product name</label>
-              <span>{props.p.name}</span>
-<label className='product-labels'>product price</label>
-       
-              <span>${props.p.price} </span>
-<label className='product-labels'>product type</label>
-       
-              <span>{props.p.p_type}</span>
-<label className='product-labels'>product available</label>
-       
-              <span>{props.p.available ? 'true' : 'false'}</span>
-              </div>
+        <div className="edit-organize-box">
+          <div className="product-labels-box">
+            <label className="product-labels">product name</label>
+            <span>{props.p.name}</span>
+            <label className="product-labels">product price</label>
 
-<div className='edit-btn-box'>
+            <span>${props.p.price} </span>
+            <label className="product-labels">product type</label>
 
-        <div className="edit-product-btn" onClick={() => select(props.p)}>
-          edit product
-        </div>
-</div>
+            <span>{props.p.p_type}</span>
+            <label className="product-labels">product available</label>
+
+            <span>{props.p.available ? "true" : "false"}</span>
+          </div>
+
+          <div className="edit-btn-box">
+            <div className="edit-product-btn" onClick={() => select(props.p)}>
+              edit product
+            </div>
+          </div>
         </div>
       ) : (
         //  <div
@@ -111,12 +108,18 @@ const Product = props => {
             <option value="cones">cones</option>
           </select>
 
-          <label className='new-product-availability' htmlFor='available'>product available</label>
-          <input 
-        onChange={() => bindAvailable(true)} 
-        type='checkbox'
-        value={available}
-      />
+          <label className="new-product-availability" htmlFor="available">
+            product available?
+            <select
+          className="product-available-dropdown"
+
+              onChange={e => setAvailable(e.target.value)}
+              value={available}
+            >
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </label>
 
           <div className="save-cancel-btns">
             <div

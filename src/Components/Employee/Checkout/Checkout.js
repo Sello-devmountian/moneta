@@ -53,7 +53,7 @@ const Checkout = props => {
         {products[0] ? (
           products
             .filter(p => {
-              return p.p_type === type;
+              return p.p_type === type && p.available;
             })
             .map((p, i) => {
               return (

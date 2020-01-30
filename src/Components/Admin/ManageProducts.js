@@ -21,9 +21,9 @@ const ManageProducts = props => {
     axios
       .put(`/api/products/${id}`, p)
       .then(res => {
-        console.log(res.data);
-
+        // console.log(res.data);
         alert("Product updated");
+        getAllProducts()
       })
       .catch(error => console.log(error));
   };
@@ -43,28 +43,27 @@ const ManageProducts = props => {
       <div className='product-count'>current number of products: {products.length}</div>
       </div>
       <div className='wrap-all-products'>
-      {products.map((p, i) => {
+      {products.sort((a, b) => b.p_id - a.p_id).map((p, i) => {
         return (
           <div className="product-display-box" key={i}>
-              <img className="product-img" src={p.p_image} />
-              
+
+
+          <div className='product-img-box'>
+          <img className="product-img" src={p.p_image} />
+            </div>
+
+              <div className='product-wrapper'>
             <Product
               key={i}
               p={p}
               editProduct={editProduct} 
               // deleteProduct={deleteProduct}
               />
+              </div>
           </div>
         );
       })}
       </div>
-      <section>
-      <Link to="/admin/">
-          <div className="admin">back to admin</div>
-        </Link>
-      </section>
-
-
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import React from 'react';  
 import {Link } from 'react-router-dom'; 
 import { connect } from 'react-redux';
-import './header.css'
 import axios from 'axios';
+import './header.css'
+import MonetaLogo from '../../img/simplelogo.png';
+
 
 
 const Header = (props) => {
@@ -12,6 +14,7 @@ const Header = (props) => {
 
     return(
         <header className='nav-bar'>
+            <img id='header-logo' src={MonetaLogo} alt='moneta logo' />
             <div className='nav-buttons'>
             {props.employee.employee.is_admin ? 
                 <Link className='nav-button' to='/admin'>Admin</Link>

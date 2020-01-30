@@ -30,7 +30,7 @@ class OneTransaction extends Component {
 
     document.body.innerHTML = restorepage;
 
-    // this.props.history.push('/transactions')
+    this.props.history.push('/checkout')
     //  this.forceUpdate()
 
     window.location.reload();

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { getCustomer } from "../../redux/reducers/customerReducer";
 import { connect } from "react-redux";
-import "./customers.css";
+import "./customers.scss";
 import { Table } from "react-bootstrap";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -73,29 +73,29 @@ const Customers = props => {
   return (
     <div style={{ marginTop: "60px" }}>
       {editUser ? (
-        <div>
-          EMAIL:{" "}
+        <div className = 'add-form'>
+          <span>EMAIL:</span>{" "}
           <input
             className="customer-input"
             value={email}
             onChange={e => setEmail(e.target.value)}
           ></input>
           <br />
-          PHONE:{" "}
+          <span>PHONE:</span>{" "}
           <input
             className="customer-input"
             value={phone}
             onChange={e => setPhone(e.target.value)}
           ></input>
           <br />
-          F-NAME:{" "}
+         <span> FIRST NAME:</span>{" "}
           <input
             className="customer-input"
             value={first_name}
             onChange={e => setfirst_name(e.target.value)}
           ></input>
           <br />
-          L-NAME:{" "}
+          <span>LAST NAME:</span>{" "}
           <input
             className="customer-input"
             value={last_name}
@@ -103,17 +103,18 @@ const Customers = props => {
           ></input>
           <br />
           <button
+          className='save-button'
             onClick={() => {
               addCustomer();
               setEditUser(!editUser);
             }}
           >
-            SAVE DA CUSTOMA
+            SAVE
           </button>
       
         </div>
       ) : (
-        <button onClick={() => setEditUser(!editUser)}>Add Customer</button>
+        <button className='other-buttons' onClick={() => setEditUser(!editUser)}>ADD CUSTOMER</button>
       )}
 
       <Table style={{ marginTop: "50px" }} striped bordered hover>
@@ -124,7 +125,7 @@ const Customers = props => {
             <th>Phone</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>We don't talk about this button</th>
+            <th>Add Customer to Order</th>
           </tr>
         </thead>
         <tbody>
@@ -146,7 +147,7 @@ const Customers = props => {
                     <td>{t.first_name}</td>
                     <td>{t.last_name}</td>
                     <td>
-                      <button onClick={() => passId(t.c_id)}>CLICK ME!</button>
+                      <button className='other-buttons' onClick={() => passId(t.c_id)}>Add To Order</button>
                     </td>
                   </tr>
                 );
