@@ -8,7 +8,7 @@ function AddProduct() {
   const [p_image, bindP_image, resetP_image] = useInput("");
   const [price, bindPrice, resetPrice] = useInput("");
   const [p_type, setType] = useState("scoops");
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(true);
 
   let setNewProduct = () => {
     axios
@@ -56,8 +56,8 @@ function AddProduct() {
             onChange={e => setAvailable(e.target.value)}
             value={available}
           >
-            <option value="false">false</option>
             <option value="true">true</option>
+            <option value="false">false</option>
           </select>
         </label>
 

@@ -11,7 +11,7 @@ const Product = props => {
   const [price, setPrice] = useState("");
   const [p_type, setType] = useState("");
   const [editItem, setEditItem] = useState({});
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(true);
 
   const { products } = props.product;
 
@@ -116,8 +116,8 @@ const Product = props => {
               onChange={e => setAvailable(e.target.value)}
               value={available}
             >
-              <option value="false">false</option>
               <option value="true">true</option>
+              <option value="false">false</option>
             </select>
           </label>
 
