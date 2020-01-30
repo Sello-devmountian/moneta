@@ -43,7 +43,7 @@ const ManageProducts = props => {
       <div className='product-count'>current number of products: {products.length}</div>
       </div>
       <div className='wrap-all-products'>
-      {products.map((p, i) => {
+      {products.sort((a, b) => b.p_id - a.p_id).map((p, i) => {
         return (
           <div className="product-display-box" key={i}>
 
@@ -64,13 +64,6 @@ const ManageProducts = props => {
         );
       })}
       </div>
-      {/* <section>
-      <Link to="/admin/">
-          <div className="admin">back to admin</div>
-        </Link>
-      </section> */}
-
-
     </div>
   );
 };
