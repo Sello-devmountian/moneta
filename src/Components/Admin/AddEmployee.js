@@ -28,12 +28,13 @@ function AddEmployee() {
       <h1 className="new-employee-title">add new employee</h1>
       <input placeholder="username" {...bindUserName} />
       <input placeholder="password" type="password" {...bindPassword} />
-      <label className='admin-access' htmlFor="is_admin">admin access</label>
+      <label className='admin-access' htmlFor="is_admin">admin access
       <input
         onChange={() => bindIsAdmin(!is_admin)}
         type="checkbox"
         value="is_admin"
       />
+      </label>
       <div
         className="add-employee-btn"
         onClick={() => {
@@ -44,6 +45,8 @@ function AddEmployee() {
       >
         add employee
       </div>
+      <span className='checkmark'></span>
+
     </div>
   );
 }
