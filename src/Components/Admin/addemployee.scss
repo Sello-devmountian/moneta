@@ -29,6 +29,8 @@
     padding: 50px;
     font-size: 50px;
     @include displayFlex();
+    box-shadow: 5px 10px 30px #7e7e7e;
+
 }
 
 .admin-access {
@@ -45,7 +47,7 @@
     color: #fff;
     background-color: #408DFF;
     height: 55px;
-    width: 160px;
+    width: 200px;
     display: inline-block;
     @include displayFlex();
     -webkit-transition: all 0.3s ease-in-out;

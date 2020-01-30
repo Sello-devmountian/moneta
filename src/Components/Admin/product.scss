@@ -11,6 +11,15 @@ body {
   align-items: center;
 }
 
+.edit-organize-box {
+  // border: aquamarine solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
 .product-labels-box > span {
   margin: 20px;
 }
@@ -24,15 +33,11 @@ body {
     font-weight: bold;
 }
 
-.edit-btn-box {
-    position: static;
-    right: 90px;
-}
-
 .edit-product-btn {
   color: #408dff;
   height: 50px;
   width: 150px;
+  margin: 5px 20px;
   display: flex;
   justify-content: center;
   align-items: center;

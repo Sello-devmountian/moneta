@@ -27,6 +27,7 @@ body {
 .new-product-title {
     color: #fff;
     background-color: #232323;
+    box-shadow: 5px 10px 30px #7e7e7e;
     height: 500px;
     padding: 50px;
     font-size: 50px;
@@ -64,11 +65,25 @@ select {
     -webkit-border-radius: 0px;
   }
 
+  .product-available-dropdown {
+    // background-color: #408DFF;
+    border: transparent;
+    color: #6A6A6A;
+    width: 120px;
+    height: 35px;
+    outline: #fff;
+    padding-left: 10px;
+    // border-bottom: solid 1.5px #408DFF;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #fff;
+}
+
 .add-product-btn {
     color: #fff;
     background-color: #408DFF;
-    height: 50px;
-    width: 250px;
+    height: 55px;
+    width: 200px;
     display: inline-block;
     @include displayFlex();
     -webkit-transition: all 0.3s ease-in-out;
