@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import useInput from '../../../hooks/useInput';
 import './payment.scss';
 import Cash from './Cash/Cash';
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import {injectStripe, CardElement} from 'react-stripe-elements';
+import Flip from 'react-reveal/Flip';
 
 const MySwal = withReactContent(Swal);
 
@@ -14,6 +14,7 @@ const Payment = (props) => {
     const [orderChange, setOrderChange] = useState({});
     const [cash, setCash] = useState(false);
     const [cashPaid, setCashPaid] = useState(false);
+    const [response, setResponse] = useState({});
 
     useEffect(() => {
         axios.get('/api/co/cart').then(res => {
@@ -27,8 +28,8 @@ const Payment = (props) => {
         axios.post('/api/transactions', {total, token}).then(res => {
             // console.log(res.data.status)
             if(res.data){
-                axios.post('/api/email').then(res => console.log('email sent', res))
-                props.history.push(`/receipt/${res.data.t_id}`)
+                axios.post('/api/email').then(res => console.log('email sent'))
+                props.history.push(`/transactions/${res.data.t_id}`)
                 MySwal.fire({
                     icon: 'success',
                     title: 'Congrats...',
@@ -48,6 +49,10 @@ const Payment = (props) => {
       let setChange = (obj) => {
           setOrderChange(obj)
       }
+
+      let setId = (obj) => {
+        setResponse(obj)
+      }
     
       
     let toggleCash = () => {
@@ -60,25 +65,29 @@ const Payment = (props) => {
       }
 
     let changeCounted = () => {
-        props.history.push('/receipt')
+        props.history.push(`/transactions/${response.t_id}`)
         setCashPaid(false)
+        // setOrderChange({})
       }
 
-
-      console.log(props.stripe)
+    //   console.log(props.stripe)
+    
         return (
             <div style={{margin: '100px'}} id='PaymentForm'>
                 {cash ? (
-                    <>
+                    <Flip left duration={1000}>
                     <Cash cash={cash} 
                         toggleCashFn={toggleCash} 
                         togglePaidFn={togglePaid} 
                         setChangeFn={setChange} 
+                        setResFn={setId}
                         order={order}
                         clearCartFn={clearCart}
                     />
-                    </>
+                    </Flip>
                 ) : (
+                    <>
+                    <Flip left duration={1000}>
                     <div className='card-container'>
                         <h1>Card</h1>
                         <CardElement/>
@@ -87,7 +96,9 @@ const Payment = (props) => {
                             <small>or</small>
                             <button onClick={toggleCash} className='payment-button'>CASH</button>
                         </div>
-                </div>
+                    </div>
+                    </Flip>
+                    </>
                 )}
                 <div className='cart-payment'>
                     <h1 style={{color: '#232323', fontSize: '40px', fontWeight: 'bold'}}>
@@ -102,6 +113,16 @@ const Payment = (props) => {
                                 </div>
                             )
                         })}
+                        <span style={{color: '#232323', fontSize: '20px'}}>
+                            Subtotal: ${" "}
+                            {order[0] &&
+                            order.reduce((acc, b) => acc + (+b.price), 0).toFixed(2)}
+                        </span>
+                        <span style={{color: '#232323', fontSize: '20px'}}>
+                            Tax: ${" "}
+                            {order[0] &&
+                            order.reduce((acc, b) => acc + (+b.price * 0.088), 0).toFixed(2)}
+                        </span>
                         <span style={{color: '#232323', fontSize: '20px', fontWeight: 'bold'}}>
                             Total: ${" "}
                             {order[0] &&
@@ -114,6 +135,11 @@ const Payment = (props) => {
                     <div id="change-display">
                         <span>
                           <div className='change-flex'>
+                          <div>
+                                  <p>Change:{' '}</p>
+                                  <p>${+orderChange.Money.toFixed(2)}</p>
+
+                              </div>
                               <div>
                                   <p>Twenty:{' '}</p>
                                   <p>{orderChange.Twenty}</p>

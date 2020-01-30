@@ -1,7 +1,6 @@
 import "./receipt.scss";
-
 import React, { Component } from "react";
-
+import font from './RobotoMono-Regular.ttf'
 import { withRouter } from "react-router-dom";
 import Axios from "axios";
 
@@ -16,8 +15,15 @@ import {
   StyleSheet,
   PDFViewer
 } from "@react-pdf/renderer";
-
-// Font.register({ family: 'Roboto', src: `https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap`, fontStyle: 'normal',fontWeight: 'normal'})
+Font.register({
+  family: 'Roboto Mono',
+  fonts: [
+    {
+      src: font
+    }
+  ]
+})
+// Font.register({ family: 'Roboto Mono', src: `\RobotoMono-Regular.ttf`, fontStyle: 'normal',fontWeight: 'normal'})
 class Receipt extends Component {
   constructor() {
     super();
@@ -60,7 +66,8 @@ class Receipt extends Component {
         display: "flex",
         flexDirection: "column",
         padding: "10px 20px",
-        // fontFamily: 'Arial'
+        fontSize: '12pt',
+        fontFamily: 'Roboto Mono'
       },
       receiptItemAndPrice: {
         // backgroundColor: 'red',
@@ -69,8 +76,10 @@ class Receipt extends Component {
         width: "100%",
         justifyContent: "space-between",
         boxSizing: "border-box"
+        
       },
       allReceiptItems: {
+        width: '100%',
         borderTop: "1mm solid #408cff",
         borderBottom: "1mm solid #408cff",
         padding: "5px",
