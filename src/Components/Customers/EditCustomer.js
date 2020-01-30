@@ -7,6 +7,7 @@ import "./customers.css";
 
 
 const EditCustomer = props => {
+    const [transactions, setTransactions] = useState([]);
     const [editUser, setEditUser] = useState(false);
     let [currentCustomer] = props.customer.customer.filter( ele => +ele.c_id === +props.match.params.c_id)
     const [email, setEmail] = useState(currentCustomer.email)
@@ -14,6 +15,11 @@ const EditCustomer = props => {
     const [first_name, setfirst_name] = useState(currentCustomer.first_name)
     const [last_name, setlast_name] = useState(currentCustomer.last_name)
     console.log(email); 
+
+    useEffect(() =>{
+        getTransactions();
+
+    }, [])
     
 
     let editCustomer = () => {
@@ -22,7 +28,16 @@ const EditCustomer = props => {
         })
     }
 
+    let getTransactions = () => {
+        axios.get(`/api/customerTrans/${props.match.params.c_id}`).then(res => {
+            setTransactions(res.data); 
+        })
+        .catch(err => console(err)); 
+        
+    }
+
     console.log(props)
+    console.log(transactions)
     return(
         <div className='customers-page'>
             {editUser ? ( <div>
@@ -35,6 +50,8 @@ const EditCustomer = props => {
                 </div>
                 <button onClick={() => editCustomer()}>SAVE DA CHANGES</button>
             </div>   ): (<button onClick={() => setEditUser(!editUser)}>PRESS ME... MAKE MY DAY</button>)}
+
+            <div> </div>
            
 
            
