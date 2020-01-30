@@ -73,29 +73,29 @@ const Customers = props => {
   return (
     <div style={{ marginTop: "60px" }}>
       {editUser ? (
-        <div>
-          EMAIL:{" "}
+        <div className = 'add-form'>
+          <span>EMAIL:</span>{" "}
           <input
             className="customer-input"
             value={email}
             onChange={e => setEmail(e.target.value)}
           ></input>
           <br />
-          PHONE:{" "}
+          <span>PHONE:</span>{" "}
           <input
             className="customer-input"
             value={phone}
             onChange={e => setPhone(e.target.value)}
           ></input>
           <br />
-          FIRST NAME:{" "}
+         <span> FIRST NAME:</span>{" "}
           <input
             className="customer-input"
             value={first_name}
             onChange={e => setfirst_name(e.target.value)}
           ></input>
           <br />
-          LAST NAME:{" "}
+          <span>LAST NAME:</span>{" "}
           <input
             className="customer-input"
             value={last_name}
@@ -103,6 +103,7 @@ const Customers = props => {
           ></input>
           <br />
           <button
+          className='save-button'
             onClick={() => {
               addCustomer();
               setEditUser(!editUser);
@@ -113,7 +114,7 @@ const Customers = props => {
       
         </div>
       ) : (
-        <button onClick={() => setEditUser(!editUser)}>ADD CUSTOMER</button>
+        <button className='other-buttons' onClick={() => setEditUser(!editUser)}>ADD CUSTOMER</button>
       )}
 
       <Table style={{ marginTop: "50px" }} striped bordered hover>
@@ -146,7 +147,7 @@ const Customers = props => {
                     <td>{t.first_name}</td>
                     <td>{t.last_name}</td>
                     <td>
-                      <button onClick={() => passId(t.c_id)}>Add To Order</button>
+                      <button className='other-buttons' onClick={() => passId(t.c_id)}>Add To Order</button>
                     </td>
                   </tr>
                 );

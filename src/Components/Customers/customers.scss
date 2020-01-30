@@ -40,7 +40,6 @@
 }
 
 .edit-form {
-  background-color: aquamarine;
   height: 300px;
   width: 300px;
   box-sizing: border-box;
@@ -58,7 +57,6 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: peru;
 }
 
 .edit-customer-button {
@@ -95,9 +93,32 @@
   }
 }
 
+.other-buttons {
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #408cff;
+  opacity: 0.8;
+  border: none;
+  border-radius: 5px;
+  transition: 500ms;
+
+  &:hover {
+    opacity: 100%;
+    cursor: pointer;
+  }
+}
+
 .whole-table {
     width: 100vh;
 
+}
+
+
+.add-form{
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
 }
 // table {
 //     width: 1000px;   // background-color: greenyellow;
