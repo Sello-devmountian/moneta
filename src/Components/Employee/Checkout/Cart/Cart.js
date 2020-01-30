@@ -75,6 +75,7 @@ const Cart = props => {
           {props.employee.employee.customer &&
             props.employee.employee.customer.last_name}
         </span>
+        <button onClick={() => props.history.push('/customers')} className='add-customer-button'>ADD CUSTOMER</button>
       </div>
       {/* <section>
         discount code

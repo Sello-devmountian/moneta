@@ -22,8 +22,8 @@ const Cash = (props) => {
     }
 
     let customerChange = (amount, total) => {
-        let money = +amount - +total;
-        let newTotal = (money * 100);
+        var Money = +amount - +total;
+        let newTotal = (Money * 100);
         var Twenty = Math.floor(newTotal/2000);
         newTotal -= (2000*Twenty);
         var Ten = Math.floor(newTotal/1000);
@@ -38,7 +38,7 @@ const Cash = (props) => {
         newTotal -= (10*Dime);
         var Nickel = Math.floor(newTotal/5);
         newTotal -= (5*Nickel);
-        var obj = {Twenty,Ten,Five,One,Quarter,Dime,Nickel,Penny:newTotal}
+        var obj = {Money,Twenty,Ten,Five,One,Quarter,Dime,Nickel,Penny: Math.floor(newTotal)}
         let myChange = Object.keys(obj).filter(k=>obj[k]).reduce((o,k)=>{
             o[k] = obj[k];
             return o
