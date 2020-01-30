@@ -16,6 +16,7 @@
     color: #fff;
     font-size: 50px;
     background-color: #232322;
+    box-shadow: 5px 10px 30px #7e7e7e;
     height: 500px;
     padding: 50px;
     margin: 70px 0 0 50px;
@@ -24,17 +25,28 @@
 }
 
 .del-employee-box {
-  @include displayFlex();
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
   margin-top: 50px;
 }
 
 .employee-box {
-  border: #424242 solid 1px;
+  // border: #424242 solid 1px;
+  box-shadow: 5px 10px 30px #f7f7f7;
+
   margin: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.employee-box:hover {
+  box-shadow: 5px 10px 30px #aeaeae;
 }
 
 .employee-name {
