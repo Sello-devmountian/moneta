@@ -88,14 +88,14 @@ const Customers = props => {
             onChange={e => setPhone(e.target.value)}
           ></input>
           <br />
-          F-NAME:{" "}
+          FIRST NAME:{" "}
           <input
             className="customer-input"
             value={first_name}
             onChange={e => setfirst_name(e.target.value)}
           ></input>
           <br />
-          L-NAME:{" "}
+          LAST NAME:{" "}
           <input
             className="customer-input"
             value={last_name}
@@ -108,12 +108,12 @@ const Customers = props => {
               setEditUser(!editUser);
             }}
           >
-            SAVE DA CUSTOMA
+            SAVE
           </button>
       
         </div>
       ) : (
-        <button onClick={() => setEditUser(!editUser)}>Add Customer</button>
+        <button onClick={() => setEditUser(!editUser)}>ADD CUSTOMER</button>
       )}
 
       <Table style={{ marginTop: "50px" }} striped bordered hover>
@@ -124,7 +124,7 @@ const Customers = props => {
             <th>Phone</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>We don't talk about this button</th>
+            <th>Add Customer to Order</th>
           </tr>
         </thead>
         <tbody>
@@ -146,7 +146,7 @@ const Customers = props => {
                     <td>{t.first_name}</td>
                     <td>{t.last_name}</td>
                     <td>
-                      <button onClick={() => passId(t.c_id)}>CLICK ME!</button>
+                      <button onClick={() => passId(t.c_id)}>Add To Order</button>
                     </td>
                   </tr>
                 );

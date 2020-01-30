@@ -30,11 +30,11 @@ const EditCustomer = props => {
                 <div>
                 EMAIL: <input className='customer-input' value={email} onChange={(e) => setEmail(e.target.value)}></input><br/>
                 PHONE: <input className='customer-input' value={phone} onChange={(e) => setPhone(e.target.value)} ></input><br/>
-                F-NAME: <input className='customer-input' value={first_name} onChange={(e) => setfirst_name(e.target.value)}></input><br/>
-                L-NAME: <input className='customer-input' value={last_name} onChange={(e) => setlast_name(e.target.value)}></input>
+                FIRST NAME: <input className='customer-input' value={first_name} onChange={(e) => setfirst_name(e.target.value)}></input><br/>
+                LAST NAME: <input className='customer-input' value={last_name} onChange={(e) => setlast_name(e.target.value)}></input>
                 </div>
-                <button onClick={() => editCustomer()}>SAVE DA CHANGES</button>
-            </div>   ): (<button onClick={() => setEditUser(!editUser)}>PRESS ME... MAKE MY DAY</button>)}
+                <button onClick={() => editCustomer()}>SAVE EDIT</button>
+            </div>   ): (<button onClick={() => setEditUser(!editUser)}>Edit Customer</button>)}
            
 
            
