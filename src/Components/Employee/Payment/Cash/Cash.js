@@ -21,7 +21,7 @@ const Cash = (props) => {
         })
     }
 
-    let customerChange = (amount, total) => {
+    const customerChange = (amount, total) => {
         var Money = +amount - +total;
         let newTotal = (Money * 100);
         var Twenty = Math.floor(newTotal/2000);
