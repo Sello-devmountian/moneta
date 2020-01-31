@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getEmployee } from "../../redux/reducers/employeeReducer";
 import "./deleteemployee.scss";
 
+import Swal from 'sweetalert2'
+
 const DeleteEmployee = props => {
   const [users, setUsers] = useState([]);
 
@@ -20,6 +22,7 @@ const DeleteEmployee = props => {
       .delete(`/api/admin/users/${user_id}`)
       .then(res => {
         // console.log(res.data)
+    
         getAllEmployees();
       })
       .catch(error => console.log(error));
@@ -40,9 +43,30 @@ const DeleteEmployee = props => {
               <div
                 className="del-employee-btn"
                 onClick={e =>
-                  window.confirm(
-                    "Are you sure you would like to delete this employee?"
-                  ) && deleteEmployee(user.user_id)
+                  // window.confirm(
+                  //   "Are you sure you would like to delete this employee?"
+                  // ) && 
+
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete!'
+                  }).then((result) => {
+                    if (result.value) {
+                      Swal.fire(
+                        'Deleted!',
+                        'Employee has been deleted.',
+                        'success'
+                      )
+                      && deleteEmployee(user.user_id)
+                    }
+                  })
+                  
+                  
                 }
                 // style={{marginTop: '50px'}}
               >
