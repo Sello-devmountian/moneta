@@ -52,7 +52,7 @@ module.exports = {
     const db = req.app.get("db");
     db.users.get_users()
     .then(employees => {
-      console.log(employees)
+      // console.log(employees)
         res.status(200).send(employees);
       })
       .catch(err => res.status(500).send(err));
