@@ -7,10 +7,10 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 
-function AddEmployee() {
+function AddEmployee(props) {
   const [username, bindUserName, resetUsername] = useInput("");
   const [password, bindPassword, resetPassword] = useInput("");
-  const [is_admin, bindIsAdmin] = useState(false);
+  const [is_admin, setIsAdmin] = useState(false);
   
   const MySwal = withReactContent(Swal);
 
@@ -22,8 +22,9 @@ function AddEmployee() {
         password,
         is_admin
       })
-      .then(() => {
+      .then(res => {
         // alert("New employee added");
+        console.log('hit', res)
         MySwal.fire({
           icon: "success",
           title: "Success!",
@@ -43,7 +44,7 @@ function AddEmployee() {
       <label className="admin-access" htmlFor="is_admin">
         admin access
         <input
-          onChange={() => bindIsAdmin(!is_admin)}
+          onChange={() => setIsAdmin(!is_admin)}
           type="checkbox"
           value="is_admin"
         />
@@ -54,6 +55,12 @@ function AddEmployee() {
           setNewEmployee();
           resetUsername();
           resetPassword();
+          MySwal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "New employee added"
+          });
+          props.history.push('/admin');
         }}
       >
         add employee
