@@ -14,8 +14,6 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt);
         let newUser = await db.users.register_user({username, hash, is_admin});
         newUser = newUser[0]
-        session.user = {username: newUser.username, is_admin: newUser.is_admin, id: newUser.user_id};
-        res.status(200).send(session.user);
     },
 
     login: async (req, res) => {
