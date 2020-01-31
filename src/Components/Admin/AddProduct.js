@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import useInput from "../../hooks/useInput";
 import "./addproduct.scss";
-import axios from "axios";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 function AddProduct() {
   const [name, bindName, resetName] = useInput("");
@@ -9,6 +12,9 @@ function AddProduct() {
   const [price, bindPrice, resetPrice] = useInput("");
   const [p_type, setType] = useState("scoops");
   const [available, setAvailable] = useState(true);
+
+  const MySwal = withReactContent(Swal);
+
 
   let setNewProduct = () => {
     axios
@@ -20,8 +26,15 @@ function AddProduct() {
         available
       })
       .then(response => {
-        console.log(response, "response");
-        alert("New product added");
+        // console.log(response, "response");
+        // alert("New product added");
+
+        MySwal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "New product added"
+        });
+
       })
       .catch(err => {
         console.log("Product not added", err);

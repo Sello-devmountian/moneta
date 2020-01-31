@@ -6,8 +6,14 @@ import { getProducts } from "../../redux/reducers/productReducer";
 import Product from "./Product";
 import "./manageproducts.scss";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const ManageProducts = props => {
   const { products } = props.product;
+
+  const MySwal = withReactContent(Swal);
+
 
   useEffect(() => {
     getAllProducts();
@@ -22,7 +28,14 @@ const ManageProducts = props => {
       .put(`/api/products/${id}`, p)
       .then(res => {
         // console.log(res.data);
-        alert("Product updated");
+
+        MySwal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Product updated"
+        });
+
+        // alert("Product updated");
         getAllProducts()
       })
       .catch(error => console.log(error));
